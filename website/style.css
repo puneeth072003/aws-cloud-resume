@@ -9,7 +9,7 @@ body{
     --color-black: #000000;
     --color-white: #ffffff;
     --color-border: #ffffff34;
-    --color-blue: #6C63FF;
+    --color-blue: #000000;
     --font-staat: 'Staatliches', cursive;
     --font-os:  'Oswald', sans-serif;
     --font-ram: 'Rambla', sans-serif;
@@ -112,7 +112,7 @@ body{
     height: 240px;
     border-radius: 50%;
     margin: auto;
-    background: url(./assets/avatar-alt.png) no-repeat;
+    background: url(./assets/avatar-alt1.png) no-repeat;
     background-size: 110%;
     background-position: 40% 0;
 }
@@ -221,4 +221,76 @@ body{
 
 .eye :hover{
     color: var(--color-white);
+}
+
+.work-card {
+  position: relative;
+  overflow: visible; /* Allow shadow to be visible outside the container */
+  cursor: pointer;
+  border-radius: 10px; /* Ensure the container has rounded corners */
+}
+
+.work-card img {
+  display: block;
+  width: 100%;
+  transition: filter 0.3s ease;
+}
+
+/* Overlay starts hidden */
+.work-card .overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Dim image on hover */
+.work-card:hover img {
+  filter: brightness(50%);
+}
+
+/* Fade in overlay icons on hover */
+.work-card:hover .overlay {
+  opacity: 1;
+}
+
+/* Icon styling */
+.work-card .overlay a {
+  color: #fff;
+  font-size: 2rem;
+  text-decoration: none;
+  background: rgba(0,0,0,0.4);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.work-card .overlay a:hover {
+  transform: scale(1.2);
+}
+
+/* Details positioning */
+.work-card .details {
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.work-card video {
+    width: 100%; /* Make the video responsive */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: inherit; /* Inherit rounded corners from the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    object-fit: cover; /* Ensure the video covers its container */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.work-card:hover video {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8); /* Highlight with a darker shadow */
+    transform: scale(1.05); /* Slightly enlarge the video on hover */
+    border-radius: inherit; /* Maintain rounded corners on hover */
 }
