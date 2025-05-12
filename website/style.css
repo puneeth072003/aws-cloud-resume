@@ -223,74 +223,101 @@ body{
     color: var(--color-white);
 }
 
+/* Work section container */
+.work {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    gap: 1.5rem; /* Add spacing between items */
+    justify-content: center; /* Center items horizontally */
+    align-items: flex-start; /* Align items to the top */
+    padding: 2rem 1rem; /* Add padding around the section */
+}
+
+/* Standardize work card dimensions */
 .work-card {
-  position: relative;
-  overflow: visible; /* Allow shadow to be visible outside the container */
-  cursor: pointer;
-  border-radius: 10px; /* Ensure the container has rounded corners */
+    flex: 1 1 calc(33.333% - 2rem); /* 3 items per row, with spacing */
+    max-width: calc(100% - 1rem); /* Ensure max width for responsiveness */
+    height: 300px; /* Set a fixed height for all cards */
+    position: relative;
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden; /* Clip content inside the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
 }
 
-.work-card img {
-  display: block;
-  width: 100%;
-  transition: filter 0.3s ease;
+/* Hover effect for work card */
+.work-card:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Darker shadow on hover */
 }
 
-/* Overlay starts hidden */
+/* Video inside work card */
+.work-card video {
+    width: 100%; /* Make video responsive */
+    height: 100%; /* Ensure video fills the card */
+    object-fit: cover; /* Ensure video covers the container */
+    border-radius: inherit; /* Inherit rounded corners */
+}
+
+/* Overlay for work card */
 .work-card .overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    opacity: 0; /* Start hidden */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem; /* Space between icons */
+    transition: opacity 0.3s ease; /* Smooth fade-in effect */
 }
 
-/* Dim image on hover */
-.work-card:hover img {
-  filter: brightness(50%);
-}
-
-/* Fade in overlay icons on hover */
+/* Show overlay on hover */
 .work-card:hover .overlay {
-  opacity: 1;
+    opacity: 1; /* Make overlay visible */
 }
 
-/* Icon styling */
+/* Overlay icons */
 .work-card .overlay a {
-  color: #fff;
-  font-size: 2rem;
-  text-decoration: none;
-  background: rgba(0,0,0,0.4);
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  transition: transform 0.2s ease;
+    color: #fff;
+    font-size: 2rem;
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.6); /* Dark background for icons */
+    padding: 0.5rem;
+    border-radius: 50%; /* Circular icons */
+    transition: transform 0.2s ease; /* Smooth hover effect */
 }
 
 .work-card .overlay a:hover {
-  transform: scale(1.2);
+    transform: scale(1.2); /* Enlarge icons on hover */
 }
 
-/* Details positioning */
+/* Details section */
 .work-card .details {
-  margin-top: 0.5rem;
-  text-align: center;
+    text-align: center;
+    padding: 1rem;
+    background: #fff;
+    font-family: var(--font-ram);
+    font-size: 1.2rem;
+    color: #333;
 }
 
-.work-card video {
-    width: 100%; /* Make the video responsive */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: inherit; /* Inherit rounded corners from the container */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
-    object-fit: cover; /* Ensure the video covers its container */
-    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .work-card {
+        flex: 1 1 calc(50% - 1rem); /* 2 items per row on smaller screens */
+        max-width: calc(50% - 1rem);
+        height: 250px; /* Adjust height for smaller screens */
+    }
 }
 
-.work-card:hover video {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8); /* Highlight with a darker shadow */
-    transform: scale(1.05); /* Slightly enlarge the video on hover */
-    border-radius: inherit; /* Maintain rounded corners on hover */
+@media screen and (max-width: 480px) {
+    .work-card {
+        flex: 1 1 100%; /* 1 item per row on very small screens */
+        max-width: 100%;
+        height: 200px; /* Adjust height for mobile screens */
+    }
 }
