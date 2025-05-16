@@ -1,0 +1,22 @@
+frontend:
+  - 'frontend/**'
+
+documentation:
+  - '**/*.md'
+  - 'docs/**'
+
+ci:
+  - '.github/workflows/**'
+  - 'ci/**'
+
+config:
+  - '**/*.yml'
+  - '**/*.yaml'
+  - '**/*.json'
+
+tests:
+  - 'tests/**'
+  - '**/*.test.*'
+
+deployment:
+  - 'Deployment/**'
