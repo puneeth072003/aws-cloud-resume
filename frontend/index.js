@@ -13,7 +13,6 @@ $(document).ready(function (e) {
     $toggle.click(function (e) {
         $navbar.toggleClass("toggle-left");
     })
-
 });
 
 function toggle_onclick($win, $navbar, width) {
@@ -59,11 +58,23 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 const counter = document.querySelector(".counter-number");
+const COUNTER_URL = "https://dviz66qcm3vqhccxryrjmvn7yq0rnink.lambda-url.ap-south-1.on.aws/?key=oe7XZ2FvVVRpWkUMokTuEC3PuAKpy4u9";
+
 async function updateCounter() {
-    let response = await fetch(
-        "https://wwjcx7tyxrbjmbkf3vc3teo3mu0qrvhq.lambda-url.ca-central-1.on.aws/"
-    );
-    let data = await response.json();
-    counter.innerHTML = `👀 Views: ${data}`;
+    let method = "GET";
+    if (!sessionStorage.getItem("counterIncremented")) {
+        method = "POST";
+    }
+    try {
+        const response = await fetch(COUNTER_URL, { method });
+        if (!response.ok) throw new Error("Failed to fetch");
+        const data = await response.json();
+        counter.innerHTML = `👀 Views: ${data.views}`;
+        if (method === "POST") {
+            sessionStorage.setItem("counterIncremented", "true");
+        }
+    } catch (err) {
+        counter.innerHTML = "Couldn't read the counter";
+    }
 }
 updateCounter();
