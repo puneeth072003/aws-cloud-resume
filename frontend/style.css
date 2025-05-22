@@ -305,6 +305,41 @@ body{
     color: #333;
 }
 
+  .carousel-inner img {
+    transition: transform 0.5s ease;
+  }
+
+  .carousel-inner img:hover {
+    transform: scale(1.03);
+  }
+
+  /* Custom carousel buttons */
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .carousel-control-prev-icon::before {
+    content: "\f104"; /* Font Awesome left chevron */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: white;
+  }
+
+  .carousel-control-next-icon::before {
+    content: "\f105"; /* Font Awesome right chevron */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: white;
+  }
+  
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
     .work-card {
