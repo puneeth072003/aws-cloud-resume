@@ -69,7 +69,7 @@ async function updateCounter() {
         const response = await fetch(COUNTER_URL, { method });
         if (!response.ok) throw new Error("Failed to fetch");
         const data = await response.json();
-        counter.innerHTML = `👀 Views: ${data.views}`;
+        counter.innerHTML = `👀 ${data.views} spies detected`;
         if (method === "POST") {
             sessionStorage.setItem("counterIncremented", "true");
         }
