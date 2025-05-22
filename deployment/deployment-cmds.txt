@@ -1,0 +1,16 @@
+// ------------------------
+//  terraform run cmds
+// ------------------------
+
+// installing modules
+terraform init
+
+// validate config
+terraform plan -var-file="terraform.tfvars"
+
+// add config to cloud
+terraform apply -var-file="terraform.tfvars"
+
+
+// good for CI/CD
+terraform apply -var-file="terraform.tfvars" -auto-approve

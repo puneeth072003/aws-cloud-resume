@@ -12,7 +12,3 @@ terraform {
 provider "aws" {
   region = "ap-south-1"
 }
-
-module "lambda_function" {
-  source = "./lambda.tf"
-}

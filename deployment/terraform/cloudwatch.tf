@@ -4,9 +4,9 @@ resource "aws_cloudwatch_metric_alarm" "lambda_invocation_alarm" {
   evaluation_periods  = 1
   metric_name         = "Invocations"
   namespace           = "AWS/Lambda"
-  period              = 2678400   # 31 days in seconds
+  period              = 604800   # a week
   statistic           = "Sum"
-  threshold           = 800000    # 80% of 1M
+  threshold           = 200000  # Approx 800k/month / 4 weeks
   alarm_description   = "Lambda invocations > 800,000 this month"
   treat_missing_data  = "notBreaching"
 
@@ -16,15 +16,17 @@ resource "aws_cloudwatch_metric_alarm" "lambda_invocation_alarm" {
 
   alarm_actions = [aws_sns_topic.free_tier_alerts.arn]
 }
+
+
 resource "aws_cloudwatch_metric_alarm" "logs_ingestion_alarm" {
   alarm_name          = "Logs80PercentIngest"
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = 1
   metric_name         = "IncomingBytes"
   namespace           = "AWS/Logs"
-  period              = 2678400
+  period              = 604800 
   statistic           = "Sum"
-  threshold           = 4000000000  # 4 GB = 80% of 5GB
+  threshold           = 200000  # 4 GB = 80% of 5GB
   alarm_description   = "Logs ingestion > 4 GB this month"
   treat_missing_data  = "notBreaching"
 
@@ -36,9 +38,9 @@ resource "aws_cloudwatch_metric_alarm" "sns_publish_alarm" {
   evaluation_periods  = 1
   metric_name         = "NumberOfMessagesPublished"
   namespace           = "AWS/SNS"
-  period              = 2678400
+  period              = 604800
   statistic           = "Sum"
-  threshold           = 800000
+  threshold           = 200000
   alarm_description   = "SNS publishes > 800,000"
   treat_missing_data  = "notBreaching"
 
