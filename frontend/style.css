@@ -356,3 +356,66 @@ body{
         height: 200px; /* Adjust height for mobile screens */
     }
 }
+
+/* Responsive banner adjustments */
+.site-banner .banner-area {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.author-img {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    margin: 0 auto 1rem auto;
+    background: url(./assets/avatar-alt1.png) no-repeat center center;
+    background-size: cover;
+}
+
+.typed-container {
+    min-height: 38px; /* Prevents layout shift when text changes */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .site-banner .banner-area {
+        min-height: 40vh;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+    .author-img {
+        width: 180px;
+        height: 180px;
+    }
+    .font-size-40 {
+        font-size: 2rem;
+    }
+    .font-size-27 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-banner .banner-area {
+        min-height: 30vh;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+    .author-img {
+        width: 120px;
+        height: 120px;
+    }
+    .font-size-40 {
+        font-size: 1.3rem;
+    }
+    .font-size-27 {
+        font-size: 1rem;
+    }
+}
