@@ -285,14 +285,17 @@ body{
     color: #fff;
     font-size: 2rem;
     text-decoration: none;
-    background: rgba(0, 0, 0, 0.6); /* Dark background for icons */
+    background: transparent; /* Remove dark background */
     padding: 0.5rem;
-    border-radius: 50%; /* Circular icons */
-    transition: transform 0.2s ease; /* Smooth hover effect */
+    border-radius: 50%; /* Keep icons circular if you want, or remove this for square */
+    transition: transform 0.2s ease;
+    box-shadow: none; /* Remove any shadow */
 }
 
+/* Highlight effect on overlay icons */
 .work-card .overlay a:hover {
-    transform: scale(1.2); /* Enlarge icons on hover */
+    transform: scale(1.3);
+    color: #ffd700; /* Optional: add a highlight color on hover */
 }
 
 /* Details section */
@@ -303,6 +306,25 @@ body{
     font-family: var(--font-ram);
     font-size: 1.2rem;
     color: #333;
+}
+
+/* Video title overlay for each work card */
+.work-card .video-title {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    font-family: var(--font-staat);
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 0.5rem 0.2rem 0.4rem 0.2rem;
+    z-index: 2;
+    letter-spacing: 1px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    pointer-events: none; /* So overlay icons remain clickable */
 }
 
   .carousel-inner img {
@@ -418,4 +440,52 @@ body{
     .font-size-27 {
         font-size: 1rem;
     }
+}
+
+#photographyCarousel {
+    cursor: default !important;
+    user-select: none;
+}
+
+/* Consistent gray button styles */
+.btn-primary {
+    background: linear-gradient(90deg, #444 0%, #222 100%);
+    border: none;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-radius: 30px;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    letter-spacing: 1px;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    background: linear-gradient(90deg, #222 0%, #444 100%);
+    color: #59ff00 !important;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.16);
+    outline: none;
+}
+
+.btn-outline-primary {
+    background: transparent;
+    border: 2px solid #444;
+    color: #444 !important;
+    border-radius: 30px;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    letter-spacing: 1px;
+}
+
+.btn-outline-primary:hover, .btn-outline-primary:focus {
+    background: #444;
+    color: #ffd700 !important;
+    transform: translateY(-2px) scale(1.04);
+    outline: none;
+}
+
+.btn, button {
+    font-family: var(--font-ram);
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    box-shadow: none;
 }

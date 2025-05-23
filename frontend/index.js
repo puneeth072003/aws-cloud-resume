@@ -78,3 +78,56 @@ async function updateCounter() {
     }
 }
 updateCounter();
+
+document.addEventListener('DOMContentLoaded', function () {
+    var carousel = document.getElementById('photographyCarousel');
+    if (!carousel) return;
+
+    // Touch events for mobile/tablet
+    let touchStartX = 0, touchEndX = 0;
+    carousel.addEventListener('touchstart', function (e) {
+        touchStartX = e.changedTouches[0].clientX;
+    });
+    carousel.addEventListener('touchend', function (e) {
+        touchEndX = e.changedTouches[0].clientX;
+        if (touchEndX < touchStartX - 40) {
+            $(carousel).carousel('next');
+        }
+        if (touchEndX > touchStartX + 40) {
+            $(carousel).carousel('prev');
+        }
+    });
+
+    // Mouse events for desktop/laptop
+    let isDragging = false, dragStartX = 0, dragEndX = 0;
+    carousel.addEventListener('mousedown', function (e) {
+        isDragging = true;
+        dragStartX = e.clientX;
+    });
+    carousel.addEventListener('mousemove', function (e) {
+        if (!isDragging) return;
+        dragEndX = e.clientX;
+    });
+    carousel.addEventListener('mouseup', function (e) {
+        if (!isDragging) return;
+        isDragging = false;
+        // Only trigger if the mouse was actually dragged
+        if (Math.abs(dragEndX - dragStartX) > 40) {
+            if (dragEndX < dragStartX) {
+                $(carousel).carousel('next');
+            } else {
+                $(carousel).carousel('prev');
+            }
+        }
+        dragStartX = dragEndX = 0;
+    });
+    carousel.addEventListener('mouseleave', function () {
+        isDragging = false;
+        dragStartX = dragEndX = 0;
+    });
+
+    // Prevent unwanted text/image selection while dragging
+    carousel.addEventListener('dragstart', function(e) {
+        e.preventDefault();
+    });
+});
