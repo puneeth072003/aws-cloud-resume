@@ -28,7 +28,7 @@ var typed = new Typed('#typed', {
         'Aspiring DevOps Engineer',
         'Cloud Enthusiast',
         'Cloud-Native Nomad',
-        'Kubernetes devotee'
+        'Kubernetes Fan'
     ],
     typeSpeed: 50,
     backSpeed: 50,
@@ -40,7 +40,7 @@ var typed_2 = new Typed('#typed_2', {
         'Aspiring DevOps Engineer',
         'Cloud Enthusiast',
         'Cloud-Native Nomad',
-        'Kubernetes devotee'
+        'Kubernetes Fan'
     ],
     typeSpeed: 50,
     backSpeed: 50,
