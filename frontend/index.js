@@ -131,3 +131,54 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
     });
 });
+
+// Greeting toast logic (shows on every page load)
+document.addEventListener("DOMContentLoaded", function() {
+    var toast = document.getElementById("greeting-toast");
+    var closeBtn = document.getElementById("greeting-toast-close");
+    var visitorNum = document.getElementById("greeting-visitor-number");
+
+    function showGreeting(visitorNumber) {
+        if (visitorNumber) {
+            visitorNum.textContent = `You are visitor #${visitorNumber}`;
+        } else {
+            visitorNum.textContent = "";
+        }
+        toast.style.display = "flex";
+        // Dismiss on button or after 5 seconds
+        closeBtn.onclick = function() {
+            toast.style.display = "none";
+        };
+        setTimeout(function() {
+            toast.style.display = "none";
+        }, 5000);
+    }
+
+    // Try to get visitor number from counter, fallback if not found
+    function tryShowGreeting() {
+        var counterElem = document.querySelector(".counter-number");
+        if (counterElem) {
+            var visitorText = counterElem.textContent || "";
+            var match = visitorText.match(/(\d+)/);
+            showGreeting(match ? match[1] : null);
+        } else {
+            showGreeting(null);
+        }
+    }
+
+    // Wait up to 2s for counter to appear, then show anyway
+    let waited = 0;
+    function waitForCounter() {
+        var counterElem = document.querySelector(".counter-number");
+        var hasNumber = counterElem && /\d+/.test(counterElem.textContent);
+        if (hasNumber) {
+            tryShowGreeting();
+        } else if (waited < 2000) {
+            waited += 100;
+            setTimeout(waitForCounter, 100);
+        } else {
+            tryShowGreeting();
+        }
+    }
+    waitForCounter();
+});

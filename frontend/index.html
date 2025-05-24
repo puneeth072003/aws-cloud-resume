@@ -396,10 +396,12 @@
                         <div class="blog-card bg-light shadow rounded-3 p-4 p-md-5 text-center" style="max-width: 600px; width: 100%;">
                             <h2 class="font-staat mb-3">Read My Blogs</h2>
                             <p class="font-ram font-size-16 text-black-50 pb-3 mb-4">
-                                Dive into easy-to-follow tutorials, learn from real challenges with servers that sometimes misbehave, and join me as I figure out how to build software that hopefully doesn’t break.
+                                Curious how this website was built from scratch using modern DevOps practices? I wrote a blog post walking through the entire process as part of the <strong>Cloud Resume Challenge</strong>. 
+                                <br><br>
+                                From CI/CD to infrastructure as code, it’s all in there. Be sure to check it out!
                             </p>
                             <a href="https://dev.to/puneeth072003" target="_blank"
-                               class="btn btn-primary text-uppercase font-ram font-size-14 font-weight-normal px-4 py-2 mb-2">
+                            class="btn btn-primary text-uppercase font-ram font-size-14 font-weight-normal px-4 py-2 mb-2">
                                 Visit the Blog
                             </a>
                         </div>
@@ -496,6 +498,20 @@
             </div>
         </div>
     </main>
+
+    <div id="greeting-toast" style="display:none; position:fixed; bottom:32px; right:32px; z-index:9999; background:#fff; border-radius:14px; box-shadow:0 4px 24px rgba(0,0,0,0.18); max-width:90vw; width:340px; padding:1.2rem 1.2rem 1rem 1.2rem; text-align:left; align-items:center; gap:1rem; flex-direction:row;">
+      <div style="display:flex; align-items:center;">
+        <img src="./assets/avatar-alt1.png" alt="Avatar" style="width:60px; height:60px; border-radius:50%; object-fit:cover; border:2px solid #444; margin-right:1rem;">
+        <div>
+          <div style="font-family:'Staatliches',cursive; font-size:1.3rem; color:#222;">Welcome!</div>
+          <div style="font-family:'Rambla',sans-serif; font-size:1rem; color:#444;">
+            Glad to have you.<br>
+            <span id="greeting-visitor-number" style="font-weight:bold; color:#007bff;"></span>
+          </div>
+        </div>
+      </div>
+      <button id="greeting-toast-close" class="btn btn-primary" style="margin-top:0.7rem; float:right; font-size:0.9rem; padding:0.3rem 1.2rem;">Close</button>
+    </div>
 
     <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
