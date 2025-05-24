@@ -36,8 +36,11 @@
                         <a href="#awards" class="nav-item nav-link text-white-50 font-os font-size-16 active">
                           <i class="fas fa-trophy" style="margin-right: 8px;"></i> Achievements
                         </a>
+                        <a href="#experience" class="nav-item nav-link text-white-50 font-os font-size-16 active">
+                          <i class="fas fa-briefcase" style="margin-right: 8px;"></i> Experience
+                        </a>
                         <a href="#portfolio" class="nav-item nav-link text-white-50 font-os font-size-16 active">
-                          <i class="fas fa-briefcase" style="margin-right: 8px;"></i> Portfolio
+                          <i class="fas fa-laptop" style="margin-right: 8px;"></i> Portfolio
                         </a>
                         <a href="#blogs" class="nav-item nav-link text-white-50 font-os font-size-16 active">
                           <i class="fas fa-pen-nib" style="margin-right: 8px;"></i> Blogs
@@ -45,8 +48,21 @@
                         <a href="#photography" class="nav-item nav-link text-white-50 font-os font-size-16 active">
                           <i class="fas fa-camera-retro" style="margin-right: 8px;"></i> Photography
                         </a>
-                        <div class="counter-number nav-item nav-link text-white-50 font-os font-size-16 active">
-                        Couldn't read the counter
+                        <!-- Replace the sl-details block with a styled dropdown matching sidebar links -->
+                        <div class="nav-item nav-link text-white-50 font-os font-size-16 active p-0" style="border-bottom: 1px solid #ffffff34;">
+                            <details style="width: 100%;">
+                                <summary style="cursor: pointer; outline: none; padding: 0.7rem 1rem; background: transparent; color: inherit; font-family: inherit; font-size: inherit; text-transform: uppercase;">
+                                    <i class="fas fa-eye" style="margin-right: 8px;"></i> Visitors
+                                </summary>
+                                <div style="background: #222; border-radius: 0 0 8px 8px; padding: 1rem 1rem 0.5rem 1rem;">
+                                    <div class="counter-number" style="color: #fff; font-family: var(--font-os); font-size: 1rem; margin-bottom: 0.5rem;">
+                                        Couldn't read the counter
+                                    </div>
+                                    <div class="font-os text-white-50" style="font-size: 0.95rem;">
+                                        Part of the AWS Cloud Resume Challenge
+                                    </div>
+                                </div>
+                            </details>
                         </div>
                     </div>
                 </nav>
@@ -88,12 +104,9 @@
                             <h6 class="text-uppercase font-os font-size-16 text-muted">About Me</h6>
                             <h5 class="font-ram font-size-20 py-2">I'm Puneeth Y & a <span id="typed_2"></span></h5>
                             <p class="font-ram text-black-50 py-2">
-                                Hey there! I'm a final-year Computer Science student who's borderline obsessed with making computers do stuff on their own. 
-                                I spend way too much time convincing Docker, Kubernetes, and AWS to cooperate like a dysfunctional but lovable tech family. 
-                                My proudest achievement? Crafting CI/CD pipelines so smooth, they might just file their own taxes. 
+                                I'm a final-year Computer Science student with a strong passion for automation and system orchestration. I enjoy working with technologies like Docker, Kubernetes, and AWS to build efficient and reliable infrastructure. One of my key strengths is designing smooth CI/CD pipelines that streamline development workflows. 
                                 <br/><br/>
-                                When I'm not trying to automate everything, you’ll find me wandering around with a camera, attempting to convince wildlife to pose for me. 
-                                Spoiler: they rarely listen. 
+                                Outside of tech, I enjoy photography and often spend time exploring nature with my camera, capturing moments when I can. 
                             </p>
                             <div class="d-flex flex-row flex-wrap justify-content-between py-4">
                                 <div class="d-flex flex-column">
@@ -121,12 +134,11 @@
                     <div class="row">
                         <div class="col-sm-8 pl-4">
                             <p class="font-ram font-size-16 text-black-50 pb-3">
-                                I speak fluent HTML, CSS, JavaScript, Python, and Golang — basically, my keyboard and I are on a first-name basis. 
-                                I’ve dabbled in React, .NET, Django, and Node.js, usually trying to make them play nice with each other. 
+                                I have hands-on experience with HTML, CSS, JavaScript, Python, and Golang. I'm also familiar with frameworks and libraries such as React, .NET, Django, and Node.js, often integrating them in full-stack development projects.
                                 <br/><br/>
-                                I’ve also wrangled Kubernetes, Helm, Terraform, Prometheus, and Grafana — you know, the usual suspects for making apps run smoothly and complain less. 
+                                My infrastructure knowledge includes working with Kubernetes, Helm, Terraform, Prometheus, and Grafana to manage, deploy, and monitor applications efficiently.
                                 <br/><br/>
-                                On the data side, I’ve worked with MSSQL and MongoDB, and I even dipped my toes into AWS — and honestly, I kind of enjoyed the cloud fuss. 
+                                On the data side, I’ve worked with both relational and non-relational databases, including MSSQL and MongoDB. I’ve also gained practical experience with AWS services, particularly for deploying and scaling cloud-native applications.
                                 <br/><br/>
                                 Curious for more? Feel free to check out my CV along the way!
                             </p>
@@ -198,11 +210,15 @@
                             </li>
                             <li>
                                 <i class="fa-li fa fa-trophy text-warning"></i>
-                                Postman API Fundamentals Student Expert.
+                                AZ-305 Microsoft Azure Architect Design Prerequisites
                             </li>
                             <li>
                                 <i class="fa-li fa fa-trophy text-warning"></i>
                                 AWS Cloud Practitioner Essentials.
+                            </li>
+                            <li>
+                                <i class="fa-li fa fa-trophy text-warning"></i>
+                                Postman API Fundamentals Student Expert.
                             </li>
                         </ul>
                     </div>
@@ -210,8 +226,50 @@
 
                 <!-- #services-->
 
+                <!-- Experience Section -->
+                <section class="experience px-4 py-5 bg-light" id="experience">
+                  <div class="text-center mb-5">
+                    <h5 class="text-uppercase font-os font-size-16 text-muted">Experience</h5>
+                    <h1 class="text-uppercase font-staat font-size-34">My Journey</h1>
+                    <hr style="width: 60px; border: 2px solid #444; margin: 0.5rem auto 1.5rem auto; border-radius: 2px;">
+                  </div>
+                  <div class="exp-timeline-container">
+                    <!-- All .exp-details go here -->
+                    <!-- Experience Item -->
+                    <details class="exp-details mb-4">
+                      <summary class="exp-summary d-flex justify-content-between align-items-center">
+                        <span class="company font-ram">Intern @ HCLSoftware</span>
+                        <span class="duration font-os">March 2025 – Present</span>
+                      </summary>
+                      <ul class="font-ram mt-2 mb-1 pl-3">
+                        <li>Played a key role in transitioning a monolithic application to a modular, Packaged Business Capabilities (PBC)-oriented architecture, which led to notable improvements in deployment speed, scalability, and system flexibility.</li>
+                        <br>
+                        <li>Contributed as a primary team member in architecting the upcoming cloud-native migration blueprint, focusing on defining the target architecture, technology stack, and deployment patterns tailored for future scalability and maintainability.</li>
+                        <br>
+                        <li>Led several targeted proofs of concept (PoCs) to validate new tools, frameworks, and deployment strategies, directly influencing final architecture decisions and shaping the release automation framework.</li>
+                      </ul>
+                      <div class="font-os text-muted" style="font-size: 0.95rem;">6 months</div>
+                    </details>
+                    <!-- Experience Item -->
+                    <details class="exp-details mb-4">
+                      <summary class="exp-summary d-flex justify-content-between align-items-center">
+                        <span class="company font-ram">Contributor @ GSSoC-ext'24</span>
+                        <span class="duration font-os">Oct 2024 – Nov 2024</span>
+                      </summary>
+                      <ul class="font-ram mt-2 mb-1 pl-3">
+                        <li>Actively contributed to open-source repositories as part of GSSoC-ext 2024, demonstrating strong coding proficiency, collaboration, and problem-solving abilities.</li>
+                        <br>
+                        <li>Achieved a top ranking of 281 out of 60,000 participants, reflecting high technical competence and consistent engagement throughout the program.</li>
+                      </ul>
+                      <div class="font-os text-muted" style="font-size: 0.95rem;">1 month</div>
+                    </details>
+                    <!-- Add more experience items as needed -->
+                  </div>
+                </section>
+                <!-- #experience -->
+
                 <!-- work -->
-                <section class="work py-5 px-4 bg-light" id="portfolio">
+                <section class="work py-5 px-4 bg-white" id="portfolio">
                     <div class="text-center py-3">
                       <h5 class="text-uppercase font-os font-size-16 text-muted">
                             Portfolio
@@ -285,28 +343,26 @@
                 <!-- #work -->
 
                 <!-- Blogs Section -->
-                <section class="blogs px-4 py-5" id="blogs">
-                    <div class="text-center mb-5">
+                <section class="blogs px-4 py-5 bg-light" id="blogs">
+                    <div class="text-center mb-4">
                         <h5 class="text-uppercase font-os font-size-16 text-muted">
-                          Explore
+                            Explore
                         </h5>
-                        <h1 class="text-uppercase font-staat font-size-34">Latest Writings</h1>
-                        <p class="font-ram font-size-16 text-black-50 mt-2">
+                        <h1 class="text-uppercase font-staat font-size-34 mb-3">Latest Writings</h1>
+                        <p class="font-ram font-size-16 text-black-50 mt-2 mb-0">
                             Thoughts on DevOps, Cloud, and the everyday tech hustle.
                         </p>
                     </div>
-                    <div class="row justify-content-center">
-                        <div class="col-md-8">
-                            <div class="blog-card text-center p-5 bg-light shadow rounded-3">
-                                <h2 class="font-staat">Read My Blogs</h2>
-                                <p class="font-ram font-size-16 text-black-50 pb-3">
-                                    Dive into detailed tutorials, rants about misbehaving servers, and musings on building things that (hopefully) don’t break.
-                                </p>
-                                <a href="https://dev.to/puneeth072003" target="_blank"
-                                class="btn btn-primary text-uppercase font-ram font-size-14 font-weight-normal px-4 py-2 mb-2">
+                    <div class="d-flex justify-content-center">
+                        <div class="blog-card bg-light shadow rounded-3 p-4 p-md-5 text-center" style="max-width: 600px; width: 100%;">
+                            <h2 class="font-staat mb-3">Read My Blogs</h2>
+                            <p class="font-ram font-size-16 text-black-50 pb-3 mb-4">
+                                Dive into easy-to-follow tutorials, learn from real challenges with servers that sometimes misbehave, and join me as I figure out how to build software that hopefully doesn’t break.
+                            </p>
+                            <a href="https://dev.to/puneeth072003" target="_blank"
+                               class="btn btn-primary text-uppercase font-ram font-size-14 font-weight-normal px-4 py-2 mb-2">
                                 Visit the Blog
-                                </a>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </section>
@@ -354,6 +410,9 @@
                                 </ol>
                             </div>
                             <div class="text-center mt-4">
+                                <p class="font-ram font-size-17 text-black-50 pb-3">
+                                If these glimpses moved you, I invite you to explore the deeper journey through my lens.    
+                                </p>
                                 <a href="https://500px.com/p/pyd?view=photos" target="_blank"
                                   class="btn btn-primary text-uppercase font-ram font-size-14 font-weight-normal px-4 py-2 mb-2">
                                   View Full Portfolio
