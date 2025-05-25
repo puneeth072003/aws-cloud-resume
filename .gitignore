@@ -38,3 +38,8 @@ terraform.rc
 *.log
 *.bak
 *.backup
+
+
+# copy of frontend
+deployment/terraform/modules/frontend/
+deployment/terraform/modules/lambda.zip

@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "frontend_bucket" {
-  bucket = module.extended_stack.bucket_namesssssss
+  bucket = var.frontend_bucket_name
 
   tags = {
     Name = "FrontendBucket"
@@ -45,12 +45,12 @@ resource "aws_s3_bucket_website_configuration" "frontend_website" {
 }
 
 resource "aws_s3_object" "frontend_files" {
-  for_each = fileset("${path.module}/../../frontend", "**/*.*")
+  for_each = fileset(var.frontend_files_path, "**/*.*")
 
   bucket = aws_s3_bucket.frontend_bucket.id
   key    = each.value
-  source = "${path.module}/../../frontend/${each.value}"
-  etag   = filemd5("${path.module}/../../frontend/${each.value}")
+  source = var.frontend_files_path
+  etag   = filemd5(var.frontend_files_path)
   content_type = lookup(
     {
       "html" = "text/html"
@@ -58,6 +58,8 @@ resource "aws_s3_object" "frontend_files" {
       "js"   = "application/javascript"
       "png"  = "image/png"
       "jpg"  = "image/jpeg"
+      "mp4"  = "video/mp4"
+      "pdf"  = "application/pdf"
     },
     split(".", each.value)[length(split(".", each.value)) - 1],
     "application/octet-stream"

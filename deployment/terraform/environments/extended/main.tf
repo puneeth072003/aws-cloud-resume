@@ -5,10 +5,11 @@ provider "aws" {
 module "base_stack" {
   source      = "../../modules/base"
   alert_email = var.alert_email
-  frontend_bucket_name = var.frontend_bucket_name
+  file_path   = var.file_path
 }
 
 
 module "extended_stack" {
   source = "../../modules/extended"
+  frontend_bucket_name = var.frontend_bucket_name
 }
