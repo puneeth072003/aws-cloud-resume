@@ -4,15 +4,15 @@ resource "aws_lambda_function" "view_counter" {
   role          = aws_iam_role.lambda_exec.arn
   handler       = "main.lambda_handler"
 
-  filename         = "${path.module}/../lambda.zip"
-  source_code_hash = filebase64sha256("${path.module}/../lambda.zip")
+  filename         = var.file_path
+  source_code_hash = filebase64sha256(var.file_path)
 
   environment {
-  variables = {
-    TABLE_NAME     = aws_dynamodb_table.page_views.name
-    SNS_TOPIC_ARN  = aws_sns_topic.threshold_alert.arn
-    VIEW_THRESHOLD = "1000"
-    SECRET_KEY     = "oe7XZ2FvVVRpWkUMokTuEC3PuAKpy4u9"
+    variables = {
+      TABLE_NAME     = aws_dynamodb_table.page_views.name
+      SNS_TOPIC_ARN  = aws_sns_topic.threshold_alert.arn
+      VIEW_THRESHOLD = "1000"
+      SECRET_KEY     = "oe7XZ2FvVVRpWkUMokTuEC3PuAKpy4u9"
     }
   }
 
