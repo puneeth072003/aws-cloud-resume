@@ -5,4 +5,5 @@ provider "aws" {
 module "base_stack" {
   source      = "../../modules/base"
   alert_email = var.alert_email
+  file_path   = var.file_path
 }

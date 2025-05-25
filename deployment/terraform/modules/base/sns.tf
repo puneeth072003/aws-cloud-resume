@@ -9,5 +9,5 @@ resource "aws_sns_topic" "free_tier_alerts" {
 resource "aws_sns_topic_subscription" "email_alert" {
   topic_arn = aws_sns_topic.threshold_alert.arn
   protocol  = "email"
-  endpoint  = module.base_stack.alert_email
+  endpoint  = var.alert_email
 }
