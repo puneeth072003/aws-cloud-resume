@@ -8,12 +8,13 @@ variable "frontend_files_path" {
   type        = string
 }
 
-variable "route53_zone_id" {
-  description = "The ID of the Route 53 hosted zone"
+
+variable "view_counter_function_name" {
+  description = "Name of the Lambda function from base stack"
   type        = string
 }
 
-variable "domain_name" {
-  description = "The domain name to associate with the CloudFront distribution"
+variable "view_counter_function_arn" {
+  description = "ARN of the Lambda function from base stack"
   type        = string
 }

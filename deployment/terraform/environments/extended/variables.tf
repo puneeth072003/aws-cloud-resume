@@ -10,3 +10,8 @@ variable "file_path" {
   description = "Path to the Lambda function zip file"
   type        = string
 }
+
+variable "frontend_files_path" {
+  description = "Path to the frontend files to be uploaded to S3"
+  type        = string
+}
