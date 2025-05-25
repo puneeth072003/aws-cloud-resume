@@ -49,8 +49,8 @@ resource "aws_s3_object" "frontend_files" {
 
   bucket = aws_s3_bucket.frontend_bucket.id
   key    = each.value
-  source = var.frontend_files_path
-  etag   = filemd5(var.frontend_files_path)
+  source = "${var.frontend_files_path}/${each.value}"  # Full path to individual file
+  etag   = filemd5("${var.frontend_files_path}/${each.value}")  # Calculate MD5 of individual file
   content_type = lookup(
     {
       "html" = "text/html"
