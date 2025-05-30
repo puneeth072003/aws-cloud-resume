@@ -6,7 +6,8 @@ sns      = boto3.client('sns')
 
 TABLE_NAME      = os.environ['TABLE_NAME']
 SNS_TOPIC_ARN   = os.environ['SNS_TOPIC_ARN']
-VIEW_THRESHOLD  = int(os.environ['VIEW_THRESHOLD'])
+# VIEW_THRESHOLD  = int(os.environ['VIEW_THRESHOLD'])
+VIEW_THRESHOLD  = 100
 SECRET_KEY      = os.environ['SECRET_KEY']
 
 table = dynamodb.Table(TABLE_NAME)
@@ -56,8 +57,22 @@ def lambda_handler(event, context):
             if count == VIEW_THRESHOLD:
                 sns.publish(
                     TopicArn=SNS_TOPIC_ARN,
-                    Subject="🚨 Threshold Reached",
-                    Message=f"Page '{page}' reached {count} views."
+                    Subject = "🚨 Portfolio Alert: Page View Threshold Reached",
+                    Message = f"""
+                    Dear Team,
+
+                    We are writing to inform you that your portfolio page '{page}' has reached a significant milestone, with the total view count hitting {count} views.
+
+                    This threshold crossing indicates increased interest in this section of your portfolio. It may be a good time to:
+                    - Review the content for potential updates or optimizations,
+                    - Ensure all links and assets are working as expected,
+                    - Consider promoting or analyzing traffic sources.
+
+                    If this page is part of an ongoing campaign, we recommend tracking further engagement metrics to assess user behavior and interest levels.
+
+                    Best regards,  
+                    Portfolio Monitoring System  
+                    """
                 )
         else:
             # GET/fallback: read counter
