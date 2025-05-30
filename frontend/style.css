@@ -719,3 +719,27 @@ body{
         height: 12px;
     }
 }
+
+/* Fix sidebar overlap on mobile */
+@media (max-width: 768px) {
+  #header.toggle-left {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    height: 100vh !important;
+    z-index: 9999 !important;
+    background: transparent !important; /* Let sidebar shape show naturally */
+    width: auto !important; /* Don't force full width */
+  }
+  #header .row {
+    margin: 0 !important;
+  }
+  #header .col-3 {
+    min-width: 260px !important;
+    max-width: 320px !important;
+    width: 85vw !important; /* Responsive but not full screen */
+    padding: 0 !important;
+    background: #000 !important; /* Sidebar stays solid */
+    height: 100vh !important;
+  }
+}
