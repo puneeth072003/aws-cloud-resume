@@ -13,6 +13,20 @@ body{
     --font-staat: 'Staatliches', cursive;
     --font-os:  'Oswald', sans-serif;
     --font-ram: 'Rambla', sans-serif;
+
+    /* Theme variables for light and dark mode */
+    --theme-bg: #fff;
+    --theme-text: #222;
+    --theme-card: #f8f9fa;
+    --theme-nav: #000;
+}
+
+/* Dark mode variables */
+[data-theme="dark"] {
+    --theme-bg: #181818;
+    --theme-text: #fff;
+    --theme-card: #232323;
+    --theme-nav: #181818;
 }
 
 /* global classes */
@@ -235,14 +249,17 @@ body{
 
 /* Standardize work card dimensions */
 .work-card {
-    flex: 1 1 calc(33.333% - 2rem); /* 3 items per row, with spacing */
-    max-width: calc(100% - 1rem); /* Ensure max width for responsiveness */
+    flex: 1 1 320px;           /* Minimum width for each card */
+    max-width: 420px;          /* Prevents cards from getting too wide */
+    min-width: 260px;          /* Prevents cards from getting too narrow */
+    width: 100%;
     height: 300px; /* Set a fixed height for all cards */
     position: relative;
     border-radius: 10px; /* Rounded corners */
     overflow: hidden; /* Clip content inside the card */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+    margin: 0 auto;
 }
 
 /* Hover effect for work card */
@@ -285,14 +302,17 @@ body{
     color: #fff;
     font-size: 2rem;
     text-decoration: none;
-    background: rgba(0, 0, 0, 0.6); /* Dark background for icons */
+    background: transparent; /* Remove dark background */
     padding: 0.5rem;
-    border-radius: 50%; /* Circular icons */
-    transition: transform 0.2s ease; /* Smooth hover effect */
+    border-radius: 50%; /* Keep icons circular if you want, or remove this for square */
+    transition: transform 0.2s ease;
+    box-shadow: none; /* Remove any shadow */
 }
 
+/* Highlight effect on overlay icons */
 .work-card .overlay a:hover {
-    transform: scale(1.2); /* Enlarge icons on hover */
+    transform: scale(1.3);
+    color: #ffd700; /* Optional: add a highlight color on hover */
 }
 
 /* Details section */
@@ -305,19 +325,397 @@ body{
     color: #333;
 }
 
+/* Video title overlay for each work card */
+.work-card .video-title {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    font-family: var(--font-staat);
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 0.5rem 0.2rem 0.4rem 0.2rem;
+    z-index: 2;
+    letter-spacing: 1px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    pointer-events: none; /* So overlay icons remain clickable */
+}
+
+  .carousel-inner img {
+    transition: transform 0.5s ease;
+  }
+
+  .carousel-inner img:hover {
+    transform: scale(1.03);
+  }
+
+  /* Custom carousel buttons */
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .carousel-control-prev-icon::before {
+    content: "\f104"; /* Font Awesome left chevron */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: white;
+  }
+
+  .carousel-control-next-icon::before {
+    content: "\f105"; /* Font Awesome right chevron */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: white;
+  }
+  
 /* Responsive adjustments */
+@media screen and (max-width: 1200px) {
+    .work-card {
+        flex: 1 1 45%;
+        max-width: 95vw;
+        min-width: 220px;
+        height: 240px;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .work-card {
-        flex: 1 1 calc(50% - 1rem); /* 2 items per row on smaller screens */
-        max-width: calc(50% - 1rem);
-        height: 250px; /* Adjust height for smaller screens */
+        flex: 1 1 90%;
+        max-width: 98vw;
+        min-width: 180px;
+        height: 180px;
     }
 }
 
 @media screen and (max-width: 480px) {
     .work-card {
-        flex: 1 1 100%; /* 1 item per row on very small screens */
-        max-width: 100%;
-        height: 200px; /* Adjust height for mobile screens */
+        flex: 1 1 100%;
+        max-width: 100vw;
+        min-width: 140px;
+        height: 140px;
+    }
+}
+
+/* Responsive banner adjustments */
+.site-banner .banner-area {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.author-img {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    margin: 0 auto 1rem auto;
+    background: url(./assets/avatar-alt1.png) no-repeat center center;
+    background-size: cover;
+}
+
+.typed-container {
+    min-height: 38px; /* Prevents layout shift when text changes */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .site-banner .banner-area {
+        min-height: 40vh;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+    .author-img {
+        width: 260px;
+        height: 260px;
+    }
+    .font-size-40 {
+        font-size: 2rem;
+    }
+    .font-size-27 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-banner .banner-area {
+        min-height: 30vh;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+    .author-img {
+        width: 260px;
+        height: 260px;
+    }
+    .font-size-40 {
+        font-size: 2rem;
+    }
+    .font-size-27 {
+        font-size: 1rem;
+    }
+}
+
+#photographyCarousel {
+    cursor: default !important;
+    user-select: none;
+}
+
+/* Consistent gray button styles */
+.btn-primary {
+    background: linear-gradient(90deg, #444 0%, #222 100%);
+    border: none;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-radius: 30px;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    letter-spacing: 1px;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    background: linear-gradient(90deg, #222 0%, #444 100%);
+    color: #59ff00 !important;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.16);
+    outline: none;
+}
+
+.btn-outline-primary {
+    background: transparent;
+    border: 2px solid #444;
+    color: #444 !important;
+    border-radius: 30px;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    letter-spacing: 1px;
+}
+
+.btn-outline-primary:hover, .btn-outline-primary:focus {
+    background: #444;
+    color: #ffd700 !important;
+    transform: translateY(-2px) scale(1.04);
+    outline: none;
+}
+
+.btn, button {
+    font-family: var(--font-ram);
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    box-shadow: none;
+}
+
+/* Experience Timeline Styles */
+.experience .timeline {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    padding-left: 30px;
+    border-left: 3px solid #444;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -12px;
+    top: 0.7em;
+    width: 18px;
+    height: 18px;
+    background: #444;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    z-index: 1;
+    box-shadow: 0 0 0 2px #444;
+}
+
+.timeline-details summary {
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-family: var(--font-ram);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    color: #222;
+    padding: 0.5rem 0;
+    outline: none;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.timeline-details[open] summary {
+    background: #f3f3f3;
+}
+
+[data-theme="dark"] .timeline-details[open] summary {
+    background: #232323;
+    color: #fff;
+}
+
+.timeline-details ul {
+    margin: 0.5rem 0 0 0.5rem;
+    padding-left: 1.2rem;
+    color: #444;
+}
+
+.timeline-details[open] ul {
+    animation: fadeIn 0.3s;
+}
+
+.timeline-details .duration {
+    font-size: 1rem;
+    color: #888;
+    margin-left: 1rem;
+}
+
+.timeline-details .company {
+    font-weight: bold;
+    color: #222;
+}
+
+[data-theme="dark"] .timeline-details .company {
+    color: #fff;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+/* Experience Section Styles */
+.exp-details {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    padding: 1rem 1.5rem;
+    transition: box-shadow 0.2s;
+    border: none;
+}
+.exp-details[open] {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+}
+.exp-summary {
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-family: var(--font-ram);
+    background: none;
+    color: #222;
+    padding: 0.2rem 0;
+    outline: none;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+.exp-details[open] .exp-summary {
+    background: transparent;
+}
+.exp-details ul {
+    margin: 0.5rem 0 0 0.5rem;
+    padding-left: 1.2rem;
+    color: #444;
+    font-size: 1rem;
+}
+.exp-details .duration {
+    font-size: 0.98rem;
+    color: #888;
+    margin-top: 0.5rem;
+}
+.exp-details .company {
+    font-weight: bold;
+    color: #222;
+}
+@media (max-width: 768px) {
+    .exp-details {
+        padding: 1rem 0.7rem;
+    }
+    .exp-summary {
+        font-size: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+    }
+}
+@media (max-width: 480px) {
+    .exp-details {
+        padding: 0.7rem 0.3rem;
+    }
+    .exp-summary {
+        font-size: 0.98rem;
+    }
+}
+
+/* Vertical timeline line for experience section */
+.exp-timeline-container {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+    padding-left: 32px; /* space for the line */
+}
+
+.exp-timeline-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 12px;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #444 0%, #bbb 100%);
+    border-radius: 2px;
+    z-index: 0;
+}
+
+/* Link each box to the line with a dot */
+.exp-details {
+    position: relative;
+    margin-bottom: 2.5rem;
+    margin-left: 0;
+    margin-right: 0;
+    z-index: 1;
+}
+
+.exp-details::before {
+    content: "";
+    position: absolute;
+    left: -32px;
+    top: 1.3rem;
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border: 4px solid #444;
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 0 0 0 2px #bbb;
+    display: block; /* Always show the dot */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .exp-timeline-container {
+        padding-left: 18px;
+    }
+    .exp-timeline-container::before {
+        left: 6px;
+        width: 2.5px;
+    }
+    .exp-details::before {
+        left: -18px;
+        width: 12px;
+        height: 12px;
     }
 }
