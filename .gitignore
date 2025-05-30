@@ -1,0 +1,45 @@
+# Local .terraform directories
+**/.terraform/*
+!.terraform/providers/
+
+# Terraform state files
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+
+# Terraform variable files
+*.tfvars
+*.tfvars.json
+
+# Override files (for local configurations)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform plan files
+*.tfplan
+
+# Terraform lock files
+.terraform.lock.hcl
+
+# Auto-generated files by Terraform providers
+.terraformrc
+terraform.rc
+
+# IDE or Editor specific
+.vscode/
+.idea/
+.DS_Store
+
+# Logs and backups
+*.log
+*.bak
+*.backup
+
+
+# copy of frontend
+deployment/terraform/modules/frontend/
+deployment/terraform/modules/lambda.zip
