@@ -7,7 +7,7 @@ sns      = boto3.client('sns')
 TABLE_NAME      = os.environ['TABLE_NAME']
 SNS_TOPIC_ARN   = os.environ['SNS_TOPIC_ARN']
 # VIEW_THRESHOLD  = int(os.environ['VIEW_THRESHOLD'])
-VIEW_THRESHOLD  = 100
+VIEW_THRESHOLD  = 5000
 SECRET_KEY      = os.environ['SECRET_KEY']
 
 table = dynamodb.Table(TABLE_NAME)
