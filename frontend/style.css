@@ -103,6 +103,35 @@ body{
     width: 1000px !important;
 }
 
+
+.nav-link {
+    font-weight: 500;
+    padding: 12px 20px !important;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    opacity: 1;
+    transform: translateX(5px);
+}
+
+.nav-link.active {
+    opacity: 1;
+}
+
+.nav-link.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 70%;
+    background-color: var(--color-accent);
+    border-radius: 0 4px 4px 0;
+}
+
 /* site-main */
 
 .site-banner .banner-area{
@@ -156,7 +185,27 @@ body{
 #typed, #typed_2 {
     color: #92d805;
     font-weight: 600;
-    position: relative;
+    display: inline-block;
+}
+
+.typed-cursor {
+    opacity: 1;
+    animation: blink 0.7s infinite;
+    font-size: 1.1em;
+    vertical-align: middle;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.typed-container {
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 /* #site-main */
 
@@ -166,7 +215,7 @@ body{
     display:inline-block;height:3.5rem;
     width:3.5rem;
     background-color: #fff;
-    color:#343a40!important;
+    color:#92d805!important;
     border-radius:100%;
     text-align:center;
     font-size:1.5rem;
@@ -251,23 +300,56 @@ body{
 
 /* Standardize work card dimensions */
 .work-card {
-    flex: 1 1 320px;           /* Minimum width for each card */
-    max-width: 420px;          /* Prevents cards from getting too wide */
-    min-width: 260px;          /* Prevents cards from getting too narrow */
+    flex: 1 1 320px;
+    max-width: 420px;
+    min-width: 260px;
     width: 100%;
-    height: 300px; /* Set a fixed height for all cards */
+    height: 300px;
     position: relative;
-    border-radius: 10px; /* Rounded corners */
-    overflow: hidden; /* Clip content inside the card */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.4s ease,
+                opacity 0.4s ease;
     margin: 0 auto;
+    opacity: 1;
+    transform-origin: center;
 }
 
-/* Hover effect for work card */
+/* Enhanced hover effect for work card */
 .work-card:hover {
-    transform: scale(1.05); /* Slightly enlarge on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Darker shadow on hover */
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+/* Work card entrance animation */
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Apply entrance animation to all work cards */
+.work-card {
+    animation: cardEntrance 0.6s cubic-bezier(0.21, 1.02, 0.73, 1) forwards;
+}
+
+/* Stagger animation for multiple cards */
+.col-12:nth-child(2) .work-card {
+    animation-delay: 0.1s;
+}
+.col-12:nth-child(3) .work-card {
+    animation-delay: 0.2s;
+}
+.col-12:nth-child(4) .work-card {
+    animation-delay: 0.3s;
 }
 
 /* Video inside work card */
@@ -278,43 +360,59 @@ body{
     border-radius: inherit; /* Inherit rounded corners */
 }
 
-/* Overlay for work card */
+/* Improved overlay animation */
 .work-card .overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
-    opacity: 0; /* Start hidden */
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem; /* Space between icons */
-    transition: opacity 0.3s ease; /* Smooth fade-in effect */
+    gap: 1.5rem;
+    transition: opacity 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    backdrop-filter: blur(2px);
 }
 
-/* Show overlay on hover */
 .work-card:hover .overlay {
-    opacity: 1; /* Make overlay visible */
+    opacity: 1;
 }
 
-/* Overlay icons */
+/* Enhanced icon animations */
 .work-card .overlay a {
     color: #fff;
     font-size: 2rem;
     text-decoration: none;
-    background: transparent; /* Remove dark background */
-    padding: 0.5rem;
-    border-radius: 50%; /* Keep icons circular if you want, or remove this for square */
-    transition: transform 0.2s ease;
-    box-shadow: none; /* Remove any shadow */
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.7rem;
+    border-radius: 50%;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                background 0.3s ease,
+                color 0.3s ease;
+    transform: translateY(20px);
+    opacity: 0;
 }
 
-/* Highlight effect on overlay icons */
+.work-card:hover .overlay a {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.work-card:hover .overlay a:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.work-card:hover .overlay a:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
 .work-card .overlay a:hover {
-    transform: scale(1.3);
-    color: #ffd700; /* Optional: add a highlight color on hover */
+    transform: scale(1.2);
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffd700;
 }
 
 /* Details section */
@@ -430,7 +528,7 @@ body{
 }
 
 .typed-container {
-    min-height: 38px; /* Prevents layout shift when text changes */
+    min-height: 38px; /* Fixed height to prevent layout shifts */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -713,19 +811,84 @@ body{
     display: block; /* Always show the dot */
 }
 
+/* Experience Section Animation Improvements */
+.exp-details[open] ul {
+    animation: fadeIn 0.4s ease-out;
+}
+
+.exp-details ul {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.exp-details:not([open]) ul {
+    animation: fadeOut 0.3s ease-out forwards;
+}
+
+.exp-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding-right: 30px; /* Space for the arrow */
+}
+
+.exp-summary::after {
+    content: '\f107'; /* Font Awesome down arrow */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+}
+
+.exp-details[open] .exp-summary::after {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-10px); }
+}
+
+/* Fix for experience timeline layout */
+.exp-summary .company {
+    flex: 1;
+    text-align: left;
+}
+
+.exp-summary .duration {
+    flex: 0 0 auto;
+    text-align: right;
+    margin-left: 15px;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .exp-timeline-container {
-        padding-left: 18px;
+    .exp-summary {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-right: 30px;
     }
-    .exp-timeline-container::before {
-        left: 6px;
-        width: 2.5px;
+    
+    .exp-summary .duration {
+        margin-left: 0;
+        margin-top: 5px;
     }
-    .exp-details::before {
-        left: -18px;
-        width: 12px;
-        height: 12px;
+    
+    .exp-summary::after {
+        top: 15px;
+        transform: none;
+    }
+    
+    .exp-details[open] .exp-summary::after {
+        transform: rotate(180deg);
     }
 }
 
