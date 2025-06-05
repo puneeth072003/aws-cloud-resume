@@ -153,8 +153,10 @@ body{
     }
 }
 
-#typed{
-    color: var(--color-blue);
+#typed, #typed_2 {
+    color: #92d805;
+    font-weight: 600;
+    position: relative;
 }
 /* #site-main */
 
@@ -480,18 +482,15 @@ body{
     background: linear-gradient(90deg, #444 0%, #222 100%);
     border: none;
     color: #fff !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 12px rgba(52, 219, 66, 0.2);
     border-radius: 30px;
-    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    transition: all 0.3s ease;    
     letter-spacing: 1px;
+    padding: 10px 24px;
 }
-
-.btn-primary:hover, .btn-primary:focus {
-    background: linear-gradient(90deg, #222 0%, #444 100%);
-    color: #59ff00 !important;
-    transform: translateY(-2px) scale(1.04);
-    box-shadow: 0 6px 24px rgba(0,0,0,0.16);
-    outline: none;
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(52, 219, 91, 0.3);
 }
 
 .btn-outline-primary {
@@ -598,6 +597,7 @@ body{
     from { opacity: 0; transform: translateY(-10px);}
     to { opacity: 1; transform: translateY(0);}
 }
+
 
 /* Experience Section Styles */
 .exp-details {
