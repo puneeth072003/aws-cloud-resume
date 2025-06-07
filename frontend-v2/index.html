@@ -1,232 +1,363 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Developer Portfolio - Your Name</title>
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Google Fonts: Inter & Orbitron -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./style.css" />
 
     <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
     <!-- JS Libraries: Three.js for 3D, Chart.js for radar -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <style>
-        
-    </style>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-    <style>
-        
-    </style>
-</head>
-<body class="w-full">
+
+    <style></style>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+    />
+    <style></style>
+  </head>
+  <body class="w-full">
     <main>
-        <!-- Hero Section -->
-        <section id="home" class="relative h-screen w-full flex items-center justify-center text-center overflow-hidden">
-            <canvas class="hero-canvas" id="hero-canvas"></canvas>
-            <div class="relative z-10 p-4">
-                <h1 class="font-orbitron text-4xl sm:text-5xl md:text-8xl font-black text-white uppercase tracking-wider">
-                    Puneeth Y
-                </h1>
-                <p class="mt-4 text-lg md:text-2xl text-sky-300 max-w-3xl mx-auto">
-                    An Aspiring DevOps Engineer & Cloud Architect crafting resilient, automated, and scalable infrastructure for tomorrow's technology.
-                </p>
-            </div>
-        </section>
+      <!-- Hero Section -->
+      <section
+        id="home"
+        class="relative h-screen w-full flex items-center justify-center text-center overflow-hidden"
+      >
+        <canvas class="hero-canvas" id="hero-canvas"></canvas>
+        <div class="relative z-10 p-4">
+          <h1
+            class="font-orbitron text-4xl sm:text-5xl md:text-8xl font-black text-white uppercase tracking-wider"
+          >
+            Puneeth Y
+          </h1>
+          <p class="mt-4 text-lg md:text-2xl text-sky-300 max-w-3xl mx-auto">
+            An Aspiring DevOps Engineer & Cloud Architect crafting resilient,
+            automated, and scalable infrastructure for tomorrow's technology.
+          </p>
+        </div>
+      </section>
 
-        <!-- About Me Section -->
-        <section id="about" class="py-16 md:py-24 bg-black/20">
-            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-8 md:gap-16 items-center">
-                 <div class="reveal-section">
-                    <img src="./assets/avatar-alt1.png" alt="Puneeth" class="md:w-80 md:h-80 mx-auto object-cover">
-                 </div>
-                 <div class="reveal-section">
-                     <h2 class="font-orbitron text-3xl md:text-4xl text-white">About Me</h2>
-                     <p class="mt-4 text-md md:text-lg text-slate-300 leading-relaxed">
-                        <span class="text-sky-300 weight-bold">Howdy, I’m an aspiring DevOps engineer with a passion for automation and system orchestration.</span> <br> I love building efficient and reliable infrastructure using tools like Docker, Kubernetes, and AWS. Whether it’s writing Infrastructure as Code, managing containers, or setting up CI/CD pipelines, I’m all about creating systems that make life easier for developers, helping them ship faster, safer, and with confidence.
-                        </p>
-                      <p class="mt-4 text-md md:text-lg text-slate-300 leading-relaxed">
-                         Outside of tech, I enjoy photography and often spend time exploring nature with my camera, capturing moments when I can.
-                     </p>
-                 </div>
-            </div>
-        </section>
-        
-        <!-- Stats Section -->
-        <section class="py-16">
-            <div class="container mx-auto px-6">
-                <div class="glass-pane p-8 rounded-xl grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                    <div class="reveal-section">
-                        <p class="font-orbitron text-3xl md:text-4xl text-sky-300"><1</p>
-                        <p class="text-slate-400 mt-2">Years of Experience</p>
-                    </div>
-                    <div class="reveal-section">
-                        <p id="counter-number" class="font-orbitron text-3xl md:text-4xl text-sky-300">0</p>
-                        <p class="text-slate-400 mt-2">Spies Detected</p>
-                    </div>
-                    <div class="reveal-section">
-                        <p class="font-orbitron text-3xl md:text-4xl text-sky-300">100%</p>
-                        <p class="text-slate-400 mt-2">Commitment to Automation</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <!-- About Me Section -->
+      <section id="about" class="py-16 md:py-24 bg-black/20">
+        <div
+          class="container mx-auto px-6 grid md:grid-cols-2 gap-8 md:gap-16 items-center"
+        >
+          <div class="reveal-section">
+            <img
+              src="./assets/avatar-alt1.png"
+              alt="Puneeth"
+              class="md:w-80 md:h-80 mx-auto object-cover"
+            />
+          </div>
+          <div class="reveal-section">
+            <h2 class="font-orbitron text-3xl md:text-4xl text-white">
+              About Me
+            </h2>
+            <p class="mt-4 text-md md:text-lg text-slate-300 leading-relaxed">
+              <span class="text-sky-300 weight-bold"
+                >Howdy, I’m an aspiring DevOps engineer with a passion for
+                automation and system orchestration.</span
+              >
+              <br />
+              I love building efficient and reliable infrastructure using tools
+              like Docker, Kubernetes, and AWS. Whether it’s writing
+              Infrastructure as Code, managing containers, or setting up CI/CD
+              pipelines, I’m all about creating systems that make life easier
+              for developers, helping them ship faster, safer, and with
+              confidence.
+            </p>
+            <p class="mt-4 text-md md:text-lg text-slate-300 leading-relaxed">
+              Outside of tech, I enjoy photography and often spend time
+              exploring nature with my camera, capturing moments when I can.
+            </p>
+          </div>
+        </div>
+      </section>
 
+      <!-- Stats Section -->
+      <section class="py-16">
+        <div class="container mx-auto px-6">
+          <div
+            class="glass-pane p-8 rounded-xl grid grid-cols-1 md:grid-cols-3 gap-8 text-center"
+          >
+            <div class="reveal-section">
+              <p class="font-orbitron text-3xl md:text-4xl text-sky-300"><1</p>
+              <p class="text-slate-400 mt-2">Years of Experience</p>
+            </div>
+            <div class="reveal-section">
+              <p
+                id="counter-number"
+                class="font-orbitron text-3xl md:text-4xl text-sky-300"
+              >
+                0
+              </p>
+              <p class="text-slate-400 mt-2">Spies Detected</p>
+            </div>
+            <div class="reveal-section">
+              <p class="font-orbitron text-3xl md:text-4xl text-sky-300">
+                100%
+              </p>
+              <p class="text-slate-400 mt-2">Commitment to Automation</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <!-- Pipeline Section -->
-        <section id="pipeline" class="feature-section py-16 md:py-24 bg-black/20 overflow-hidden">
-            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-8 md:gap-16 items-center">
-                <div class="feature-content reveal-section">
-                    <h2 class="font-orbitron text-3xl md:text-4xl text-white">Automated Delivery Pipeline</h2>
-                    <p class="mt-4 text-md md:text-lg text-slate-400">From commit to cluster, my pipelines are designed for speed, reliability, and security. Every change is automatically built, tested, and deployed, ensuring a seamless and error-free delivery cycle.</p>
-                </div>
-                <div class="reveal-section glass-pane h-[200px] md:h-[300px] w-full flex items-center justify-center">
-                     <div class="pipeline-visual w-full">
-                        <div class="pipeline-stage"><i class="fas fa-code-branch"></i><p class="mt-2 text-xs md:text-sm font-semibold">Code</p></div>
-                        <div class="pipeline-connector"></div>
-                        <div class="pipeline-stage"><i class="fas fa-box-open"></i><p class="mt-2 text-xs md:text-sm font-semibold">Build</p></div>
-                        <div class="pipeline-connector"></div>
-                        <div class="pipeline-stage"><i class="fas fa-shield-halved"></i><p class="mt-2 text-xs md:text-sm font-semibold">Test</p></div>
-                        <div class="pipeline-connector"></div>
-                        <div class="pipeline-stage"><i class="fas fa-rocket"></i><p class="mt-2 text-xs md:text-sm font-semibold">Deploy</p></div>
-                     </div>
-                </div>
+      <!-- Pipeline Section -->
+      <section
+        id="pipeline"
+        class="feature-section py-16 md:py-24 bg-black/20 overflow-hidden"
+      >
+        <div
+          class="container mx-auto px-6 grid md:grid-cols-2 gap-8 md:gap-16 items-center"
+        >
+          <div class="feature-content reveal-section">
+            <h2 class="font-orbitron text-3xl md:text-4xl text-white">
+              Automated Delivery Pipeline
+            </h2>
+            <p class="mt-4 text-md md:text-lg text-slate-400">
+              From commit to cluster, my pipelines are designed for speed,
+              reliability, and security. Every change is automatically built,
+              tested, and deployed, ensuring a seamless and error-free delivery
+              cycle.
+            </p>
+          </div>
+          <div
+            class="reveal-section glass-pane h-[200px] md:h-[300px] w-full flex items-center justify-center"
+          >
+            <div class="pipeline-visual w-full">
+              <div class="pipeline-stage">
+                <i class="fas fa-code-branch"></i>
+                <p class="mt-2 text-xs md:text-sm font-semibold">Code</p>
+              </div>
+              <div class="pipeline-connector"></div>
+              <div class="pipeline-stage">
+                <i class="fas fa-box-open"></i>
+                <p class="mt-2 text-xs md:text-sm font-semibold">Build</p>
+              </div>
+              <div class="pipeline-connector"></div>
+              <div class="pipeline-stage">
+                <i class="fas fa-shield-halved"></i>
+                <p class="mt-2 text-xs md:text-sm font-semibold">Test</p>
+              </div>
+              <div class="pipeline-connector"></div>
+              <div class="pipeline-stage">
+                <i class="fas fa-rocket"></i>
+                <p class="mt-2 text-xs md:text-sm font-semibold">Deploy</p>
+              </div>
             </div>
-        </section>
-        
-        <!-- Skills Section -->
-        <section id="skills" class="feature-section py-16 md:py-24 overflow-hidden">
-             <div class="container mx-auto px-6 grid md:grid-cols-2 gap-8 md:gap-16 items-center">
-                <div class="feature-content reveal-section">
-                    <h2 class="font-orbitron text-3xl md:text-4xl text-white">Core Competencies</h2>
-                    <p class="mt-4 text-md md:text-lg text-slate-400">My expertise spans the cloud-native landscape, from infrastructure as code and containerization to monitoring and observability. I leverage the best tools to build and maintain world-class systems.</p>
-                     <div id="certifications-list" class="mt-6 space-y-4">
-                        <!-- Certifications will be injected here -->
-                    </div>
-                </div>
-                <div class="reveal-section h-80 md:h-96 w-full relative">
-                     <canvas id="skillsRadar"></canvas>
-                </div>
-            </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <!-- Portfolio/Projects Section -->
-        <section id="portfolio" class="py-16 md:py-24 bg-black/20 overflow-hidden">
-            <div class="container mx-auto px-6">
-                <div class="text-center reveal-section">
-                    <h2 class="font-orbitron text-3xl md:text-4xl text-white">Featured Projects</h2>
-                    <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto">A selection of projects demonstrating my skills in automation and system design.</p>
-                </div>
-                <div id="portfolio-grid" class="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Portfolio items will be injected here -->
-                </div>
+      <!-- Skills Section -->
+      <section
+        id="skills"
+        class="feature-section py-16 md:py-24 overflow-hidden"
+      >
+        <div
+          class="container mx-auto px-6 grid md:grid-cols-2 gap-8 md:gap-16 items-center"
+        >
+          <div class="feature-content reveal-section">
+            <h2 class="font-orbitron text-3xl md:text-4xl text-white">
+              Core Competencies
+            </h2>
+            <p class="mt-4 text-md md:text-lg text-slate-400">
+              My expertise spans the cloud-native landscape, from infrastructure
+              as code and containerization to monitoring and observability. I
+              leverage the best tools to build and maintain world-class systems.
+            </p>
+            <div id="certifications-list" class="mt-6 space-y-4">
+              <!-- Certifications will be injected here -->
             </div>
-        </section>
+          </div>
+          <div class="reveal-section h-80 md:h-96 w-full relative">
+            <canvas id="skillsRadar"></canvas>
+          </div>
+        </div>
+      </section>
 
-        <!-- Blogs Section -->
-        <section id="blogs" class="py-16 md:py-24 overflow-hidden">
-            <div class="container mx-auto px-6">
-                <div class="text-center reveal-section">
-                    <h2 class="font-orbitron text-3xl md:text-4xl text-white">My Blogs</h2>
-                    <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto">Here I share my thoughts, tutorials, and deep dives into the world of DevOps and cloud computing.</p>
-                </div>
-                <div id="blog-grid" class="mt-16 space-y-8">
-                    <!-- Blog items will be injected here -->
-                </div>
-            </div>
-        </section>
+      <!-- Portfolio/Projects Section -->
+      <section
+        id="portfolio"
+        class="py-16 md:py-24 bg-black/20 overflow-hidden"
+      >
+        <div class="container mx-auto px-6">
+          <div class="text-center reveal-section">
+            <h2 class="font-orbitron text-3xl md:text-4xl text-white">
+              Featured Projects
+            </h2>
+            <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto">
+              A selection of projects demonstrating my skills in automation and
+              system design.
+            </p>
+          </div>
+          <div
+            id="portfolio-grid"
+            class="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            <!-- Portfolio items will be injected here -->
+          </div>
+        </div>
+      </section>
 
-        <!-- Photography Section -->
-        <section id="photography" class="py-16 md:py-24 bg-black/20 overflow-hidden">
-            <div class="container mx-auto px-6">
-                <div class="text-center reveal-section">
-                    <h2 class="font-orbitron text-3xl md:text-4xl text-white">Photography Portfolio</h2>
-                    <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto">Beyond the code, I enjoy capturing the world through my lens. Here's a glimpse of my creative side.</p>
-                </div>
-                <div id="photography-carousel" class="mt-16 reveal-section relative">
-                    <div id="carousel-track">
-                        <!-- Swiper Structure -->
-                        <div class="swiper">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide swiper-slide--one">
-                                </div>
-                                <div class="swiper-slide swiper-slide--two">
-                                </div>
-                                <div class="swiper-slide swiper-slide--three">
-                                </div>
-                                <div class="swiper-slide swiper-slide--four">
-                                </div>
-                                <div class="swiper-slide swiper-slide--five">
-                                </div>
-                            </div>
-                            <!-- Add Pagination -->
-                            <div class="swiper-pagination"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <!-- Blogs Section -->
+      <section id="blogs" class="py-16 md:py-24 overflow-hidden">
+        <div class="container mx-auto px-6">
+          <div class="text-center reveal-section">
+            <h2 class="font-orbitron text-3xl md:text-4xl text-white">
+              My Blogs
+            </h2>
+            <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto">
+              Here I share my thoughts, tutorials, and deep dives into the world
+              of DevOps and cloud computing.
+            </p>
+          </div>
+          <div id="blog-grid" class="mt-16 space-y-8">
+            <!-- Blog items will be injected here -->
+          </div>
+        </div>
+      </section>
 
-        <!-- Contact Section -->
-        <footer id="contact" class="py-16 md:py-24">
-            <div class="container mx-auto px-6">
-                <div class="text-center reveal-section">
-                    <h2 class="font-orbitron text-3xl md:text-4xl text-white">Let's Build Together</h2>
-                    <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto">Have a project in mind or looking for a DevOps consultation? I'm currently available for freelance opportunities and collaborations.</p>
+      <!-- Photography Section -->
+      <section
+        id="photography"
+        class="py-16 md:py-24 bg-black/20 overflow-hidden"
+      >
+        <div class="container mx-auto px-6">
+          <div class="text-center reveal-section">
+            <h2 class="font-orbitron text-3xl md:text-4xl text-white">
+              Photography Portfolio
+            </h2>
+            <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto">
+              Beyond the code, I enjoy capturing the world through my lens.
+              Here's a glimpse of my creative side.
+            </p>
+          </div>
+          <div id="photography-carousel" class="mt-16 reveal-section relative">
+            <div id="carousel-track">
+              <!-- Swiper Structure -->
+              <div class="swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide swiper-slide--one"></div>
+                  <div class="swiper-slide swiper-slide--two"></div>
+                  <div class="swiper-slide swiper-slide--three"></div>
+                  <div class="swiper-slide swiper-slide--four"></div>
+                  <div class="swiper-slide swiper-slide--five"></div>
                 </div>
-                <div class="reveal-section glass-pane max-w-2xl mx-auto mt-12 p-8">
-                    <form action="#" method="POST" class="space-y-6">
-                        <input type="text" name="name" placeholder="Your Name" class="form-input" required>
-                        <input type="email" name="email" placeholder="Your Email" class="form-input" required>
-                        <textarea name="message" rows="5" placeholder="Your Message" class="form-input" required></textarea>
-                        <button type="submit" class="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold text-lg px-8 py-3 rounded-lg transition-colors">
-                            Send Message
-                        </button>
-                    </form>
-                </div>
-                 <div class="mt-16 text-center text-slate-400 reveal-section">
-                    <div class="flex justify-center gap-8 text-2xl">
-                        <a href="#" class="hover:text-sky-400 transition-colors"><i class="fab fa-github"></i></a>
-                        <a href="#" class="hover:text-sky-400 transition-colors"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="hover:text-sky-400 transition-colors"><i class="fab fa-twitter"></i></a>
-                    </div>
-                    <p class="mt-8 text-sm">&copy; 2024 Your Name. All Rights Reserved.</p>
-                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+              </div>
             </div>
-        </footer>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <footer id="contact" class="py-16 md:py-24">
+        <div class="container mx-auto px-6">
+          <div class="text-center reveal-section">
+            <h2 class="font-orbitron text-3xl md:text-4xl text-white">
+              Let's Build Together
+            </h2>
+            <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto">
+              Have a project in mind or looking for a DevOps consultation? I'm
+              currently available for freelance opportunities and
+              collaborations.
+            </p>
+          </div>
+          <div class="reveal-section glass-pane max-w-2xl mx-auto mt-12 p-8">
+            <form action="#" method="POST" class="space-y-6">
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                class="form-input"
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                class="form-input"
+                required
+              />
+              <textarea
+                name="message"
+                rows="5"
+                placeholder="Your Message"
+                class="form-input"
+                required
+              ></textarea>
+              <button
+                type="submit"
+                class="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold text-lg px-8 py-3 rounded-lg transition-colors"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+          <div class="mt-16 text-center text-slate-400 reveal-section">
+            <div class="flex justify-center gap-8 text-2xl">
+              <a href="#" class="hover:text-sky-400 transition-colors"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a href="#" class="hover:text-sky-400 transition-colors"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="#" class="hover:text-sky-400 transition-colors"
+                ><i class="fab fa-twitter"></i
+              ></a>
+            </div>
+            <p class="mt-8 text-sm">
+              &copy; 2024 Your Name. All Rights Reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
     </main>
 
     <!-- Bottom Dock Navigation -->
     <nav id="bottom-nav">
-        <div id="mobile-dock-menu" class="flex">
-             <!-- Mobile dock items will be injected here -->
-        </div>
-        <div id="mobile-dock-toggle" class="dock-item">
-            <i class="fas fa-plus"></i>
-        </div>
-        <div id="bottom-dock" class="glass-pane">
-            <!-- Desktop dock items will be injected here -->
-        </div>
+      <div id="mobile-dock-menu" class="flex">
+        <!-- Mobile dock items will be injected here -->
+      </div>
+      <div id="mobile-dock-toggle" class="dock-item">
+        <i class="fas fa-plus"></i>
+      </div>
+      <div id="bottom-dock" class="glass-pane">
+        <!-- Desktop dock items will be injected here -->
+      </div>
     </nav>
-    
+
     <!-- Lightbox Structure -->
     <div id="lightbox" class="lightbox">
-        <span class="lightbox-close">&times;</span>
-        <img id="lightbox-img" src="" alt="Full-size view">
+      <span class="lightbox-close">&times;</span>
+      <img id="lightbox-img" src="" alt="Full-size view" />
     </div>
     <script src="./index.js"></script>
-</body>
+  </body>
 </html>
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-
