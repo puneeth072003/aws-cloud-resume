@@ -10,12 +10,14 @@ const navData = [
   { href: "#contact", label: "Contact", icon: "fa-envelope" },
 ];
 const certificationsData = [
-  { name: "AWS Certified DevOps Engineer", icon: "fa-brands fa-aws" },
+  { name: "Top 1% in GSSoC'ext 2024", icon: "fa fa-trophy" },
   {
-    name: "Certified Kubernetes Administrator (CKA)",
-    icon: "fa-brands fa-docker",
+    name: "1st Place in the department-level mini-project",
+    icon: "fa fa-trophy",
   },
-  { name: "Terraform Certified Associate", icon: "fa-layer-group" },
+  { name: "AZ-305 Microsoft Azure Architect Design Prerequisites", icon: "fa fa-trophy" },
+  { name: "AWS Cloud Practitioner Essentials", icon: "fa fa-trophy" },
+  { name: "Postman API Fundamentals Student Expert", icon: "fa fa-trophy" }
 ];
 const portfolioData = [
   {
