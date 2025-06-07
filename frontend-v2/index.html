@@ -448,12 +448,12 @@
             <div class="container mx-auto px-6">
                 <div class="glass-pane p-8 rounded-xl grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                     <div class="reveal-section">
-                        <p class="font-orbitron text-3xl md:text-4xl text-sky-300">5+</p>
+                        <p class="font-orbitron text-3xl md:text-4xl text-sky-300"><1</p>
                         <p class="text-slate-400 mt-2">Years of Experience</p>
                     </div>
                     <div class="reveal-section">
-                        <p id="counter" class="font-orbitron text-3xl md:text-4xl text-sky-300">0</p>
-                        <p class="text-slate-400 mt-2">Successful Deployments</p>
+                        <p id="counter-number" class="font-orbitron text-3xl md:text-4xl text-sky-300">0</p>
+                        <p class="text-slate-400 mt-2">Spies Detected</p>
                     </div>
                     <div class="reveal-section">
                         <p class="font-orbitron text-3xl md:text-4xl text-sky-300">100%</p>
@@ -665,6 +665,7 @@
             setupPhotographyCarousel();
             setupLightbox();
             setupThemeSwitcher();
+            updateCounter(); // Add this line to call the counter function
         }
 
         function checkDependencies() {
@@ -758,6 +759,31 @@
             });
         }
 
+        // Counter Logic
+        const COUNTER_URL = "https://dviz66qcm3vqhccxryrjmvn7yq0rnink.lambda-url.ap-south-1.on.aws/?key=oe7XZ2FvVVRpWkUMokTuEC3PuAKpy4u9";
+
+        async function updateCounter() {
+            const counter = document.getElementById('counter-number');
+            if (!counter) return;
+            
+            let method = "GET";
+            if (!sessionStorage.getItem("counterIncremented")) {
+                method = "POST";
+            }
+            try {
+                const response = await fetch(COUNTER_URL, { method });
+                if (!response.ok) throw new Error("Failed to fetch");
+                const data = await response.json();
+                counter.innerHTML = data.views;
+                if (method === "POST") {
+                    sessionStorage.setItem("counterIncremented", "true");
+                }
+            } catch (err) {
+                counter.innerHTML = "0";
+                console.error("Counter error:", err);
+            }
+        }
+        
         function setupSkillsRadar() {
             const ctx = document.getElementById('skillsRadar');
             if (!ctx) return;
@@ -1196,4 +1222,4 @@
     document.addEventListener('DOMContentLoaded', function() {
         setupPhotographyCarousel();
     });
-</html>
+</script>
