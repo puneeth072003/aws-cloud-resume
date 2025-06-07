@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Portfolio - Your Name</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter & Orbitron -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- JS Libraries: Three.js for 3D, Chart.js for radar -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        :root {
+            --primary-glow: rgba(56, 189, 248, 0.5);
+            --primary-border: rgba(56, 189, 248, 0.2);
+            --background-dark: #050816;
+            --text-main: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-accent: #38bdf8;
+            --glass-bg: rgba(15, 23, 42, 0.75);
+        }
+
+        .light-theme {
+            --primary-glow: rgba(59, 130, 246, 0.4);
+            --primary-border: rgba(59, 130, 246, 0.3);
+            --background-dark: #f3f4f6;
+            --text-main: #1f2937;
+            --text-secondary: #4b5563;
+            --text-accent: #2563eb;
+            --glass-bg: rgba(255, 255, 255, 0.6);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        .glass-pane {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--primary-border);
+            border-radius: 1rem;
+            transition: background-color 0.5s ease, border-color 0.5s ease;
+        }
+
+        /* Bottom Dock Navigation */
+        #bottom-nav {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem; /* Position to the right on mobile */
+            left: auto;
+            transform: none;
+        }
+        @media (min-width: 768px) {
+            #bottom-nav {
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
+            }
+        }
+        
+        #bottom-dock {
+            display: flex;
+            align-items: flex-end;
+            gap: 0.8rem;
+            height: 60px; 
+        }
+        .dock-item {
+            color: var(--text-secondary);
+            transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 56px;
+            height: 56px;
+            font-size: 1.4rem; 
+            /* Glass pane styles moved here and made circular */
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            /* border: 1px solid var(--primary-border); */
+            border-radius: 9999px; /* This makes it circular */
+            transition: all 0.3s ease;
+        }
+        .dock-item:hover {
+            color: var(--text-main);
+            border-color: var(--primary-glow);
+        }
+        .dock-tooltip {
+            position: absolute;
+            bottom: 120%;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.875rem;
+            border-radius: 0.5rem;
+            background: #000;
+            color: #fff;
+            font-weight: 500;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.2s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        .dock-item:hover .dock-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        /* Mobile Dock */
+        #mobile-dock-toggle {
+            display: none; /* Hidden by default */
+        }
+        #mobile-dock-menu {
+            position: absolute;
+            bottom: 100%;
+            right: 0; /* Align with toggle button */
+            left: auto;
+            transform: none;
+            flex-direction: column-reverse;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform-origin: bottom right;
+            transform: scale(0.95);
+        }
+        #mobile-dock-menu.open {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+
+        @media (max-width: 767px) {
+            #bottom-dock {
+                display: none;
+            }
+            #mobile-dock-toggle {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+        }
+
+        /* Section Reveal Animation */
+        .reveal-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-section:nth-child(even) .feature-content {
+            order: 2;
+        }
+        
+        .pipeline-visual {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            padding: 1rem;
+        }
+        .pipeline-stage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .pipeline-stage { font-size: 2.5rem; }
+        }
+        .pipeline-connector {
+            flex-grow: 1;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary-border), var(--primary-glow), var(--primary-border));
+            margin: 0 0.5rem;
+            margin-bottom: 2rem;
+        }
+        @media (min-width: 768px) {
+            .pipeline-connector { margin: 0 1rem; margin-bottom: 2.5rem; }
+        }
+        
+        .form-input {
+            width: 100%;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--primary-border);
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-main);
+            transition: border-color 0.3s, background-color 0.5s;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-glow);
+        }
+
+        #photography-carousel { position: relative; }
+        #carousel-track { display: flex; transition: transform 0.5s ease-in-out; }
+        .carousel-item { flex: 0 0 100%; }
+        @media (min-width: 768px) { .carousel-item { flex: 0 0 50%; } }
+        @media (min-width: 1024px) { .carousel-item { flex: 0 0 33.333%; } }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--glass-bg);
+            color: var(--text-main);
+            border: 1px solid var(--primary-border);
+            border-radius: 9999px;
+            width: 3rem;
+            height: 3rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s;
+            display: none;
+        }
+         @media (min-width: 768px) { .carousel-btn { display: initial; } }
+        .carousel-btn:hover { background-color: rgba(56, 189, 248, 0.2); }
+        #prev-btn { left: -1.5rem; }
+        #next-btn { right: -1.5rem; }
+
+        .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.9); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
+        .lightbox.show { opacity: 1; visibility: visible; }
+        .lightbox img { max-width: 90%; max-height: 80%; border-radius: 0.5rem; }
+        .lightbox-close { position: absolute; top: 2rem; right: 2rem; font-size: 3rem; color: #fff; cursor: pointer; line-height: 1; }
+
+        /* Light Theme Text Overrides */
+        .light-theme h1, .light-theme h2, .light-theme h3 { color: var(--text-main); }
+        .light-theme p, .light-theme div, .light-theme span { color: var(--text-secondary); }
+        .light-theme .text-sky-300 { color: var(--text-accent); }
+        .light-theme .text-white { color: var(--text-main); }
+        .light-theme .text-slate-300 { color: var(--text-secondary); }
+        .light-theme .text-slate-400 { color: var(--text-secondary); }
+        .light-theme .text-slate-500 { color: #9ca3af; }
+        .light-theme .hover\:text-sky-400:hover, .light-theme .hover\:text-sky-300:hover { color: var(--text-accent); }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <style>
+        /* Photography Swiper Styles */
+        #photography .swiper {
+            width: 100%;
+            padding-top: 3.125rem;
+            padding-bottom: 3.125rem;
+        }
+        
+        #photography .swiper-pagination-bullet,
+        #photography .swiper-pagination-bullet-active {
+            background: var(--text-main);
+        }
+        
+        #photography .swiper-pagination {
+            bottom: 1.25rem !important;
+        }
+        
+        #photography .swiper-slide {
+            width: 18.75rem;
+            height: 28.125rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            align-items: self-start;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s;
+        }
+        
+        #photography .swiper-slide h2 {
+            color: var(--text-main);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 400;
+            font-size: 1.4rem;
+            line-height: 1.4;
+            margin-bottom: 0.625rem;
+            padding: 0 0 0 1.563rem;
+            text-transform: uppercase;
+        }
+        
+        #photography .swiper-slide p {
+            color: var(--text-secondary);
+            font-weight: 300;
+            padding: 0 1.563rem;
+            line-height: 1.6;
+            font-size: 0.75rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        #photography .swiper-slide a {
+            margin: 1.25rem 1.563rem 3.438rem 1.563rem;
+            padding: 0.438em 1.875rem;
+            font-size: 0.9rem;
+            background: var(--glass-bg);
+            color: var(--text-accent);
+            border: 1px solid var(--primary-border);
+            border-radius: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        #photography .swiper-slide a:hover {
+            background: rgba(56, 189, 248, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        #photography .swiper-slide div {
+            display: none;
+            opacity: 0;
+            padding-bottom: 0.625rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            width: 100%;
+            transition: opacity 0.5s ease;
+        }
+        
+        #photography .swiper-slide-active div {
+            display: block;
+            opacity: 1;
+        }
+        
+        #photography .swiper-3d .swiper-slide-shadow-left,
+        #photography .swiper-3d .swiper-slide-shadow-right {
+            background-image: none;
+        }
+        
+        @media screen and (min-width: 48rem) {
+            #photography .swiper {
+                width: 100%;
+            }
+        }
+        
+        @media screen and (min-width: 93.75rem) {
+            #photography .swiper {
+                width: 85%;
+            }
+        }
+    </style>
+    <style>
+        /* Slide background images using local assets */
+        #photography .swiper-slide--one {
+            background: linear-gradient(to top, rgba(15, 32, 39, 0.8), rgba(32, 58, 67, 0.3), rgba(44, 83, 100, 0)),
+                url("./assets/photos/DSC03302.png")
+                no-repeat 50% 50% / cover;
+        }
+        
+        #photography .swiper-slide--two {
+            background: linear-gradient(to top, rgba(15, 32, 39, 0.8), rgba(32, 58, 67, 0.3), rgba(44, 83, 100, 0)),
+                url("./assets/photos/DSC03471.jpg")
+                no-repeat 50% 50% / cover;
+        }
+        
+        #photography .swiper-slide--three {
+            background: linear-gradient(to top, rgba(15, 32, 39, 0.8), rgba(32, 58, 67, 0.3), rgba(44, 83, 100, 0)),
+                url("./assets/photos/DSC03550.JPG")
+                no-repeat 50% 50% / cover;
+        }
+        
+        #photography .swiper-slide--four {
+            background: linear-gradient(to top, rgba(15, 32, 39, 0.8), rgba(32, 58, 67, 0.3), rgba(44, 83, 100, 0)),
+                url("./assets/photos/DSC03307.jpg")
+                no-repeat 50% 50% / cover;
+        }
+        
+        #photography .swiper-slide--five {
+            background: linear-gradient(to top, rgba(15, 32, 39, 0.8), rgba(32, 58, 67, 0.3), rgba(44, 83, 100, 0)),
+                url("./assets/photos/DSC03529.JPG")
+                no-repeat 50% 50% / cover;
+        }
+    </style>
+</head>
+<body class="w-full">
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="relative h-screen w-full flex items-center justify-center text-center overflow-hidden">
+            <canvas class="hero-canvas" id="hero-canvas"></canvas>
+            <div class="relative z-10 p-4">
+                <h1 class="font-orbitron text-4xl sm:text-5xl md:text-8xl font-black text-white uppercase tracking-wider">
+                    Puneeth Y
+                </h1>
+                <p class="mt-4 text-lg md:text-2xl text-sky-300 max-w-3xl mx-auto">
+                    An Aspiring DevOps Engineer & Cloud Architect crafting resilient, automated, and scalable infrastructure for tomorrow's technology.
+                </p>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="py-16 md:py-24 bg-black/20">
+            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-8 md:gap-16 items-center">
+                 <div class="reveal-section">
+                    <img src="./assets/avatar-alt1.png" alt="Puneeth" class="md:w-80 md:h-80 mx-auto object-cover">
+                 </div>
+                 <div class="reveal-section">
+                     <h2 class="font-orbitron text-3xl md:text-4xl text-white">About Me</h2>
+                     <p class="mt-4 text-md md:text-lg text-slate-300 leading-relaxed">
+                        <span class="text-sky-300 weight-bold">Howdy, I’m an aspiring DevOps engineer with a passion for automation and system orchestration.</span> <br> I love building efficient and reliable infrastructure using tools like Docker, Kubernetes, and AWS. Whether it’s writing Infrastructure as Code, managing containers, or setting up CI/CD pipelines, I’m all about creating systems that make life easier for developers, helping them ship faster, safer, and with confidence.
+                        </p>
+                      <p class="mt-4 text-md md:text-lg text-slate-300 leading-relaxed">
+                         Outside of tech, I enjoy photography and often spend time exploring nature with my camera, capturing moments when I can.
+                     </p>
+                 </div>
+            </div>
+        </section>
+        
+        <!-- Stats Section -->
+        <section class="py-16">
+            <div class="container mx-auto px-6">
+                <div class="glass-pane p-8 rounded-xl grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="reveal-section">
+                        <p class="font-orbitron text-3xl md:text-4xl text-sky-300">5+</p>
+                        <p class="text-slate-400 mt-2">Years of Experience</p>
+                    </div>
+                    <div class="reveal-section">
+                        <p id="counter" class="font-orbitron text-3xl md:text-4xl text-sky-300">0</p>
+                        <p class="text-slate-400 mt-2">Successful Deployments</p>
+                    </div>
+                    <div class="reveal-section">
+                        <p class="font-orbitron text-3xl md:text-4xl text-sky-300">100%</p>
+                        <p class="text-slate-400 mt-2">Commitment to Automation</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Pipeline Section -->
+        <section id="pipeline" class="feature-section py-16 md:py-24 bg-black/20 overflow-hidden">
+            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-8 md:gap-16 items-center">
+                <div class="feature-content reveal-section">
+                    <h2 class="font-orbitron text-3xl md:text-4xl text-white">Automated Delivery Pipeline</h2>
+                    <p class="mt-4 text-md md:text-lg text-slate-400">From commit to cluster, my pipelines are designed for speed, reliability, and security. Every change is automatically built, tested, and deployed, ensuring a seamless and error-free delivery cycle.</p>
+                </div>
+                <div class="reveal-section glass-pane h-[200px] md:h-[300px] w-full flex items-center justify-center">
+                     <div class="pipeline-visual w-full">
+                        <div class="pipeline-stage"><i class="fas fa-code-branch"></i><p class="mt-2 text-xs md:text-sm font-semibold">Code</p></div>
+                        <div class="pipeline-connector"></div>
+                        <div class="pipeline-stage"><i class="fas fa-box-open"></i><p class="mt-2 text-xs md:text-sm font-semibold">Build</p></div>
+                        <div class="pipeline-connector"></div>
+                        <div class="pipeline-stage"><i class="fas fa-shield-halved"></i><p class="mt-2 text-xs md:text-sm font-semibold">Test</p></div>
+                        <div class="pipeline-connector"></div>
+                        <div class="pipeline-stage"><i class="fas fa-rocket"></i><p class="mt-2 text-xs md:text-sm font-semibold">Deploy</p></div>
+                     </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Skills Section -->
+        <section id="skills" class="feature-section py-16 md:py-24 overflow-hidden">
+             <div class="container mx-auto px-6 grid md:grid-cols-2 gap-8 md:gap-16 items-center">
+                <div class="feature-content reveal-section">
+                    <h2 class="font-orbitron text-3xl md:text-4xl text-white">Core Competencies</h2>
+                    <p class="mt-4 text-md md:text-lg text-slate-400">My expertise spans the cloud-native landscape, from infrastructure as code and containerization to monitoring and observability. I leverage the best tools to build and maintain world-class systems.</p>
+                     <div id="certifications-list" class="mt-6 space-y-4">
+                        <!-- Certifications will be injected here -->
+                    </div>
+                </div>
+                <div class="reveal-section h-80 md:h-96 w-full relative">
+                     <canvas id="skillsRadar"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio/Projects Section -->
+        <section id="portfolio" class="py-16 md:py-24 bg-black/20 overflow-hidden">
+            <div class="container mx-auto px-6">
+                <div class="text-center reveal-section">
+                    <h2 class="font-orbitron text-3xl md:text-4xl text-white">Featured Projects</h2>
+                    <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto">A selection of projects demonstrating my skills in automation and system design.</p>
+                </div>
+                <div id="portfolio-grid" class="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Portfolio items will be injected here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Blogs Section -->
+        <section id="blogs" class="py-16 md:py-24 overflow-hidden">
+            <div class="container mx-auto px-6">
+                <div class="text-center reveal-section">
+                    <h2 class="font-orbitron text-3xl md:text-4xl text-white">My Blogs</h2>
+                    <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto">Here I share my thoughts, tutorials, and deep dives into the world of DevOps and cloud computing.</p>
+                </div>
+                <div id="blog-grid" class="mt-16 space-y-8">
+                    <!-- Blog items will be injected here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Photography Section -->
+        <section id="photography" class="py-16 md:py-24 bg-black/20 overflow-hidden">
+            <div class="container mx-auto px-6">
+                <div class="text-center reveal-section">
+                    <h2 class="font-orbitron text-3xl md:text-4xl text-white">Photography Portfolio</h2>
+                    <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto">Beyond the code, I enjoy capturing the world through my lens. Here's a glimpse of my creative side.</p>
+                </div>
+                <div id="photography-carousel" class="mt-16 reveal-section relative">
+                    <div id="carousel-track">
+                        <!-- Swiper Structure -->
+                        <div class="swiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide swiper-slide--one">
+                                </div>
+                                <div class="swiper-slide swiper-slide--two">
+                                </div>
+                                <div class="swiper-slide swiper-slide--three">
+                                </div>
+                                <div class="swiper-slide swiper-slide--four">
+                                </div>
+                                <div class="swiper-slide swiper-slide--five">
+                                </div>
+                            </div>
+                            <!-- Add Pagination -->
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <footer id="contact" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center reveal-section">
+                    <h2 class="font-orbitron text-3xl md:text-4xl text-white">Let's Build Together</h2>
+                    <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto">Have a project in mind or looking for a DevOps consultation? I'm currently available for freelance opportunities and collaborations.</p>
+                </div>
+                <div class="reveal-section glass-pane max-w-2xl mx-auto mt-12 p-8">
+                    <form action="#" method="POST" class="space-y-6">
+                        <input type="text" name="name" placeholder="Your Name" class="form-input" required>
+                        <input type="email" name="email" placeholder="Your Email" class="form-input" required>
+                        <textarea name="message" rows="5" placeholder="Your Message" class="form-input" required></textarea>
+                        <button type="submit" class="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold text-lg px-8 py-3 rounded-lg transition-colors">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                 <div class="mt-16 text-center text-slate-400 reveal-section">
+                    <div class="flex justify-center gap-8 text-2xl">
+                        <a href="#" class="hover:text-sky-400 transition-colors"><i class="fab fa-github"></i></a>
+                        <a href="#" class="hover:text-sky-400 transition-colors"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="hover:text-sky-400 transition-colors"><i class="fab fa-twitter"></i></a>
+                    </div>
+                    <p class="mt-8 text-sm">&copy; 2024 Your Name. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Bottom Dock Navigation -->
+    <nav id="bottom-nav">
+        <div id="mobile-dock-menu" class="flex">
+             <!-- Mobile dock items will be injected here -->
+        </div>
+        <div id="mobile-dock-toggle" class="dock-item">
+            <i class="fas fa-plus"></i>
+        </div>
+        <div id="bottom-dock" class="glass-pane">
+            <!-- Desktop dock items will be injected here -->
+        </div>
+    </nav>
+    
+    <!-- Lightbox Structure -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Full-size view">
+    </div>
+
+    <script>
+        // --- DATA ---
+        const navData = [
+            { href: '#home', label: 'Home', icon: 'fa-house' },
+            { href: '#about', label: 'About', icon: 'fa-user' },
+            { href: '#pipeline', label: 'Pipeline', icon: 'fa-network-wired' },
+            { href: '#skills', label: 'Skills', icon: 'fa-chart-pie' },
+            { href: '#portfolio', label: 'Projects', icon: 'fa-briefcase' },
+            { href: '#blogs', label: 'Blogs', icon: 'fa-pen-to-square' },
+            { href: '#photography', label: 'Photography', icon: 'fa-camera' },
+            { href: '#contact', label: 'Contact', icon: 'fa-envelope' },
+        ];
+        const certificationsData = [
+            { name: 'AWS Certified DevOps Engineer', icon: 'fa-brands fa-aws' },
+            { name: 'Certified Kubernetes Administrator (CKA)', icon: 'fa-brands fa-docker' },
+            { name: 'Terraform Certified Associate', icon: 'fa-layer-group' },
+        ];
+        const portfolioData = [
+            { title: 'GitOps Infrastructure for E-Commerce', description: 'Built a fully automated, GitOps-driven infrastructure on AWS EKS using ArgoCD, Terraform, and GitHub Actions, reducing deployment times by 90%.', icon: 'fa-cart-shopping' },
+            { title: 'Centralized Logging Platform', description: 'Designed and deployed a centralized logging and monitoring stack using the ELK stack (Elasticsearch, Logstash, Kibana) and Prometheus on Kubernetes.', icon: 'fa-magnifying-glass-chart' },
+            { title: 'Serverless Data Processing Pipeline', description: 'Architected a serverless pipeline using AWS Lambda, S3, and API Gateway to process real-time data streams with high availability and low operational cost.', icon: 'fa-gears' },
+        ];
+        const blogData = [
+            { title: 'The Power of Idempotency in IaC', excerpt: 'Why ensuring your Terraform or Pulumi scripts can run multiple times without side effects is critical for stable automation...', link: '#', featured: true },
+            { title: 'Kubernetes Cost Management Strategies', excerpt: 'Practical tips for optimizing resource requests, implementing cluster autoscaling, and using spot instances to control cloud spend...', link: '#', featured: false },
+            { title: 'Service Mesh: Is Istio or Linkerd Right for You?', excerpt: 'A comparative analysis of the leading service meshes, breaking down their features, performance, and operational complexity...', link: '#', featured: false },
+        ];
+        const photographyData = [
+            { src: 'https://placehold.co/800x600/050816/e0f2fe?text=Neon+Grid', alt: 'A glowing neon grid stretching into the distance' },
+            { src: 'https://placehold.co/800x600/1e3a8a/e0f2fe?text=Circuitry', alt: 'Macro shot of a complex circuit board' },
+            { src: 'https://placehold.co/800x600/0284c7/e0f2fe?text=Data+Flow', alt: 'Abstract long exposure of fiber optic lights' },
+            { src: 'https://placehold.co/800x600/0891b2/e0f2fe?text=Hologram', alt: 'A projected data hologram in a dark room' },
+            { src: 'https://placehold.co/800x600/0f172a/e0f2fe?text=Digital+Rain', alt: 'Code cascading down a screen, digital rain effect' },
+            { src: 'https://placehold.co/800x600/1e40af/e0f2fe?text=Server+Aisle', alt: 'A long aisle of server racks' },
+        ];
+
+
+        // --- CORE LOGIC ---
+        function main() {
+            try {
+                setupHeroAnimation();
+            } catch (e) {
+                console.error("Failed to initialize Hero Animation:", e);
+                const heroCanvas = document.getElementById('hero-canvas');
+                if(heroCanvas) heroCanvas.style.display = 'none';
+            }
+            setupSkillsRadar();
+            setupScrollAnimations();
+            
+            populateDock();
+            populatePortfolio();
+            populateCertifications();
+            populateBlogs();
+            populatePhotography();
+
+            setupDockAnimation();
+            setupPhotographyCarousel();
+            setupLightbox();
+            setupThemeSwitcher();
+        }
+
+        function checkDependencies() {
+            if (window.THREE && window.Chart) {
+                main();
+            } else {
+                setTimeout(checkDependencies, 100);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', checkDependencies);
+
+        // --- ANIMATIONS & DYNAMIC CONTENT ---
+
+        function setupHeroAnimation() {
+            const container = document.getElementById('home');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('hero-canvas'), alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            // Particle Sphere
+            const points = [];
+            for (let i = 0; i < 5000; i++) {
+                const vertex = new THREE.Vector3();
+                const theta = Math.acos(THREE.MathUtils.randFloatSpread(2));
+                const phi = THREE.MathUtils.randFloatSpread(360);
+                vertex.x = 2.5 * Math.sin(theta) * Math.cos(phi);
+                vertex.y = 2.5 * Math.sin(theta) * Math.sin(phi);
+                vertex.z = 2.5 * Math.cos(theta);
+                points.push(vertex);
+            }
+            const geometry = new THREE.BufferGeometry().setFromPoints(points);
+            const material = new THREE.PointsMaterial({ color: 0x38bdf8, size: 0.015 });
+            const sphere = new THREE.Points(geometry, material);
+            scene.add(sphere);
+
+            camera.position.z = 5;
+            
+            let mouseX = 0;
+            document.addEventListener('mousemove', (event) => {
+                mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            });
+
+            function animate() {
+                requestAnimationFrame(animate);
+                sphere.rotation.y += 0.0005 + (mouseX * 0.0005);
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
+        
+        function setupDockAnimation() {
+            const dock = document.getElementById('bottom-dock');
+            const items = Array.from(dock.children);
+            
+            dock.addEventListener('mousemove', (e) => {
+                const dockRect = dock.getBoundingClientRect();
+                const mouseX = e.clientX - dockRect.left;
+                
+                items.forEach((item, index) => {
+                    const itemRect = item.getBoundingClientRect();
+                    const itemCenterX = itemRect.left - dockRect.left + itemRect.width / 2;
+                    const distance = Math.abs(mouseX - itemCenterX);
+                    
+                    const maxScale = 1.8;
+                    const neighborScale = 1.3;
+                    const effectRadius = 60; 
+                    
+                    let scale = 1.0;
+                    if(distance < effectRadius) {
+                        scale = maxScale - (distance / effectRadius) * (maxScale - neighborScale);
+                    } else if (distance < effectRadius * 2) {
+                        const neighborDistance = distance - effectRadius;
+                        scale = neighborScale - (neighborDistance / effectRadius) * (neighborScale - 1.0);
+                    }
+                    
+                    item.style.transform = `scale(${scale.toFixed(2)})`;
+                });
+            });
+
+            dock.addEventListener('mouseleave', () => {
+                items.forEach(item => {
+                    item.style.transform = 'scale(1)';
+                });
+            });
+        }
+
+        function setupSkillsRadar() {
+            const ctx = document.getElementById('skillsRadar');
+            if (!ctx) return;
+            const chart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Kubernetes', 'Docker', 'Terraform', 'AWS', 'CI/CD', 'Python', 'Monitoring'],
+                    datasets: [{
+                        data: [90, 95, 85, 90, 92, 88, 85],
+                        backgroundColor: 'rgba(56, 189, 248, 0.2)',
+                        borderColor: 'rgba(56, 189, 248, 1)',
+                        pointBackgroundColor: 'rgba(56, 189, 248, 1)',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: { duration: 2000 },
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(255, 255, 255, 0.2)' },
+                            grid: { color: 'rgba(255, 255, 255, 0.2)' },
+                            pointLabels: { 
+                                color: getComputedStyle(document.body).getPropertyValue('--text-main'),
+                                font: { size: 12 } 
+                            },
+                            ticks: { display: false, stepSize: 25 },
+                        }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+            // Update chart colors on theme change
+             document.body.addEventListener('themeChanged', (e) => {
+                const isLight = e.detail.theme === 'light';
+                const pointLabelColor = isLight ? '#1f2937' : '#e2e8f0';
+                chart.options.scales.r.pointLabels.color = pointLabelColor;
+                chart.options.scales.r.angleLines.color = isLight ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.2)';
+                chart.options.scales.r.grid.color = isLight ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.2)';
+                chart.update();
+            });
+        }
+        
+        function setupScrollAnimations() {
+            const sections = document.querySelectorAll('.reveal-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            sections.forEach(section => observer.observe(section));
+
+            const counter = document.getElementById('counter');
+            const counterObserver = new IntersectionObserver((entries, observer) => {
+                const [entry] = entries;
+                if (!entry.isIntersecting) return;
+                
+                animateCounter(counter, 0, 350, 2000);
+                observer.unobserve(counter);
+            }, { threshold: 0.5 });
+            if (counter) counterObserver.observe(counter);
+        }
+
+        function animateCounter(el, from, to, duration) {
+            let start = null;
+            const step = (timestamp) => {
+                if (!start) start = timestamp;
+                const progress = Math.min((timestamp - start) / duration, 1);
+                el.textContent = Math.floor(progress * (to - from) + from).toLocaleString();
+                if (progress < 1) window.requestAnimationFrame(step);
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        function createDockItem(item) {
+            const dockItem = document.createElement('a');
+            dockItem.href = item.href;
+            dockItem.className = 'dock-item';
+            dockItem.innerHTML = `
+                <i class="fas ${item.icon}"></i>
+                <span class="dock-tooltip">${item.label}</span>
+            `;
+            return dockItem;
+        }
+
+        function populateDock() {
+            const desktopDock = document.getElementById('bottom-dock');
+            const mobileMenu = document.getElementById('mobile-dock-menu');
+            if(!desktopDock || !mobileMenu) return;
+
+            // Theme switcher button data
+            const themeItemData = { id: 'theme-switcher', label: 'Toggle Theme', icon: 'fa-moon' };
+            const allNavData = [...navData, themeItemData];
+
+            allNavData.forEach(item => {
+                const desktopItem = createDockItem(item);
+                if(item.id) desktopItem.id = `desktop-${item.id}`;
+                desktopDock.appendChild(desktopItem);
+                
+                const mobileItem = createDockItem(item);
+                 if(item.id) mobileItem.id = `mobile-${item.id}`;
+                mobileMenu.appendChild(mobileItem);
+            });
+            
+            const mobileToggle = document.getElementById('mobile-dock-toggle');
+            mobileToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('open');
+                const icon = mobileToggle.querySelector('i');
+                icon.classList.toggle('fa-plus');
+                icon.classList.toggle('fa-times');
+            });
+        }
+        
+        function setupThemeSwitcher() {
+            const themeSwitchers = [
+                document.getElementById('desktop-theme-switcher'),
+                document.getElementById('mobile-theme-switcher')
+            ];
+
+            const applyTheme = (theme) => {
+                if (theme === 'light') {
+                    document.body.classList.add('light-theme');
+                } else {
+                    document.body.classList.remove('light-theme');
+                }
+                themeSwitchers.forEach(switcher => {
+                    if (switcher) {
+                        const icon = switcher.querySelector('i');
+                        icon.className = `fas ${theme === 'light' ? 'fa-sun' : 'fa-moon'}`;
+                    }
+                });
+                 document.body.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme } }));
+            };
+            
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            applyTheme(savedTheme);
+
+            themeSwitchers.forEach(switcher => {
+                if(switcher) {
+                    switcher.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const newTheme = document.body.classList.contains('light-theme') ? 'dark' : 'light';
+                        localStorage.setItem('theme', newTheme);
+                        applyTheme(newTheme);
+                    });
+                }
+            });
+        }
+
+
+        function populateCertifications() {
+            const container = document.getElementById('certifications-list');
+            if (!container) return;
+            certificationsData.forEach(cert => {
+                const certEl = document.createElement('div');
+                certEl.className = 'flex items-center gap-4 text-slate-300';
+                certEl.innerHTML = `
+                    <i class="${cert.icon} text-sky-400 text-2xl w-8 text-center"></i>
+                    <p class="text-lg">${cert.name}</p>
+                `;
+                container.appendChild(certEl);
+            });
+        }
+
+        function populatePortfolio() {
+            const container = document.getElementById('portfolio-grid');
+            if (!container) return;
+            portfolioData.forEach(project => {
+                const projectEl = document.createElement('a');
+                projectEl.href = '#';
+                projectEl.className = 'reveal-section glass-pane p-8 rounded-xl block hover:border-sky-400 transition-colors';
+                projectEl.innerHTML = `
+                    <div class="text-sky-400 mb-4 text-4xl">
+                        <i class="fas ${project.icon}"></i>
+                    </div>
+                    <h3 class="font-orbitron text-2xl text-white">${project.title}</h3>
+                    <p class="text-slate-400 mt-2">${project.description}</p>
+                `;
+                container.appendChild(projectEl);
+            });
+        }
+        
+        function populateBlogs() {
+            const container = document.getElementById('blog-grid');
+            if (!container) return;
+
+            const featuredBlog = blogData.find(b => b.featured);
+            if(featuredBlog) {
+                const featuredEl = document.createElement('a');
+                featuredEl.href = featuredBlog.link;
+                featuredEl.className = 'reveal-section glass-pane p-8 rounded-xl block hover:border-sky-400 transition-colors md:flex items-start gap-6';
+                featuredEl.innerHTML = `
+                     <div class="text-sky-400 text-4xl mt-1 mb-4 md:mb-0">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-orbitron text-2xl md:text-3xl text-white">${featuredBlog.title}</h3>
+                        <p class="text-slate-300 mt-2 text-md md:text-lg">${featuredBlog.excerpt}</p>
+                        <span class="inline-block mt-4 font-semibold text-sky-300 text-lg">Read Spotlight Post &rarr;</span>
+                    </div>
+                `;
+                 container.appendChild(featuredEl);
+            }
+
+            const standardBlogsContainer = document.createElement('div');
+            standardBlogsContainer.className = "grid md:grid-cols-2 gap-8 mt-8";
+
+            blogData.filter(b => !b.featured).forEach(blog => {
+                const blogEl = document.createElement('a');
+                blogEl.href = blog.link;
+                blogEl.className = 'reveal-section glass-pane p-8 rounded-xl block hover:border-sky-400 transition-colors';
+                blogEl.innerHTML = `
+                    <h3 class="font-orbitron text-2xl text-white">${blog.title}</h3>
+                    <p class="text-slate-400 mt-2">${blog.excerpt}</p>
+                    <div class="flex justify-between items-end mt-4">
+                        <span class="font-semibold text-sky-400">Read More &rarr;</span>
+                        <i class="fas fa-newspaper text-2xl text-slate-500"></i>
+                    </div>
+                `;
+                standardBlogsContainer.appendChild(blogEl);
+            });
+            container.appendChild(standardBlogsContainer);
+        }
+
+        function populatePhotography() {
+            // Skip populating since we're using Swiper directly in the HTML
+            console.log("Using Swiper for photography carousel");
+        }
+        
+        function setupPhotographyCarousel() {
+            var swiper = new Swiper("#photography .swiper", {
+                effect: "coverflow",
+                grabCursor: true,
+                centeredSlides: true,
+                coverflowEffect: {
+                    rotate: 0,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 3,
+                    slideShadows: true
+                },
+                keyboard: {
+                    enabled: true
+                },
+                mousewheel: {
+                    thresholdDelta: 70
+                },
+                loop: true,
+                pagination: {
+                    el: "#photography .swiper-pagination",
+                    clickable: true
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2
+                    },
+                    768: {
+                        slidesPerView: 1
+                    },
+                    1024: {
+                        slidesPerView: 2
+                    },
+                    1560: {
+                        slidesPerView: 3
+                    }
+                }
+            });
+            
+            // Setup lightbox for Swiper slides
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeBtn = lightbox.querySelector('.lightbox-close');
+            
+            // Map slide indices to image paths
+            const imagePaths = [
+                './assets/photos/DSC03302.png',
+                './assets/photos/DSC03471.jpg',
+                './assets/photos/DSC03550.JPG',
+                './assets/photos/DSC03307.jpg',
+                './assets/photos/DSC03529.JPG'
+            ];
+            
+            document.querySelectorAll('#photography .view-full').forEach((btn, index) => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    lightboxImg.src = imagePaths[index];
+                    lightbox.classList.add('show');
+                });
+            });
+            
+            const closeLightbox = () => {
+                lightbox.classList.remove('show');
+            }
+            
+            closeBtn.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if(e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+            
+            // Add keyboard navigation for lightbox
+            document.addEventListener('keydown', (e) => {
+                if (lightbox.classList.contains('show')) {
+                    if (e.key === 'Escape') {
+                        closeLightbox();
+                    }
+                }
+            });
+        }
+
+        function setupLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeBtn = lightbox.querySelector('.lightbox-close');
+            const grid = document.getElementById('photography-carousel');
+
+            if(!lightbox || !lightboxImg || !closeBtn || !grid) return;
+
+            grid.addEventListener('click', (e) => {
+                if (e.target.tagName === 'IMG') {
+                    lightboxImg.src = e.target.src;
+                    lightbox.classList.add('show');
+                }
+            });
+
+            const closeLightbox = () => {
+                lightbox.classList.remove('show');
+            }
+
+            closeBtn.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if(e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script>
+    // Update the populatePhotography function to not interfere with Swiper
+    function populatePhotography() {
+        // Skip populating since we're using Swiper directly in the HTML
+        console.log("Using Swiper for photography carousel");
+    }
+    
+    // Replace setupPhotographyCarousel with Swiper initialization
+    function setupPhotographyCarousel() {
+        var swiper = new Swiper("#photography .swiper", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            coverflowEffect: {
+                rotate: 0,
+                stretch: 0,
+                depth: 100,
+                modifier: 3,
+                slideShadows: true
+            },
+            keyboard: {
+                enabled: true
+            },
+            mousewheel: {
+                thresholdDelta: 70
+            },
+            loop: true,
+            pagination: {
+                el: "#photography .swiper-pagination",
+                clickable: true
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2
+                },
+                768: {
+                    slidesPerView: 1
+                },
+                1024: {
+                    slidesPerView: 2
+                },
+                1560: {
+                    slidesPerView: 3
+                }
+            }
+        });
+        
+        // Setup lightbox for Swiper slides
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = lightbox.querySelector('.lightbox-close');
+        
+        // Map slide indices to image paths
+        const imagePaths = [
+            './assets/photos/DSC03302.png',
+            './assets/photos/DSC03471.jpg',
+            './assets/photos/DSC03550.JPG',
+            './assets/photos/DSC03307.jpg',
+            './assets/photos/DSC03529.JPG'
+        ];
+        
+        document.querySelectorAll('#photography .view-full').forEach((btn, index) => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                lightboxImg.src = imagePaths[index];
+                lightbox.classList.add('show');
+            });
+        });
+        
+        const closeLightbox = () => {
+            lightbox.classList.remove('show');
+        }
+        
+        closeBtn.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if(e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+        
+        // Add keyboard navigation for lightbox
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.classList.contains('show')) {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                }
+            }
+        });
+    }
+    
+    // Make sure to call setupPhotographyCarousel after DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        setupPhotographyCarousel();
+    });
+</html>
