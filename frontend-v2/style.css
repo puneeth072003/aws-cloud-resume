@@ -94,25 +94,11 @@ body {
   border-color: var(--primary-glow);
 }
 .dock-tooltip {
-  position: absolute;
-  bottom: 120%;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.875rem;
-  border-radius: 0.5rem;
-  background: #000;
-  color: #fff;
-  font-weight: 500;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-  transition: all 0.2s ease;
-  pointer-events: none;
-  white-space: nowrap;
+  display: none !important;
 }
 .dock-item:hover .dock-tooltip {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+  opacity: 0 !important;
+  visibility: hidden !important;
 }
 
 /* Mobile Dock */

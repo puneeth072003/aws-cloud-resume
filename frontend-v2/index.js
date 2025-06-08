@@ -343,12 +343,20 @@ function animateCounter(el, from, to, duration) {
 
 function createDockItem(item) {
   const dockItem = document.createElement("a");
-  dockItem.href = item.href;
+  dockItem.href = item.href || "#";
   dockItem.className = "dock-item";
-  dockItem.innerHTML = `
-                <i class="fas ${item.icon}"></i>
-                <span class="dock-tooltip">${item.label}</span>
-            `;
+  
+  // Create icon only, no tooltip
+  dockItem.innerHTML = `<i class="fas ${item.icon}"></i>`;
+  
+  // Add click handler for theme switcher
+  if (item.id === "theme-switcher") {
+    dockItem.addEventListener("click", function (e) {
+      e.preventDefault();
+      toggleTheme();
+    });
+  }
+  
   return dockItem;
 }
 
@@ -357,15 +365,20 @@ function populateDock() {
   const mobileMenu = document.getElementById("mobile-dock-menu");
   if (!desktopDock || !mobileMenu) return;
 
+  // Clear existing items
+  desktopDock.innerHTML = "";
+  mobileMenu.innerHTML = "";
+
   // Theme switcher button data
   const themeItemData = {
     id: "theme-switcher",
-    label: "Toggle Theme",
+    label: "", // Empty label to prevent tooltip
     icon: "fa-moon",
   };
   const allNavData = [...navData, themeItemData];
 
   allNavData.forEach((item) => {
+    // Create dock items without tooltips
     const desktopItem = createDockItem(item);
     if (item.id) desktopItem.id = `desktop-${item.id}`;
     desktopDock.appendChild(desktopItem);
@@ -375,13 +388,13 @@ function populateDock() {
     mobileMenu.appendChild(mobileItem);
   });
 
+  // Setup mobile dock toggle
   const mobileToggle = document.getElementById("mobile-dock-toggle");
-  mobileToggle.addEventListener("click", () => {
-    mobileMenu.classList.toggle("open");
-    const icon = mobileToggle.querySelector("i");
-    icon.classList.toggle("fa-plus");
-    icon.classList.toggle("fa-times");
-  });
+  if (mobileToggle) {
+    mobileToggle.addEventListener("click", function () {
+      mobileMenu.classList.toggle("open");
+    });
+  }
 }
 
 function setupThemeSwitcher() {
