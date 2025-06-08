@@ -40,12 +40,17 @@ body {
 }
 
 .glass-pane {
-  background: var(--glass-bg);
+  background: rgba(15, 23, 42, 0.6);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--primary-border);
-  border-radius: 1rem;
-  transition: background-color 0.5s ease, border-color 0.5s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.glass-pane:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
 }
 
 /* Bottom Dock Navigation */
@@ -143,13 +148,14 @@ body {
 
 /* Section Reveal Animation */
 .reveal-section {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-.reveal-section.is-visible {
   opacity: 1;
   transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-section.hidden {
+  opacity: 0;
+  transform: translateY(20px);
 }
 
 .feature-section:nth-child(even) .feature-content {
@@ -471,4 +477,84 @@ body {
       rgba(44, 83, 100, 0)
     ),
     url("./assets/photos/DSC03529.JPG") no-repeat 50% 50% / cover;
+}
+
+/* Add styles for project cards with videos */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  overflow: hidden;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(56, 189, 248, 0.7);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.video-container {
+  position: relative;
+  overflow: hidden;
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
+}
+
+.video-container video {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.project-card:hover .video-container video {
+  transform: scale(1.05);
+}
+
+.video-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  padding: 0.75rem 1rem;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.125rem;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.project-card:hover .video-title {
+  background: rgba(14, 165, 233, 0.7);
+}
+
+/* Ensure the portfolio grid has proper spacing and layout */
+#portfolio-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 768px) {
+  #portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  #portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Add styles for project links */
+.project-card a {
+  color: rgba(148, 163, 184, 1);
+  transition: color 0.2s ease;
+}
+
+.project-card a:hover {
+  color: rgba(56, 189, 248, 1);
 }

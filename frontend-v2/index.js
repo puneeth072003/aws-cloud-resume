@@ -21,23 +21,45 @@ const certificationsData = [
 ];
 const portfolioData = [
   {
-    title: "GitOps Infrastructure for E-Commerce",
-    description:
-      "Built a fully automated, GitOps-driven infrastructure on AWS EKS using ArgoCD, Terraform, and GitHub Actions, reducing deployment times by 90%.",
-    icon: "fa-cart-shopping",
+    title: "CODESOURCERER",
+    description: "An intelligent code assistant platform that helps developers find and understand code snippets across large codebases.",
+    icon: "fa-code",
+    video: "./videos/CS-demo.mp4",
+    links: {
+      live: "https://codesourcerer.webflow.io",
+      github: "https://github.com/puneeth072003/CODESOURCERER"
+    }
   },
   {
-    title: "Centralized Logging Platform",
-    description:
-      "Designed and deployed a centralized logging and monitoring stack using the ELK stack (Elasticsearch, Logstash, Kibana) and Prometheus on Kubernetes.",
-    icon: "fa-magnifying-glass-chart",
+    title: "Vitista",
+    description: "A modern campus tour and information platform for university visitors and prospective students.",
+    icon: "fa-building-columns",
+    video: "./videos/vitista.mp4",
+    links: {
+      live: "https://vitista.vercel.app/",
+      github: "https://github.com/puneeth072003/Vitista"
+    }
   },
   {
-    title: "Serverless Data Processing Pipeline",
-    description:
-      "Architected a serverless pipeline using AWS Lambda, S3, and API Gateway to process real-time data streams with high availability and low operational cost.",
-    icon: "fa-gears",
+    title: "Sputilties",
+    description: "A collection of Spotify utilities and tools to enhance your music streaming experience.",
+    icon: "fa-music",
+    video: "./videos/Sputilties-demo.mp4",
+    links: {
+      live: "https://sputilities.netlify.app/",
+      github: "https://github.com/puneeth072003/sputilities.V1"
+    }
   },
+  {
+    title: "Huddle",
+    description: "A collaborative meeting and team communication platform for remote teams.",
+    icon: "fa-users",
+    video: "./videos/huddle.mp4",
+    links: {
+      live: "https://ho-huddle.vercel.app/",
+      github: "https://github.com/puneeth072003/huddle"
+    }
+  }
 ];
 const blogData = [
   {
@@ -91,6 +113,12 @@ const photographyData = [
 
 // --- CORE LOGIC ---
 function main() {
+  console.log("Initializing main function");
+  
+  // Check if data is properly loaded
+  checkDataLoading();
+  
+  // Rest of the main function...
   try {
     setupHeroAnimation();
   } catch (e) {
@@ -101,11 +129,17 @@ function main() {
   setupSkillsRadar();
   setupScrollAnimations();
 
-  populateDock();
-  populatePortfolio();
-  populateCertifications();
-  populateBlogs();
-  populatePhotography();
+  console.log("Populating content...");
+  try {
+    populateDock();
+    populatePortfolio(); // Fixed function
+    populateCertifications();
+    populateBlogs(); // Fixed function
+    populatePhotography();
+  } catch (e) {
+    console.error("Failed to populate content:", e);
+    console.error(e.stack); // Log the full stack trace for debugging
+  }
 
   setupDockAnimation();
   setupPhotographyCarousel();
@@ -454,67 +488,131 @@ function populateCertifications() {
 
 function populatePortfolio() {
   const container = document.getElementById("portfolio-grid");
-  if (!container) return;
+  if (!container) {
+    console.warn("Portfolio grid container not found");
+    return;
+  }
+  
+  // Clear existing content
+  container.innerHTML = "";
+  
+  // Check if we have portfolio data
+  if (!portfolioData || !Array.isArray(portfolioData) || portfolioData.length === 0) {
+    console.warn("Portfolio data is missing or empty");
+    container.innerHTML = "<p class='text-center text-slate-400'>No projects available at the moment.</p>";
+    return;
+  }
+  
+  // Create and append project elements
   portfolioData.forEach((project) => {
-    const projectEl = document.createElement("a");
-    projectEl.href = "#";
-    projectEl.className =
-      "reveal-section glass-pane p-8 rounded-xl block hover:border-sky-400 transition-colors";
+    const projectEl = document.createElement("div");
+    projectEl.className = "reveal-section project-card glass-pane rounded-xl block hover:border-sky-400 transition-colors overflow-hidden";
+    
+    // Create HTML with video
     projectEl.innerHTML = `
-                    <div class="text-sky-400 mb-4 text-4xl">
-                        <i class="fas ${project.icon}"></i>
-                    </div>
-                    <h3 class="font-orbitron text-2xl text-white">${project.title}</h3>
-                    <p class="text-slate-400 mt-2">${project.description}</p>
-                `;
+      <div class="video-container relative">
+        <video src="${project.video}" autoplay loop muted class="w-full h-48 object-cover"></video>
+        <div class="video-title absolute bottom-0 left-0 w-full bg-black/50 p-2 text-white font-orbitron text-lg">
+          ${project.title}
+        </div>
+      </div>
+      <div class="p-6">
+        <div class="flex justify-between items-start mb-4">
+          <div class="text-sky-400 text-3xl">
+            <i class="fas ${project.icon}"></i>
+          </div>
+          <div class="flex gap-3">
+            ${project.links?.live ? 
+              `<a href="${project.links.live}" target="_blank" title="Live Site" class="text-2xl text-slate-400 hover:text-sky-400 transition-colors">
+                <i class="far fa-eye"></i>
+              </a>` : ''}
+            ${project.links?.github ? 
+              `<a href="${project.links.github}" target="_blank" title="Source Code" class="text-2xl text-slate-400 hover:text-sky-400 transition-colors">
+                <i class="fab fa-github"></i>
+              </a>` : ''}
+          </div>
+        </div>
+        <p class="text-slate-400 mt-2">${project.description}</p>
+      </div>
+    `;
+    
     container.appendChild(projectEl);
   });
+  
+  console.log(`Populated portfolio with ${portfolioData.length} projects`);
 }
 
 function populateBlogs() {
   const container = document.getElementById("blog-grid");
-  if (!container) return;
-
-  const featuredBlog = blogData.find((b) => b.featured);
+  if (!container) {
+    console.warn("Blog grid container not found");
+    return;
+  }
+  
+  // Clear existing content
+  container.innerHTML = "";
+  
+  // Check if we have blog data
+  if (!blogData || !Array.isArray(blogData) || blogData.length === 0) {
+    console.warn("Blog data is missing or empty");
+    container.innerHTML = "<p class='text-center text-slate-400'>No blog posts available at the moment.</p>";
+    return;
+  }
+  
+  // Find featured blog if any
+  const featuredBlog = blogData.find(blog => blog.featured);
+  
+  // Add featured blog if exists
   if (featuredBlog) {
-    const featuredEl = document.createElement("a");
-    featuredEl.href = featuredBlog.link;
-    featuredEl.className =
-      "reveal-section glass-pane p-8 rounded-xl block hover:border-sky-400 transition-colors md:flex items-start gap-6";
+    const featuredEl = document.createElement("div");
+    featuredEl.className = "reveal-section glass-pane p-8 rounded-xl block hover:border-sky-400 transition-colors md:flex items-start gap-6";
+    
     featuredEl.innerHTML = `
-                     <div class="text-sky-400 text-4xl mt-1 mb-4 md:mb-0">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-orbitron text-2xl md:text-3xl text-white">${featuredBlog.title}</h3>
-                        <p class="text-slate-300 mt-2 text-md md:text-lg">${featuredBlog.excerpt}</p>
-                        <span class="inline-block mt-4 font-semibold text-sky-300 text-lg">Read Spotlight Post &rarr;</span>
-                    </div>
-                `;
+      <div class="text-sky-400 text-4xl mt-1 mb-4 md:mb-0">
+        <i class="fas fa-star"></i>
+      </div>
+      <div>
+        <h3 class="font-orbitron text-2xl md:text-3xl text-white">${featuredBlog.title}</h3>
+        <p class="text-slate-300 mt-2 text-md md:text-lg">${featuredBlog.excerpt}</p>
+        ${featuredBlog.link ? 
+          `<a href="${featuredBlog.link}" class="inline-block mt-4 font-semibold text-sky-300 text-lg hover:text-sky-200">Read Spotlight Post &rarr;</a>` : 
+          '<span class="inline-block mt-4 font-semibold text-sky-300 text-lg">Coming Soon</span>'}
+      </div>
+    `;
+    
     container.appendChild(featuredEl);
   }
-
+  
+  // Create container for standard blogs
   const standardBlogsContainer = document.createElement("div");
   standardBlogsContainer.className = "grid md:grid-cols-2 gap-8 mt-8";
-
-  blogData
-    .filter((b) => !b.featured)
-    .forEach((blog) => {
-      const blogEl = document.createElement("a");
-      blogEl.href = blog.link;
-      blogEl.className =
-        "reveal-section glass-pane p-8 rounded-xl block hover:border-sky-400 transition-colors";
+  
+  // Add standard blogs
+  const standardBlogs = blogData.filter(blog => !blog.featured);
+  
+  if (standardBlogs.length > 0) {
+    standardBlogs.forEach(blog => {
+      const blogEl = document.createElement("div");
+      blogEl.className = "reveal-section glass-pane p-8 rounded-xl block hover:border-sky-400 transition-colors";
+      
       blogEl.innerHTML = `
-                    <h3 class="font-orbitron text-2xl text-white">${blog.title}</h3>
-                    <p class="text-slate-400 mt-2">${blog.excerpt}</p>
-                    <div class="flex justify-between items-end mt-4">
-                        <span class="font-semibold text-sky-400">Read More &rarr;</span>
-                        <i class="fas fa-newspaper text-2xl text-slate-500"></i>
-                    </div>
-                `;
+        <h3 class="font-orbitron text-2xl text-white">${blog.title}</h3>
+        <p class="text-slate-400 mt-2">${blog.excerpt}</p>
+        <div class="flex justify-between items-end mt-4">
+          ${blog.link ? 
+            `<a href="${blog.link}" class="font-semibold text-sky-400 hover:text-sky-300">Read More &rarr;</a>` : 
+            '<span class="font-semibold text-sky-400">Coming Soon</span>'}
+          <i class="fas fa-newspaper text-2xl text-slate-500"></i>
+        </div>
+      `;
+      
       standardBlogsContainer.appendChild(blogEl);
     });
-  container.appendChild(standardBlogsContainer);
+    
+    container.appendChild(standardBlogsContainer);
+  }
+  
+  console.log(`Populated blogs with ${blogData.length} posts (${featuredBlog ? '1 featured' : 'no featured'})`);
 }
 
 function populatePhotography() {
@@ -724,3 +822,54 @@ function setupPhotographyCarousel() {
 document.addEventListener("DOMContentLoaded", function () {
   setupPhotographyCarousel();
 });
+
+// Add a function to check if data is loaded properly
+function checkDataLoading() {
+  // Check if data variables are defined
+  if (typeof portfolioData === 'undefined') {
+    console.error("portfolioData is not defined");
+    // Define fallback data
+    window.portfolioData = [
+      {
+        title: "GitOps Infrastructure for E-Commerce",
+        description: "Built a fully automated, GitOps-driven infrastructure on AWS EKS using ArgoCD, Terraform, and GitHub Actions, reducing deployment times by 90%.",
+        icon: "fa-cart-shopping",
+      },
+      {
+        title: "Centralized Logging Platform",
+        description: "Designed and deployed a centralized logging and monitoring stack using the ELK stack (Elasticsearch, Logstash, Kibana) and Prometheus on Kubernetes.",
+        icon: "fa-magnifying-glass-chart",
+      },
+      {
+        title: "Serverless Data Processing Pipeline",
+        description: "Architected a serverless pipeline using AWS Lambda, S3, and API Gateway to process real-time data streams with high availability and low operational cost.",
+        icon: "fa-gears",
+      },
+    ];
+  }
+  
+  if (typeof blogData === 'undefined') {
+    console.error("blogData is not defined");
+    // Define fallback data
+    window.blogData = [
+      {
+        title: "The Power of Idempotency in IaC",
+        excerpt: "Why ensuring your Terraform or Pulumi scripts can run multiple times without side effects is critical for stable automation...",
+        link: "#",
+        featured: true,
+      },
+      {
+        title: "Kubernetes Cost Management Strategies",
+        excerpt: "Practical tips for optimizing resource requests, implementing cluster autoscaling, and using spot instances to control cloud spend...",
+        link: "#",
+        featured: false,
+      },
+      {
+        title: "Service Mesh: Is Istio or Linkerd Right for You?",
+        excerpt: "A comparative analysis of the leading service meshes, breaking down their features, performance, and operational complexity...",
+        link: "#",
+        featured: false,
+      },
+    ];
+  }
+}
