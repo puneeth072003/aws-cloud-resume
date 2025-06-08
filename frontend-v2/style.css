@@ -558,3 +558,137 @@ body {
 .project-card a:hover {
   color: rgba(56, 189, 248, 1);
 }
+
+/* Add styles for the experience timeline */
+.timeline-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, rgba(56, 189, 248, 0.5), rgba(56, 189, 248, 0.8), rgba(56, 189, 248, 0.5), transparent);
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  position: relative;
+  width: 45%;
+  margin-bottom: 60px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.timeline-item.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-item.left {
+  margin-right: auto;
+}
+
+.timeline-item.right {
+  margin-left: auto;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  width: 20px;
+  height: 20px;
+  background: rgba(56, 189, 248, 0.8);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.timeline-item.left::before {
+  right: -60px;
+}
+
+.timeline-item.right::before {
+  left: -60px;
+}
+
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  top: 30px;
+  width: 40px;
+  height: 2px;
+  background: rgba(56, 189, 248, 0.5);
+}
+
+.timeline-item.left::after {
+  right: -40px;
+}
+
+.timeline-item.right::after {
+  left: -40px;
+}
+
+/* Responsive timeline */
+@media (max-width: 768px) {
+  .timeline-line {
+    left: 20px;
+  }
+  
+  .timeline-item {
+    width: calc(100% - 60px);
+    margin-left: 60px;
+    margin-right: 0;
+  }
+  
+  .timeline-item.left::before,
+  .timeline-item.right::before {
+    left: -50px;
+    right: auto;
+  }
+  
+  .timeline-item.left::after,
+  .timeline-item.right::after {
+    left: -30px;
+    right: auto;
+  }
+}
+
+/* Blog styles for single featured blog */
+#blog-grid .glass-pane {
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#blog-grid .glass-pane:hover {
+  transform: translateY(-5px);
+  border-color: rgba(56, 189, 248, 0.7);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+#blog-grid img {
+  transition: transform 0.5s ease;
+}
+
+#blog-grid .glass-pane:hover img {
+  transform: scale(1.05);
+}
+
+/* Photography section button */
+#photography a.inline-block {
+  transition: all 0.3s ease;
+}
+
+#photography a.inline-block:hover {
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+}
+
+/* Animation for reveal sections */
+.reveal-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-section.animate {
+  opacity: 1;
+  transform: translateY(0);
+}

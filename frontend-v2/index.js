@@ -63,26 +63,12 @@ const portfolioData = [
 ];
 const blogData = [
   {
-    title: "The Power of Idempotency in IaC",
-    excerpt:
-      "Why ensuring your Terraform or Pulumi scripts can run multiple times without side effects is critical for stable automation...",
-    link: "#",
+    title: "My Attempt at the AWS Cloud Resume Challenge",
+    excerpt: "Curious about how the architecture behind this website is structured using modern DevOps practices? I break it all down in my blog post as part of the Cloud Resume Challenge.\n\nFrom CI/CD to infrastructure as code, it's all in there. Be sure to check it out!",
+    link: "https://dev.to/puneeth072003/my-attempt-at-the-aws-cloud-resume-challenge-a-journey-in-the-cloud-13gd",
     featured: true,
-  },
-  {
-    title: "Kubernetes Cost Management Strategies",
-    excerpt:
-      "Practical tips for optimizing resource requests, implementing cluster autoscaling, and using spot instances to control cloud spend...",
-    link: "#",
-    featured: false,
-  },
-  {
-    title: "Service Mesh: Is Istio or Linkerd Right for You?",
-    excerpt:
-      "A comparative analysis of the leading service meshes, breaking down their features, performance, and operational complexity...",
-    link: "#",
-    featured: false,
-  },
+    image: "./assets/Cover.png"
+  }
 ];
 const photographyData = [
   {
@@ -111,6 +97,24 @@ const photographyData = [
   },
 ];
 
+// Add experience data
+const experienceData = [
+  {
+    company: "TechCorp Solutions",
+    position: "DevOps Intern",
+    period: "May 2023 - August 2023",
+    description: "Implemented CI/CD pipelines using GitHub Actions and AWS CodePipeline. Automated infrastructure deployment with Terraform and CloudFormation. Managed containerized applications with Docker and Kubernetes.",
+    technologies: ["AWS", "Terraform", "Docker", "Kubernetes", "GitHub Actions"]
+  },
+  {
+    company: "CloudNative Systems",
+    position: "Cloud Engineering Intern",
+    period: "January 2023 - April 2023",
+    description: "Designed and implemented serverless architectures using AWS Lambda and API Gateway. Developed monitoring solutions with CloudWatch and Grafana. Assisted in migrating monolithic applications to microservices.",
+    technologies: ["AWS Lambda", "API Gateway", "CloudWatch", "Grafana", "Serverless Framework"]
+  }
+];
+
 // --- CORE LOGIC ---
 function main() {
   console.log("Initializing main function");
@@ -134,7 +138,8 @@ function main() {
     populateDock();
     populatePortfolio(); // Fixed function
     populateCertifications();
-    populateBlogs(); // Fixed function
+    populateExperience(); // Add this line
+    populateBlogs();
     populatePhotography();
   } catch (e) {
     console.error("Failed to populate content:", e);
@@ -559,60 +564,31 @@ function populateBlogs() {
     return;
   }
   
-  // Find featured blog if any
-  const featuredBlog = blogData.find(blog => blog.featured);
+  // Since we only have one blog, create a featured card
+  const blog = blogData[0];
+  const blogEl = document.createElement("div");
+  blogEl.className = "reveal-section glass-pane rounded-xl overflow-hidden hover:border-sky-400 transition-all";
   
-  // Add featured blog if exists
-  if (featuredBlog) {
-    const featuredEl = document.createElement("div");
-    featuredEl.className = "reveal-section glass-pane p-8 rounded-xl block hover:border-sky-400 transition-colors md:flex items-start gap-6";
-    
-    featuredEl.innerHTML = `
-      <div class="text-sky-400 text-4xl mt-1 mb-4 md:mb-0">
-        <i class="fas fa-star"></i>
+  blogEl.innerHTML = `
+    <div class="flex flex-col md:flex-row">
+      <div class="md:w-2/5">
+        <img src="${blog.image}" alt="Blog cover image" class="w-full h-full object-cover" />
       </div>
-      <div>
-        <h3 class="font-orbitron text-2xl md:text-3xl text-white">${featuredBlog.title}</h3>
-        <p class="text-slate-300 mt-2 text-md md:text-lg">${featuredBlog.excerpt}</p>
-        ${featuredBlog.link ? 
-          `<a href="${featuredBlog.link}" class="inline-block mt-4 font-semibold text-sky-300 text-lg hover:text-sky-200">Read Spotlight Post &rarr;</a>` : 
-          '<span class="inline-block mt-4 font-semibold text-sky-300 text-lg">Coming Soon</span>'}
-      </div>
-    `;
-    
-    container.appendChild(featuredEl);
-  }
-  
-  // Create container for standard blogs
-  const standardBlogsContainer = document.createElement("div");
-  standardBlogsContainer.className = "grid md:grid-cols-2 gap-8 mt-8";
-  
-  // Add standard blogs
-  const standardBlogs = blogData.filter(blog => !blog.featured);
-  
-  if (standardBlogs.length > 0) {
-    standardBlogs.forEach(blog => {
-      const blogEl = document.createElement("div");
-      blogEl.className = "reveal-section glass-pane p-8 rounded-xl block hover:border-sky-400 transition-colors";
-      
-      blogEl.innerHTML = `
-        <h3 class="font-orbitron text-2xl text-white">${blog.title}</h3>
-        <p class="text-slate-400 mt-2">${blog.excerpt}</p>
-        <div class="flex justify-between items-end mt-4">
-          ${blog.link ? 
-            `<a href="${blog.link}" class="font-semibold text-sky-400 hover:text-sky-300">Read More &rarr;</a>` : 
-            '<span class="font-semibold text-sky-400">Coming Soon</span>'}
-          <i class="fas fa-newspaper text-2xl text-slate-500"></i>
+      <div class="p-8 md:w-3/5">
+        <h3 class="font-orbitron text-2xl md:text-3xl text-white">${blog.title}</h3>
+        <div class="text-slate-300 mt-4 text-md md:text-lg space-y-4">
+          ${blog.excerpt.split('\n\n').map(para => `<p>${para}</p>`).join('')}
         </div>
-      `;
-      
-      standardBlogsContainer.appendChild(blogEl);
-    });
-    
-    container.appendChild(standardBlogsContainer);
-  }
+        <a href="${blog.link}" target="_blank" class="inline-block mt-6 px-6 py-3 bg-sky-600 hover:bg-sky-500 text-white font-semibold rounded-lg transition-colors">
+          Read The Blog →
+        </a>
+      </div>
+    </div>
+  `;
   
-  console.log(`Populated blogs with ${blogData.length} posts (${featuredBlog ? '1 featured' : 'no featured'})`);
+  container.appendChild(blogEl);
+  
+  console.log("Populated blogs section with 1 blog post");
 }
 
 function populatePhotography() {
@@ -873,3 +849,69 @@ function checkDataLoading() {
     ];
   }
 }
+
+// Add a function to populate the experience section
+function populateExperience() {
+  const container = document.getElementById("experience-timeline");
+  if (!container) {
+    console.warn("Experience timeline container not found");
+    return;
+  }
+  
+  // Clear existing content
+  container.innerHTML = "";
+  
+  // Check if we have experience data
+  if (!experienceData || !Array.isArray(experienceData) || experienceData.length === 0) {
+    console.warn("Experience data is missing or empty");
+    container.innerHTML = "<p class='text-center text-slate-400'>No experience entries available at the moment.</p>";
+    return;
+  }
+  
+  // Create and append experience elements
+  experienceData.forEach((job, index) => {
+    const jobEl = document.createElement("div");
+    jobEl.className = `reveal-section timeline-item ${index % 2 === 0 ? 'left' : 'right'}`;
+    
+    jobEl.innerHTML = `
+      <div class="glass-pane p-6 rounded-xl hover:border-sky-400 transition-all">
+        <div class="flex justify-between items-start mb-3">
+          <h3 class="font-orbitron text-xl text-white">${job.company}</h3>
+          <span class="text-sky-400 text-sm font-semibold">${job.period}</span>
+        </div>
+        <h4 class="text-sky-300 font-semibold mb-3">${job.position}</h4>
+        <p class="text-slate-400 mb-4">${job.description}</p>
+        <div class="flex flex-wrap gap-2">
+          ${job.technologies.map(tech => 
+            `<span class="bg-slate-800 text-sky-300 text-xs px-3 py-1 rounded-full">${tech}</span>`
+          ).join('')}
+        </div>
+      </div>
+    `;
+    
+    container.appendChild(jobEl);
+  });
+  
+  console.log(`Populated experience with ${experienceData.length} entries`);
+}
+
+function handleScrollAnimations() {
+  const revealElements = document.querySelectorAll('.reveal-section');
+  const timelineItems = document.querySelectorAll('.timeline-item');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate');
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  revealElements.forEach(el => observer.observe(el));
+  timelineItems.forEach(el => observer.observe(el));
+}
+
+// Add this to your main function
+document.addEventListener('DOMContentLoaded', () => {
+  handleScrollAnimations();
+});
