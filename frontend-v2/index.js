@@ -100,18 +100,18 @@ const photographyData = [
 // Add experience data
 const experienceData = [
   {
-    company: "TechCorp Solutions",
-    position: "DevOps Intern",
-    period: "May 2023 - August 2023",
-    description: "Implemented CI/CD pipelines using GitHub Actions and AWS CodePipeline. Automated infrastructure deployment with Terraform and CloudFormation. Managed containerized applications with Docker and Kubernetes.",
-    technologies: ["AWS", "Terraform", "Docker", "Kubernetes", "GitHub Actions"]
+    company: "HCLSoftware",
+    position: "Intern",
+    period: "Mar 2025 - Present",
+    description: "Contributed as a primary team member in architecting the upcoming cloud-native migration blueprint, focusing on defining the target architecture, technology stack, and deployment patterns tailored for future scalability and maintainability. Led several targeted proofs of concept (PoCs) to validate new tools, frameworks, and deployment strategies, directly influencing final architecture decisions and shaping the release automation framework later adopted in the company’s product.",
+    technologies: ["AWS", "Azure", "Terraform", "Docker", "Kubernetes", "GitHub Actions"]
   },
   {
-    company: "CloudNative Systems",
-    position: "Cloud Engineering Intern",
-    period: "January 2023 - April 2023",
-    description: "Designed and implemented serverless architectures using AWS Lambda and API Gateway. Developed monitoring solutions with CloudWatch and Grafana. Assisted in migrating monolithic applications to microservices.",
-    technologies: ["AWS Lambda", "API Gateway", "CloudWatch", "Grafana", "Serverless Framework"]
+    company: "GirlScript Summer of Code (GSSoC-ext'24)",
+    position: "Open Source Contributor",
+    period: "Oct 2024 - Nov 2024",
+    description: "Actively contributed to open-source repositories as part of GSSoC-ext 2024, demonstrating strong coding proficiency, collaboration, and problem-solving abilities. Achieved a top ranking of 281 out of 60,000 participants, reflecting high technical competence and consistent engagement throughout the program.",
+    technologies: ["Git", "GitHub", "React", "Markdown", "HTML", "CSS"]
   }
 ];
 
@@ -294,12 +294,12 @@ function setupSkillsRadar() {
         "Terraform",
         "AWS",
         "CI/CD",
-        "Python",
+        "GitHub",
         "Monitoring",
       ],
       datasets: [
         {
-          data: [90, 95, 85, 90, 92, 88, 85],
+          data: [95, 90, 70, 80, 80, 85, 75],
           backgroundColor: "rgba(56, 189, 248, 0.2)",
           borderColor: "rgba(56, 189, 248, 1)",
           pointBackgroundColor: "rgba(56, 189, 248, 1)",
