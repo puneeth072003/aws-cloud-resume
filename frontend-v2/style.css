@@ -53,15 +53,16 @@ body {
   box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
 }
 
-/* Bottom Dock Navigation */
+/* Enhanced Bottom Dock Navigation */
 #bottom-nav {
   position: fixed;
   bottom: 1rem;
-  right: 1rem; /* Position to the right on mobile */
+  right: 1rem;
   left: auto;
   transform: none;
-  z-index: 1000; /* Ensure it's always on top */
+  z-index: 1000;
 }
+
 @media (min-width: 768px) {
   #bottom-nav {
     left: 50%;
@@ -75,11 +76,16 @@ body {
   align-items: flex-end;
   gap: 0.8rem;
   height: 60px;
-  z-index: 1000; /* Ensure it's always on top */
+  z-index: 1000;
+  padding: 0 1rem;
+  transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  width: auto;
+  justify-content: center;
 }
+
 .dock-item {
   color: var(--text-secondary);
-  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform;
   position: relative;
   display: flex;
@@ -88,53 +94,87 @@ body {
   width: 50px;
   height: 50px;
   font-size: 1.25rem;
-  /* Glass pane styles moved here and made circular */
   background: var(--glass-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  /* border: 1px solid var(--primary-border); */
-  border-radius: 9999px; /* This makes it circular */
-  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  border-radius: 9999px;
   cursor: pointer;
-  z-index: 1000; /* Ensure it's always on top */
+  z-index: 1000;
 }
+
 .dock-item:hover {
-  color: var(--text-main);
-  border-color: var(--primary-glow);
+  color: var(--text-accent);
+  border-color: var(--text-accent);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
 }
-.dock-tooltip {
-  display: none !important;
+
+.dock-item i {
+  transition: color 0.3s ease, transform 0.3s ease;
 }
-.dock-item:hover .dock-tooltip {
-  opacity: 0 !important;
-  visibility: hidden !important;
+
+.dock-item:hover i {
+  transform: scale(1.2);
+}
+
+/* Add a subtle glow effect to the dock */
+#bottom-dock::before {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 10px;
+  background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.3) 0%, rgba(56, 189, 248, 0) 70%);
+  border-radius: 50%;
+  z-index: -1;
 }
 
 /* Mobile Dock */
 #mobile-dock-toggle {
-  display: none; /* Hidden by default */
-  z-index: 1000; /* Ensure it's always on top */
+  display: none;
+  z-index: 1000;
+  color: var(--text-secondary);
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid transparent;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
 }
+
+#mobile-dock-toggle:hover {
+  color: var(--text-accent);
+  border-color: var(--text-accent);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+}
+
 #mobile-dock-menu {
   position: absolute;
   bottom: 100%;
-  right: 0; /* Align with toggle button */
+  right: 0;
   left: auto;
   transform: none;
   flex-direction: column-reverse;
-  gap: 0.5rem;
+  gap: 0.8rem;
   margin-bottom: 1rem;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, transform 0.3s ease;
   transform-origin: bottom right;
   transform: scale(0.95);
-  z-index: 999; /* Slightly below the toggle but above other content */
+  z-index: 999;
 }
+
 #mobile-dock-menu.open {
   opacity: 1;
   visibility: visible;
   transform: scale(1);
+}
+
+#mobile-dock-menu .dock-item {
+  margin-bottom: 0.5rem;
 }
 
 @media (max-width: 767px) {
@@ -150,6 +190,11 @@ body {
     font-size: 1.5rem;
     cursor: pointer;
   }
+}
+
+/* Add a subtle bounce effect when clicking dock items */
+.dock-item:active {
+  transform: scale(0.9) !important;
 }
 
 /* Section Reveal Animation */
@@ -712,4 +757,59 @@ body {
 .glass-pane {
   position: relative;
   z-index: 5; /* Higher than basic elements but lower than the dock */
+}
+
+/* Toast notification styles */
+#greeting-toast {
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.2);
+  animation: none; /* Will be set via JS */
+}
+
+@keyframes slideInToast {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToast {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+#greeting-toast.show {
+  animation: slideInToast 0.5s forwards ease-out;
+}
+
+#greeting-toast.hide {
+  animation: slideOutToast 0.5s forwards ease-in;
+}
+
+/* Add a subtle pulse effect to the visitor number */
+#visitor-toast-number span {
+  display: inline-block;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+    color: rgb(56, 189, 248);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

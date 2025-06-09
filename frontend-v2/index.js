@@ -26,7 +26,7 @@ const portfolioData = [
   {
     title: "CODESOURCERER",
     description:
-      "An intelligent code assistant platform that helps developers find and understand code snippets across large codebases.",
+      "A tool that automates test suite generation for code changes using a Gemini-powered proxy server, completely integrates with GitHub to create filtered tests via pull requests.",
     icon: "fa-code",
     video: "./videos/CS-demo.mp4",
     links: {
@@ -37,7 +37,7 @@ const portfolioData = [
   {
     title: "Vitista",
     description:
-      "A modern campus tour and information platform for university visitors and prospective students.",
+      "A comprehensive personal healthcare app designed to empower individuals on their journey to optimal well-being.",
     icon: "fa-building-columns",
     video: "./videos/vitista.mp4",
     links: {
@@ -135,10 +135,10 @@ const experienceData = [
 // --- CORE LOGIC ---
 function main() {
   console.log("Initializing main function");
-
+  
   // Check if data is properly loaded
   checkDataLoading();
-
+  
   // Rest of the main function...
   try {
     setupHeroAnimation();
@@ -147,29 +147,30 @@ function main() {
     const heroCanvas = document.getElementById("hero-canvas");
     if (heroCanvas) heroCanvas.style.display = "none";
   }
+  
   setupSkillsRadar();
   setupScrollAnimations();
-
+  setupEasterEggs(); // Add Easter Eggs
+  
   console.log("Populating content...");
   try {
     populateDock();
-    populatePortfolio(); // Fixed function
+    populatePortfolio();
     populateCertifications();
-    populateExperience(); // Add this line
+    populateExperience();
     populateBlogs();
     populatePhotography();
   } catch (e) {
     console.error("Failed to populate content:", e);
-    console.error(e.stack); // Log the full stack trace for debugging
+    console.error(e.stack);
   }
-
+  
   setupDockAnimation();
   setupPhotographyCarousel();
   setupLightbox();
   setupThemeSwitcher();
-  updateCounter(); // Add this line to call the counter function
-
-  // Ensure the bottom dock is always on top
+  updateCounter(); // This will now also show the toast
+  
   ensureBottomDockOnTop();
 }
 
@@ -239,39 +240,100 @@ function setupHeroAnimation() {
 
 function setupDockAnimation() {
   const dock = document.getElementById("bottom-dock");
-  const items = Array.from(dock.children);
-
+  const items = Array.from(dock.querySelectorAll(".dock-item"));
+  
+  if (!dock || items.length === 0) return;
+  
+  // Calculate initial width based on items
+  const itemWidth = 50; // Base width of each item
+  const gap = 12; // Gap between items (0.8rem = ~12px)
+  const padding = 32; // Padding on both sides (1rem = ~16px on each side)
+  const initialWidth = items.length * itemWidth + (items.length - 1) * gap + padding;
+  
+  // Set initial width
+  dock.style.width = `${initialWidth}px`;
+  
   dock.addEventListener("mousemove", (e) => {
     const dockRect = dock.getBoundingClientRect();
     const mouseX = e.clientX - dockRect.left;
-
+    
+    // Track total width needed for the dock
+    let totalWidth = padding; // Start with padding
+    
     items.forEach((item, index) => {
       const itemRect = item.getBoundingClientRect();
       const itemCenterX = itemRect.left - dockRect.left + itemRect.width / 2;
       const distance = Math.abs(mouseX - itemCenterX);
-
+      
+      // Scale factors
       const maxScale = 1.8;
       const neighborScale = 1.3;
       const effectRadius = 60;
-
+      
       let scale = 1.0;
       if (distance < effectRadius) {
-        scale =
-          maxScale - (distance / effectRadius) * (maxScale - neighborScale);
+        scale = maxScale - (distance / effectRadius) * (maxScale - neighborScale);
       } else if (distance < effectRadius * 2) {
         const neighborDistance = distance - effectRadius;
-        scale =
-          neighborScale -
-          (neighborDistance / effectRadius) * (neighborScale - 1.0);
+        scale = neighborScale - (neighborDistance / effectRadius) * (neighborScale - 1.0);
       }
-
+      
+      // Apply scale transform
       item.style.transform = `scale(${scale.toFixed(2)})`;
+      
+      // Calculate width contribution of this item
+      const scaledWidth = itemWidth * scale;
+      totalWidth += scaledWidth;
+      
+      // Add gap after all items except the last one
+      if (index < items.length - 1) {
+        totalWidth += gap;
+      }
+      
+      // Change icon color based on distance
+      const icon = item.querySelector('i');
+      if (icon) {
+        if (distance < effectRadius) {
+          // Calculate color intensity based on distance
+          const blueIntensity = 1 - (distance / effectRadius);
+          icon.style.color = `rgba(56, 189, 248, ${blueIntensity.toFixed(2)})`;
+        } else {
+          icon.style.color = '';
+        }
+      }
     });
+    
+    // Update dock width to accommodate the scaled items
+    dock.style.width = `${totalWidth}px`;
   });
-
+  
   dock.addEventListener("mouseleave", () => {
     items.forEach((item) => {
       item.style.transform = "scale(1)";
+      
+      // Reset icon color
+      const icon = item.querySelector('i');
+      if (icon) {
+        icon.style.color = '';
+      }
+    });
+    
+    // Reset dock width to initial size
+    dock.style.width = `${initialWidth}px`;
+  });
+  
+  // Add click effect
+  items.forEach(item => {
+    item.addEventListener('mousedown', () => {
+      item.classList.add('dock-click');
+    });
+    
+    item.addEventListener('mouseup', () => {
+      item.classList.remove('dock-click');
+    });
+    
+    item.addEventListener('mouseleave', () => {
+      item.classList.remove('dock-click');
     });
   });
 }
@@ -288,11 +350,24 @@ async function updateCounter() {
   if (!sessionStorage.getItem("counterIncremented")) {
     method = "POST";
   }
+  
   try {
     const response = await fetch(COUNTER_URL, { method });
     if (!response.ok) throw new Error("Failed to fetch");
     const data = await response.json();
+    
+    // Update the counter display
     counter.innerHTML = data.views;
+    
+    // Also update the visitor number in the toast
+    const visitorToastNumber = document.querySelector("#visitor-toast-number span");
+    if (visitorToastNumber) {
+      visitorToastNumber.textContent = data.views;
+    }
+    
+    // Show the greeting toast
+    showGreetingToast();
+    
     if (method === "POST") {
       sessionStorage.setItem("counterIncremented", "true");
     }
@@ -401,21 +476,31 @@ function animateCounter(el, from, to, duration) {
 }
 
 function createDockItem(item) {
-  const dockItem = document.createElement("a");
-  dockItem.href = item.href || "#";
+  const dockItem = document.createElement("div");
   dockItem.className = "dock-item";
-
-  // Create icon only, no tooltip
-  dockItem.innerHTML = `<i class="fas ${item.icon}"></i>`;
-
-  // Add click handler for theme switcher
-  if (item.id === "theme-switcher") {
-    dockItem.addEventListener("click", function (e) {
-      e.preventDefault();
-      toggleTheme();
+  
+  // Create icon
+  const icon = document.createElement("i");
+  icon.className = `fas ${item.icon}`;
+  dockItem.appendChild(icon);
+  
+  // Add href if available
+  if (item.href) {
+    dockItem.addEventListener("click", function () {
+      document.querySelector(item.href).scrollIntoView({
+        behavior: "smooth",
+      });
+      
+      // Close mobile menu if open
+      const mobileMenu = document.getElementById("mobile-dock-menu");
+      if (mobileMenu && mobileMenu.classList.contains("open")) {
+        mobileMenu.classList.remove("open");
+      }
     });
+  } else if (item.id === "theme-switcher") {
+    dockItem.addEventListener("click", toggleTheme);
   }
-
+  
   return dockItem;
 }
 
@@ -1011,4 +1096,192 @@ function ensureBottomDockOnTop() {
     childList: true, 
     subtree: true 
   });
+}
+
+// Add function to show the greeting toast
+function showGreetingToast() {
+  const toast = document.getElementById("greeting-toast");
+  const closeBtn = document.getElementById("toast-close");
+  
+  if (!toast || !closeBtn) return;
+  
+  // Remove any existing animations
+  toast.classList.remove("show", "hide");
+  
+  // Force a reflow to ensure the animation restarts
+  void toast.offsetWidth;
+  
+  // Show the toast with animation
+  toast.classList.add("show");
+  
+  // Set up close button
+  closeBtn.addEventListener("click", () => {
+    toast.classList.remove("show");
+    toast.classList.add("hide");
+  });
+  
+  // Auto-hide after 6 seconds
+  setTimeout(() => {
+    if (toast.classList.contains("show")) {
+      toast.classList.remove("show");
+      toast.classList.add("hide");
+    }
+  }, 6000);
+}
+
+// Add Easter Egg: Konami Code
+function setupEasterEggs() {
+  let konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+  let konamiPosition = 0;
+  
+  document.addEventListener('keydown', function(e) {
+    if (e.key === konamiCode[konamiPosition]) {
+      konamiPosition++;
+      if (konamiPosition === konamiCode.length) {
+        // Trigger easter egg - rainbow effect on name
+        const name = document.querySelector('h1.font-orbitron');
+        if (name) {
+          // Create rainbow effect
+          name.style.background = 'linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet)';
+          name.style.backgroundSize = '200% auto';
+          name.style.webkitBackgroundClip = 'text';
+          name.style.backgroundClip = 'text';
+          name.style.color = 'transparent';
+          name.style.animation = 'rainbow 2s linear infinite';
+          
+          // Add rainbow animation if not already defined
+          if (!document.querySelector('style#rainbow-style')) {
+            const style = document.createElement('style');
+            style.id = 'rainbow-style';
+            style.textContent = `
+              @keyframes rainbow {
+                0% { background-position: 0% 50%; }
+                100% { background-position: 100% 50%; }
+              }
+            `;
+            document.head.appendChild(style);
+          }
+          
+          // Show a special toast
+          const toast = document.getElementById("greeting-toast");
+          if (toast) {
+            const toastTitle = toast.querySelector('h3');
+            const toastMessage = toast.querySelector('p');
+            const visitorNumber = toast.querySelector('#visitor-toast-number');
+            
+            if (toastTitle) toastTitle.textContent = "🌈 Konami Code Activated!";
+            if (toastMessage) toastMessage.textContent = "You found a secret! Enjoy the rainbow effect.";
+            if (visitorNumber) visitorNumber.style.display = "none";
+            
+            // Show the toast
+            toast.classList.remove("show", "hide");
+            void toast.offsetWidth;
+            toast.classList.add("show");
+            
+            // Auto-hide after 6 seconds
+            setTimeout(() => {
+              if (toast.classList.contains("show")) {
+                toast.classList.remove("show");
+                toast.classList.add("hide");
+                
+                // Reset toast content after hiding
+                setTimeout(() => {
+                  if (toastTitle) toastTitle.textContent = "Welcome!";
+                  if (toastMessage) toastMessage.textContent = "Thanks for visiting my portfolio.";
+                  if (visitorNumber) visitorNumber.style.display = "block";
+                }, 500);
+              }
+            }, 6000);
+          }
+          
+          konamiPosition = 0;
+        }
+      }
+    } else {
+      konamiPosition = 0;
+    }
+  });
+}
+
+// Update the main function to include the Easter Eggs
+function main() {
+  console.log("Initializing main function");
+  
+  // Check if data is properly loaded
+  checkDataLoading();
+  
+  // Rest of the main function...
+  try {
+    setupHeroAnimation();
+  } catch (e) {
+    console.error("Failed to initialize Hero Animation:", e);
+    const heroCanvas = document.getElementById("hero-canvas");
+    if (heroCanvas) heroCanvas.style.display = "none";
+  }
+  
+  setupSkillsRadar();
+  setupScrollAnimations();
+  setupEasterEggs(); // Add Easter Eggs
+  
+  console.log("Populating content...");
+  try {
+    populateDock();
+    populatePortfolio();
+    populateCertifications();
+    populateExperience();
+    populateBlogs();
+    populatePhotography();
+  } catch (e) {
+    console.error("Failed to populate content:", e);
+    console.error(e.stack);
+  }
+  
+  setupDockAnimation();
+  setupPhotographyCarousel();
+  setupLightbox();
+  setupThemeSwitcher();
+  updateCounter(); // This will now also show the toast
+  
+  ensureBottomDockOnTop();
+}
+
+// Add a function to handle theme switching
+function toggleTheme() {
+  const body = document.body;
+  const isDark = !body.classList.contains("light-theme");
+  
+  if (isDark) {
+    body.classList.add("light-theme");
+    localStorage.setItem("theme", "light");
+    
+    // Update theme icon
+    const themeIcons = document.querySelectorAll("#desktop-theme-switcher i, #mobile-theme-switcher i");
+    themeIcons.forEach(icon => {
+      icon.className = "fas fa-sun";
+    });
+  } else {
+    body.classList.remove("light-theme");
+    localStorage.setItem("theme", "dark");
+    
+    // Update theme icon
+    const themeIcons = document.querySelectorAll("#desktop-theme-switcher i, #mobile-theme-switcher i");
+    themeIcons.forEach(icon => {
+      icon.className = "fas fa-moon";
+    });
+  }
+}
+
+// Setup theme switcher based on saved preference
+function setupThemeSwitcher() {
+  const savedTheme = localStorage.getItem("theme");
+  
+  if (savedTheme === "light") {
+    document.body.classList.add("light-theme");
+    
+    // Update theme icon
+    const themeIcons = document.querySelectorAll("#desktop-theme-switcher i, #mobile-theme-switcher i");
+    themeIcons.forEach(icon => {
+      icon.className = "fas fa-sun";
+    });
+  }
 }

@@ -436,3 +436,18 @@
   </body>
 </html>
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+<!-- Add toast notification at the end of the body -->
+<div id="greeting-toast" class="fixed top-8 right-8 z-50 bg-black/80 backdrop-blur-md border border-sky-500/30 rounded-xl p-4 shadow-lg transform -translate-x-full opacity-0 transition-all duration-500 ease-out flex items-center max-w-md">
+  <div class="mr-4 flex-shrink-0">
+    <img src="./assets/avatar-alt1.png" alt="Avatar" class="w-12 h-12 rounded-full border-2 border-sky-400">
+  </div>
+  <div class="flex-grow">
+    <h3 class="font-orbitron text-white text-lg">Welcome!</h3>
+    <p class="text-slate-300 text-sm">Thanks for visiting my portfolio.</p>
+    <p id="visitor-toast-number" class="text-sky-400 font-semibold mt-1">You are visitor #<span>0</span></p>
+  </div>
+  <button id="toast-close" class="ml-2 text-slate-400 hover:text-white transition-colors">
+    <i class="fas fa-times"></i>
+  </button>
+</div>
