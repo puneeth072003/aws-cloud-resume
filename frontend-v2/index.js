@@ -1,13 +1,13 @@
 // --- DATA ---
 const navData = [
-  { href: "#home", label: "Home", icon: "fa-house" },
-  { href: "#about", label: "About", icon: "fa-user" },
-  { href: "#pipeline", label: "Pipeline", icon: "fa-network-wired" },
-  { href: "#skills", label: "Skills", icon: "fa-chart-pie" },
-  { href: "#portfolio", label: "Projects", icon: "fa-briefcase" },
-  { href: "#blogs", label: "Blogs", icon: "fa-pen-to-square" },
-  { href: "#photography", label: "Photography", icon: "fa-camera" },
-  { href: "#contact", label: "Contact", icon: "fa-envelope" },
+  { href: "#home", label: "Home", icon: "fas fa-house" },
+  { href: "#about", label: "About", icon: "fas fa-user" },
+  { href: "#pipeline", label: "Pipeline", icon: "fas fa-file" },
+  { href: "#skills", label: "Skills", icon: "fas fa-trophy" },
+  { href: "#portfolio", label: "Projects", icon: "fas fa-laptop" },
+  { href: "#experience", label: "Experience", icon: "fa-briefcase" },
+  { href: "#blogs", label: "Blogs", icon: "fas fa-pen-nib" },
+  { href: "#photography", label: "Photography", icon: "fas fa-camera-retro" },
 ];
 const certificationsData = [
   { name: "Top 1% in GSSoC'ext 2024", icon: "fa fa-trophy" },
@@ -15,60 +15,68 @@ const certificationsData = [
     name: "1st Place in the department-level mini-project",
     icon: "fa fa-trophy",
   },
-  { name: "AZ-305 Microsoft Azure Architect Design Prerequisites", icon: "fa fa-trophy" },
+  {
+    name: "AZ-305 Microsoft Azure Architect Design Prerequisites",
+    icon: "fa fa-trophy",
+  },
   { name: "AWS Cloud Practitioner Essentials", icon: "fa fa-trophy" },
-  { name: "Postman API Fundamentals Student Expert", icon: "fa fa-trophy" }
+  { name: "Postman API Fundamentals Student Expert", icon: "fa fa-trophy" },
 ];
 const portfolioData = [
   {
     title: "CODESOURCERER",
-    description: "An intelligent code assistant platform that helps developers find and understand code snippets across large codebases.",
+    description:
+      "An intelligent code assistant platform that helps developers find and understand code snippets across large codebases.",
     icon: "fa-code",
     video: "./videos/CS-demo.mp4",
     links: {
       live: "https://codesourcerer.webflow.io",
-      github: "https://github.com/puneeth072003/CODESOURCERER"
-    }
+      github: "https://github.com/puneeth072003/CODESOURCERER",
+    },
   },
   {
     title: "Vitista",
-    description: "A modern campus tour and information platform for university visitors and prospective students.",
+    description:
+      "A modern campus tour and information platform for university visitors and prospective students.",
     icon: "fa-building-columns",
     video: "./videos/vitista.mp4",
     links: {
       live: "https://vitista.vercel.app/",
-      github: "https://github.com/puneeth072003/Vitista"
-    }
+      github: "https://github.com/puneeth072003/Vitista",
+    },
   },
   {
     title: "Sputilties",
-    description: "A collection of Spotify utilities and tools to enhance your music streaming experience.",
+    description:
+      "A collection of Spotify utilities and tools to enhance your music streaming experience.",
     icon: "fa-music",
     video: "./videos/Sputilties-demo.mp4",
     links: {
       live: "https://sputilities.netlify.app/",
-      github: "https://github.com/puneeth072003/sputilities.V1"
-    }
+      github: "https://github.com/puneeth072003/sputilities.V1",
+    },
   },
   {
     title: "Huddle",
-    description: "A collaborative meeting and team communication platform for remote teams.",
+    description:
+      "A collaborative meeting and team communication platform for remote teams.",
     icon: "fa-users",
     video: "./videos/huddle.mp4",
     links: {
       live: "https://ho-huddle.vercel.app/",
-      github: "https://github.com/puneeth072003/huddle"
-    }
-  }
+      github: "https://github.com/puneeth072003/huddle",
+    },
+  },
 ];
 const blogData = [
   {
     title: "My Attempt at the AWS Cloud Resume Challenge",
-    excerpt: "Curious about how the architecture behind this website is structured using modern DevOps practices? I break it all down in my blog post as part of the Cloud Resume Challenge.\n\nFrom CI/CD to infrastructure as code, it's all in there. Be sure to check it out!",
+    excerpt:
+      "Curious about how the architecture behind this website is structured using modern DevOps practices? I break it all down in my blog post as part of the Cloud Resume Challenge.\n\nFrom CI/CD to infrastructure as code, it's all in there. Be sure to check it out!",
     link: "https://dev.to/puneeth072003/my-attempt-at-the-aws-cloud-resume-challenge-a-journey-in-the-cloud-13gd",
     featured: true,
-    image: "./assets/Cover.png"
-  }
+    image: "./assets/Cover.png",
+  },
 ];
 const photographyData = [
   {
@@ -103,25 +111,34 @@ const experienceData = [
     company: "HCLSoftware",
     position: "Intern",
     period: "Mar 2025 - Present",
-    description: "Contributed as a primary team member in architecting the upcoming cloud-native migration blueprint, focusing on defining the target architecture, technology stack, and deployment patterns tailored for future scalability and maintainability. Led several targeted proofs of concept (PoCs) to validate new tools, frameworks, and deployment strategies, directly influencing final architecture decisions and shaping the release automation framework later adopted in the company’s product.",
-    technologies: ["AWS", "Azure", "Terraform", "Docker", "Kubernetes", "GitHub Actions"]
+    description:
+      "Contributed as a primary team member in architecting the upcoming cloud-native migration blueprint, focusing on defining the target architecture, technology stack, and deployment patterns tailored for future scalability and maintainability. Led several targeted proofs of concept (PoCs) to validate new tools, frameworks, and deployment strategies, directly influencing final architecture decisions and shaping the release automation framework later adopted in the company’s product.",
+    technologies: [
+      "AWS",
+      "Azure",
+      "Terraform",
+      "Docker",
+      "Kubernetes",
+      "GitHub Actions",
+    ],
   },
   {
     company: "GirlScript Summer of Code (GSSoC-ext'24)",
     position: "Open Source Contributor",
     period: "Oct 2024 - Nov 2024",
-    description: "Actively contributed to open-source repositories as part of GSSoC-ext 2024, demonstrating strong coding proficiency, collaboration, and problem-solving abilities. Achieved a top ranking of 281 out of 60,000 participants, reflecting high technical competence and consistent engagement throughout the program.",
-    technologies: ["Git", "GitHub", "React", "Markdown", "HTML", "CSS"]
-  }
+    description:
+      "Actively contributed to open-source repositories as part of GSSoC-ext 2024, demonstrating strong coding proficiency, collaboration, and problem-solving abilities. Achieved a top ranking of 281 out of 60,000 participants, reflecting high technical competence and consistent engagement throughout the program.",
+    technologies: ["Git", "GitHub", "React", "Markdown", "HTML", "CSS"],
+  },
 ];
 
 // --- CORE LOGIC ---
 function main() {
   console.log("Initializing main function");
-  
+
   // Check if data is properly loaded
   checkDataLoading();
-  
+
   // Rest of the main function...
   try {
     setupHeroAnimation();
@@ -151,6 +168,9 @@ function main() {
   setupLightbox();
   setupThemeSwitcher();
   updateCounter(); // Add this line to call the counter function
+
+  // Ensure the bottom dock is always on top
+  ensureBottomDockOnTop();
 }
 
 function checkDependencies() {
@@ -384,10 +404,10 @@ function createDockItem(item) {
   const dockItem = document.createElement("a");
   dockItem.href = item.href || "#";
   dockItem.className = "dock-item";
-  
+
   // Create icon only, no tooltip
   dockItem.innerHTML = `<i class="fas ${item.icon}"></i>`;
-  
+
   // Add click handler for theme switcher
   if (item.id === "theme-switcher") {
     dockItem.addEventListener("click", function (e) {
@@ -395,7 +415,7 @@ function createDockItem(item) {
       toggleTheme();
     });
   }
-  
+
   return dockItem;
 }
 
@@ -434,6 +454,11 @@ function populateDock() {
       mobileMenu.classList.toggle("open");
     });
   }
+
+  // Ensure z-index is applied
+  if (desktopDock) desktopDock.style.zIndex = '1000';
+  if (mobileMenu) mobileMenu.style.zIndex = '999';
+  if (mobileToggle) mobileToggle.style.zIndex = '1000';
 }
 
 function setupThemeSwitcher() {
@@ -497,26 +522,34 @@ function populatePortfolio() {
     console.warn("Portfolio grid container not found");
     return;
   }
-  
+
   // Clear existing content
   container.innerHTML = "";
-  
+
   // Check if we have portfolio data
-  if (!portfolioData || !Array.isArray(portfolioData) || portfolioData.length === 0) {
+  if (
+    !portfolioData ||
+    !Array.isArray(portfolioData) ||
+    portfolioData.length === 0
+  ) {
     console.warn("Portfolio data is missing or empty");
-    container.innerHTML = "<p class='text-center text-slate-400'>No projects available at the moment.</p>";
+    container.innerHTML =
+      "<p class='text-center text-slate-400'>No projects available at the moment.</p>";
     return;
   }
-  
+
   // Create and append project elements
   portfolioData.forEach((project) => {
     const projectEl = document.createElement("div");
-    projectEl.className = "reveal-section project-card glass-pane rounded-xl block hover:border-sky-400 transition-colors overflow-hidden";
-    
+    projectEl.className =
+      "reveal-section project-card glass-pane rounded-xl block hover:border-sky-400 transition-colors overflow-hidden";
+
     // Create HTML with video
     projectEl.innerHTML = `
       <div class="video-container relative">
-        <video src="${project.video}" autoplay loop muted class="w-full h-48 object-cover"></video>
+        <video src="${
+          project.video
+        }" autoplay loop muted class="w-full h-48 object-cover"></video>
         <div class="video-title absolute bottom-0 left-0 w-full bg-black/50 p-2 text-white font-orbitron text-lg">
           ${project.title}
         </div>
@@ -527,23 +560,29 @@ function populatePortfolio() {
             <i class="fas ${project.icon}"></i>
           </div>
           <div class="flex gap-3">
-            ${project.links?.live ? 
-              `<a href="${project.links.live}" target="_blank" title="Live Site" class="text-2xl text-slate-400 hover:text-sky-400 transition-colors">
+            ${
+              project.links?.live
+                ? `<a href="${project.links.live}" target="_blank" title="Live Site" class="text-2xl text-slate-400 hover:text-sky-400 transition-colors">
                 <i class="far fa-eye"></i>
-              </a>` : ''}
-            ${project.links?.github ? 
-              `<a href="${project.links.github}" target="_blank" title="Source Code" class="text-2xl text-slate-400 hover:text-sky-400 transition-colors">
+              </a>`
+                : ""
+            }
+            ${
+              project.links?.github
+                ? `<a href="${project.links.github}" target="_blank" title="Source Code" class="text-2xl text-slate-400 hover:text-sky-400 transition-colors">
                 <i class="fab fa-github"></i>
-              </a>` : ''}
+              </a>`
+                : ""
+            }
           </div>
         </div>
         <p class="text-slate-400 mt-2">${project.description}</p>
       </div>
     `;
-    
+
     container.appendChild(projectEl);
   });
-  
+
   console.log(`Populated portfolio with ${portfolioData.length} projects`);
 }
 
@@ -553,41 +592,52 @@ function populateBlogs() {
     console.warn("Blog grid container not found");
     return;
   }
-  
+
   // Clear existing content
   container.innerHTML = "";
-  
+
   // Check if we have blog data
   if (!blogData || !Array.isArray(blogData) || blogData.length === 0) {
     console.warn("Blog data is missing or empty");
-    container.innerHTML = "<p class='text-center text-slate-400'>No blog posts available at the moment.</p>";
+    container.innerHTML =
+      "<p class='text-center text-slate-400'>No blog posts available at the moment.</p>";
     return;
   }
-  
+
   // Since we only have one blog, create a featured card
   const blog = blogData[0];
   const blogEl = document.createElement("div");
-  blogEl.className = "reveal-section glass-pane rounded-xl overflow-hidden hover:border-sky-400 transition-all";
-  
+  blogEl.className =
+    "reveal-section glass-pane rounded-xl overflow-hidden hover:border-sky-400 transition-all";
+
   blogEl.innerHTML = `
     <div class="flex flex-col md:flex-row">
       <div class="md:w-2/5">
-        <img src="${blog.image}" alt="Blog cover image" class="w-full h-full object-cover" />
+        <img src="${
+          blog.image
+        }" alt="Blog cover image" class="w-full h-full object-cover" />
       </div>
       <div class="p-8 md:w-3/5">
-        <h3 class="font-orbitron text-2xl md:text-3xl text-white">${blog.title}</h3>
+        <h3 class="font-orbitron text-2xl md:text-3xl text-white">${
+          blog.title
+        }</h3>
         <div class="text-slate-300 mt-4 text-md md:text-lg space-y-4">
-          ${blog.excerpt.split('\n\n').map(para => `<p>${para}</p>`).join('')}
+          ${blog.excerpt
+            .split("\n\n")
+            .map((para) => `<p>${para}</p>`)
+            .join("")}
         </div>
-        <a href="${blog.link}" target="_blank" class="inline-block mt-6 px-6 py-3 bg-sky-600 hover:bg-sky-500 text-white font-semibold rounded-lg transition-colors">
+        <a href="${
+          blog.link
+        }" target="_blank" class="inline-block mt-6 px-6 py-3 bg-sky-600 hover:bg-sky-500 text-white font-semibold rounded-lg transition-colors">
           Read The Blog →
         </a>
       </div>
     </div>
   `;
-  
+
   container.appendChild(blogEl);
-  
+
   console.log("Populated blogs section with 1 blog post");
 }
 
@@ -802,47 +852,53 @@ document.addEventListener("DOMContentLoaded", function () {
 // Add a function to check if data is loaded properly
 function checkDataLoading() {
   // Check if data variables are defined
-  if (typeof portfolioData === 'undefined') {
+  if (typeof portfolioData === "undefined") {
     console.error("portfolioData is not defined");
     // Define fallback data
     window.portfolioData = [
       {
         title: "GitOps Infrastructure for E-Commerce",
-        description: "Built a fully automated, GitOps-driven infrastructure on AWS EKS using ArgoCD, Terraform, and GitHub Actions, reducing deployment times by 90%.",
+        description:
+          "Built a fully automated, GitOps-driven infrastructure on AWS EKS using ArgoCD, Terraform, and GitHub Actions, reducing deployment times by 90%.",
         icon: "fa-cart-shopping",
       },
       {
         title: "Centralized Logging Platform",
-        description: "Designed and deployed a centralized logging and monitoring stack using the ELK stack (Elasticsearch, Logstash, Kibana) and Prometheus on Kubernetes.",
+        description:
+          "Designed and deployed a centralized logging and monitoring stack using the ELK stack (Elasticsearch, Logstash, Kibana) and Prometheus on Kubernetes.",
         icon: "fa-magnifying-glass-chart",
       },
       {
         title: "Serverless Data Processing Pipeline",
-        description: "Architected a serverless pipeline using AWS Lambda, S3, and API Gateway to process real-time data streams with high availability and low operational cost.",
+        description:
+          "Architected a serverless pipeline using AWS Lambda, S3, and API Gateway to process real-time data streams with high availability and low operational cost.",
         icon: "fa-gears",
       },
     ];
   }
-  
-  if (typeof blogData === 'undefined') {
+
+  if (typeof blogData === "undefined") {
     console.error("blogData is not defined");
     // Define fallback data
     window.blogData = [
       {
         title: "The Power of Idempotency in IaC",
-        excerpt: "Why ensuring your Terraform or Pulumi scripts can run multiple times without side effects is critical for stable automation...",
+        excerpt:
+          "Why ensuring your Terraform or Pulumi scripts can run multiple times without side effects is critical for stable automation...",
         link: "#",
         featured: true,
       },
       {
         title: "Kubernetes Cost Management Strategies",
-        excerpt: "Practical tips for optimizing resource requests, implementing cluster autoscaling, and using spot instances to control cloud spend...",
+        excerpt:
+          "Practical tips for optimizing resource requests, implementing cluster autoscaling, and using spot instances to control cloud spend...",
         link: "#",
         featured: false,
       },
       {
         title: "Service Mesh: Is Istio or Linkerd Right for You?",
-        excerpt: "A comparative analysis of the leading service meshes, breaking down their features, performance, and operational complexity...",
+        excerpt:
+          "A comparative analysis of the leading service meshes, breaking down their features, performance, and operational complexity...",
         link: "#",
         featured: false,
       },
@@ -857,22 +913,29 @@ function populateExperience() {
     console.warn("Experience timeline container not found");
     return;
   }
-  
+
   // Clear existing content
   container.innerHTML = "";
-  
+
   // Check if we have experience data
-  if (!experienceData || !Array.isArray(experienceData) || experienceData.length === 0) {
+  if (
+    !experienceData ||
+    !Array.isArray(experienceData) ||
+    experienceData.length === 0
+  ) {
     console.warn("Experience data is missing or empty");
-    container.innerHTML = "<p class='text-center text-slate-400'>No experience entries available at the moment.</p>";
+    container.innerHTML =
+      "<p class='text-center text-slate-400'>No experience entries available at the moment.</p>";
     return;
   }
-  
+
   // Create and append experience elements
   experienceData.forEach((job, index) => {
     const jobEl = document.createElement("div");
-    jobEl.className = `reveal-section timeline-item ${index % 2 === 0 ? 'left' : 'right'}`;
-    
+    jobEl.className = `reveal-section timeline-item ${
+      index % 2 === 0 ? "left" : "right"
+    }`;
+
     jobEl.innerHTML = `
       <div class="glass-pane p-6 rounded-xl hover:border-sky-400 transition-all">
         <div class="flex justify-between items-start mb-3">
@@ -882,36 +945,70 @@ function populateExperience() {
         <h4 class="text-sky-300 font-semibold mb-3">${job.position}</h4>
         <p class="text-slate-400 mb-4">${job.description}</p>
         <div class="flex flex-wrap gap-2">
-          ${job.technologies.map(tech => 
-            `<span class="bg-slate-800 text-sky-300 text-xs px-3 py-1 rounded-full">${tech}</span>`
-          ).join('')}
+          ${job.technologies
+            .map(
+              (tech) =>
+                `<span class="bg-slate-800 text-sky-300 text-xs px-3 py-1 rounded-full">${tech}</span>`
+            )
+            .join("")}
         </div>
       </div>
     `;
-    
+
     container.appendChild(jobEl);
   });
-  
+
   console.log(`Populated experience with ${experienceData.length} entries`);
 }
 
 function handleScrollAnimations() {
-  const revealElements = document.querySelectorAll('.reveal-section');
-  const timelineItems = document.querySelectorAll('.timeline-item');
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate');
-      }
-    });
-  }, { threshold: 0.1 });
-  
-  revealElements.forEach(el => observer.observe(el));
-  timelineItems.forEach(el => observer.observe(el));
+  const revealElements = document.querySelectorAll(".reveal-section");
+  const timelineItems = document.querySelectorAll(".timeline-item");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate");
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  revealElements.forEach((el) => observer.observe(el));
+  timelineItems.forEach((el) => observer.observe(el));
 }
 
 // Add this to your main function
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   handleScrollAnimations();
 });
+
+// Add a function to ensure the bottom dock is always on top
+function ensureBottomDockOnTop() {
+  // Get all elements that might overlap with the dock
+  const bottomNav = document.getElementById('bottom-nav');
+  if (!bottomNav) return;
+  
+  // Force a repaint to ensure z-index is applied
+  bottomNav.style.display = 'none';
+  setTimeout(() => {
+    bottomNav.style.display = '';
+  }, 10);
+  
+  // Add event listener to ensure dock stays on top during scrolling
+  window.addEventListener('scroll', () => {
+    bottomNav.style.zIndex = '1000';
+  });
+  
+  // Check for any dynamically added content that might overlap
+  const observer = new MutationObserver(() => {
+    bottomNav.style.zIndex = '1000';
+  });
+  
+  observer.observe(document.body, { 
+    childList: true, 
+    subtree: true 
+  });
+}

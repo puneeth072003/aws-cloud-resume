@@ -60,6 +60,7 @@ body {
   right: 1rem; /* Position to the right on mobile */
   left: auto;
   transform: none;
+  z-index: 1000; /* Ensure it's always on top */
 }
 @media (min-width: 768px) {
   #bottom-nav {
@@ -74,6 +75,7 @@ body {
   align-items: flex-end;
   gap: 0.8rem;
   height: 60px;
+  z-index: 1000; /* Ensure it's always on top */
 }
 .dock-item {
   color: var(--text-secondary);
@@ -83,9 +85,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 56px;
-  height: 56px;
-  font-size: 1.4rem;
+  width: 50px;
+  height: 50px;
+  font-size: 1.25rem;
   /* Glass pane styles moved here and made circular */
   background: var(--glass-bg);
   backdrop-filter: blur(12px);
@@ -93,6 +95,8 @@ body {
   /* border: 1px solid var(--primary-border); */
   border-radius: 9999px; /* This makes it circular */
   transition: all 0.3s ease;
+  cursor: pointer;
+  z-index: 1000; /* Ensure it's always on top */
 }
 .dock-item:hover {
   color: var(--text-main);
@@ -109,6 +113,7 @@ body {
 /* Mobile Dock */
 #mobile-dock-toggle {
   display: none; /* Hidden by default */
+  z-index: 1000; /* Ensure it's always on top */
 }
 #mobile-dock-menu {
   position: absolute;
@@ -124,6 +129,7 @@ body {
   transition: opacity 0.3s ease, transform 0.3s ease;
   transform-origin: bottom right;
   transform: scale(0.95);
+  z-index: 999; /* Slightly below the toggle but above other content */
 }
 #mobile-dock-menu.open {
   opacity: 1;
@@ -520,7 +526,7 @@ body {
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(4px);
   padding: 0.75rem 1rem;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-size: 1.125rem;
   color: white;
   transition: background-color 0.3s ease;
@@ -566,8 +572,16 @@ body {
   bottom: 0;
   left: 50%;
   width: 2px;
-  background: linear-gradient(to bottom, transparent, rgba(56, 189, 248, 0.5), rgba(56, 189, 248, 0.8), rgba(56, 189, 248, 0.5), transparent);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(56, 189, 248, 0.5),
+    rgba(56, 189, 248, 0.8),
+    rgba(56, 189, 248, 0.5),
+    transparent
+  );
   transform: translateX(-50%);
+  z-index: 1; /* Lower z-index */
 }
 
 .timeline-item {
@@ -577,6 +591,7 @@ body {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease, transform 0.6s ease;
+  z-index: 2; /* Higher than the line but lower than the dock */
 }
 
 .timeline-item.animate {
@@ -593,7 +608,7 @@ body {
 }
 
 .timeline-item::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 20px;
   width: 20px;
@@ -612,7 +627,7 @@ body {
 }
 
 .timeline-item::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 30px;
   width: 40px;
@@ -633,19 +648,19 @@ body {
   .timeline-line {
     left: 20px;
   }
-  
+
   .timeline-item {
     width: calc(100% - 60px);
     margin-left: 60px;
     margin-right: 0;
   }
-  
+
   .timeline-item.left::before,
   .timeline-item.right::before {
     left: -50px;
     right: auto;
   }
-  
+
   .timeline-item.left::after,
   .timeline-item.right::after {
     left: -30px;
@@ -691,4 +706,10 @@ body {
 .reveal-section.animate {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Ensure glass-pane elements don't overlap the dock */
+.glass-pane {
+  position: relative;
+  z-index: 5; /* Higher than basic elements but lower than the dock */
 }
