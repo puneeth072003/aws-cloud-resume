@@ -249,23 +249,18 @@ function setupDockAnimation() {
   const gap = 16; // Gap between items (1rem = ~16px)
   const padding = 48; // Padding on both sides (1.5rem = ~24px on each side)
   
-  // Set initial positions for all items
-  items.forEach((item, index) => {
-    // Set initial position
-    item.style.position = 'relative';
-    item.style.left = '0';
-    item.style.transform = 'scale(1)';
-  });
-  
   // Initialize dock width
   const initialWidth = items.length * itemWidth + (items.length - 1) * gap + padding;
   dock.style.width = `${initialWidth}px`;
+  
+  // Set initial positions for all items - evenly distributed
+  positionItemsEvenly(dock, items, itemWidth, gap, padding);
   
   dock.addEventListener("mousemove", (e) => {
     const dockRect = dock.getBoundingClientRect();
     const mouseX = e.clientX - dockRect.left;
     
-    // Calculate scales without changing positions yet
+    // Calculate scales for all items
     const scales = items.map((item) => {
       const itemRect = item.getBoundingClientRect();
       const itemCenterX = itemRect.left - dockRect.left + itemRect.width / 2;
@@ -283,12 +278,31 @@ function setupDockAnimation() {
       return scale;
     });
     
-    // Apply scales only - no position changes
+    // Calculate expanded dock width based on scales
+    let expandedWidth = padding;
+    scales.forEach(scale => {
+      expandedWidth += itemWidth * scale;
+    });
+    expandedWidth += gap * (items.length - 1);
+    
+    // Update dock width
+    dock.style.width = `${expandedWidth}px`;
+    
+    // Position items with proper spacing
+    let currentPosition = padding / 2;
+    
     items.forEach((item, index) => {
       const scale = scales[index];
       
-      // Apply scale transform only
+      // Apply scale transform
       item.style.transform = `scale(${scale.toFixed(2)})`;
+      
+      // Position the item
+      item.style.position = 'absolute';
+      item.style.left = `${currentPosition}px`;
+      
+      // Update position for next item
+      currentPosition += (itemWidth * scale) + gap;
       
       // Add highlight effect for the active item
       if (scale > 1.3) {
@@ -300,14 +314,40 @@ function setupDockAnimation() {
   });
   
   dock.addEventListener("mouseleave", () => {
-    // Reset all items
+    // Reset dock width to initial size
+    dock.style.width = `${initialWidth}px`;
+    
+    // Reset all items to evenly distributed positions
+    positionItemsEvenly(dock, items, itemWidth, gap, padding);
+    
+    // Reset scales and shadows
     items.forEach((item) => {
-      // Reset scale
       item.style.transform = "scale(1)";
-      
-      // Reset shadow
       item.style.boxShadow = 'none';
     });
+  });
+}
+
+// Helper function to position items evenly across the dock
+function positionItemsEvenly(dock, items, itemWidth, gap, padding) {
+  const dockWidth = items.length * itemWidth + (items.length - 1) * gap + padding;
+  const availableSpace = dockWidth - padding;
+  const totalItemsWidth = items.length * itemWidth;
+  const totalGapsWidth = availableSpace - totalItemsWidth;
+  
+  // Calculate even gap size
+  const evenGap = items.length > 1 ? totalGapsWidth / (items.length - 1) : 0;
+  
+  // Position each item
+  let currentPosition = padding / 2;
+  
+  items.forEach((item, index) => {
+    // Position the item
+    item.style.position = 'absolute';
+    item.style.left = `${currentPosition}px`;
+    
+    // Update position for next item
+    currentPosition += itemWidth + evenGap;
   });
 }
 
