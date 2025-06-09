@@ -246,94 +246,67 @@ function setupDockAnimation() {
   
   // Calculate initial width based on items
   const itemWidth = 50; // Base width of each item
-  const gap = 12; // Gap between items (0.8rem = ~12px)
-  const padding = 32; // Padding on both sides (1rem = ~16px on each side)
-  const initialWidth = items.length * itemWidth + (items.length - 1) * gap + padding;
+  const gap = 16; // Gap between items (1rem = ~16px)
+  const padding = 48; // Padding on both sides (1.5rem = ~24px on each side)
   
-  // Set initial width
+  // Set initial positions for all items
+  items.forEach((item, index) => {
+    // Set initial position
+    item.style.position = 'relative';
+    item.style.left = '0';
+    item.style.transform = 'scale(1)';
+  });
+  
+  // Initialize dock width
+  const initialWidth = items.length * itemWidth + (items.length - 1) * gap + padding;
   dock.style.width = `${initialWidth}px`;
   
   dock.addEventListener("mousemove", (e) => {
     const dockRect = dock.getBoundingClientRect();
     const mouseX = e.clientX - dockRect.left;
     
-    // Track total width needed for the dock
-    let totalWidth = padding; // Start with padding
-    
-    items.forEach((item, index) => {
+    // Calculate scales without changing positions yet
+    const scales = items.map((item) => {
       const itemRect = item.getBoundingClientRect();
       const itemCenterX = itemRect.left - dockRect.left + itemRect.width / 2;
       const distance = Math.abs(mouseX - itemCenterX);
       
       // Scale factors
-      const maxScale = 1.8;
-      const neighborScale = 1.3;
-      const effectRadius = 60;
+      const maxScale = 1.6;
+      const effectRadius = 80;
       
       let scale = 1.0;
       if (distance < effectRadius) {
-        scale = maxScale - (distance / effectRadius) * (maxScale - neighborScale);
-      } else if (distance < effectRadius * 2) {
-        const neighborDistance = distance - effectRadius;
-        scale = neighborScale - (neighborDistance / effectRadius) * (neighborScale - 1.0);
+        scale = maxScale - (distance / effectRadius) * (maxScale - 1.0);
       }
       
-      // Apply scale transform
-      item.style.transform = `scale(${scale.toFixed(2)})`;
-      
-      // Calculate width contribution of this item
-      const scaledWidth = itemWidth * scale;
-      totalWidth += scaledWidth;
-      
-      // Add gap after all items except the last one
-      if (index < items.length - 1) {
-        totalWidth += gap;
-      }
-      
-      // Change icon color based on distance
-      const icon = item.querySelector('i');
-      if (icon) {
-        if (distance < effectRadius) {
-          // Calculate color intensity based on distance
-          const blueIntensity = 1 - (distance / effectRadius);
-          icon.style.color = `rgba(56, 189, 248, ${blueIntensity.toFixed(2)})`;
-        } else {
-          icon.style.color = '';
-        }
-      }
+      return scale;
     });
     
-    // Update dock width to accommodate the scaled items
-    dock.style.width = `${totalWidth}px`;
+    // Apply scales only - no position changes
+    items.forEach((item, index) => {
+      const scale = scales[index];
+      
+      // Apply scale transform only
+      item.style.transform = `scale(${scale.toFixed(2)})`;
+      
+      // Add highlight effect for the active item
+      if (scale > 1.3) {
+        item.style.boxShadow = `0 0 15px rgba(56, 189, 248, ${((scale - 1) / 0.6).toFixed(2)})`;
+      } else {
+        item.style.boxShadow = 'none';
+      }
+    });
   });
   
   dock.addEventListener("mouseleave", () => {
+    // Reset all items
     items.forEach((item) => {
+      // Reset scale
       item.style.transform = "scale(1)";
       
-      // Reset icon color
-      const icon = item.querySelector('i');
-      if (icon) {
-        icon.style.color = '';
-      }
-    });
-    
-    // Reset dock width to initial size
-    dock.style.width = `${initialWidth}px`;
-  });
-  
-  // Add click effect
-  items.forEach(item => {
-    item.addEventListener('mousedown', () => {
-      item.classList.add('dock-click');
-    });
-    
-    item.addEventListener('mouseup', () => {
-      item.classList.remove('dock-click');
-    });
-    
-    item.addEventListener('mouseleave', () => {
-      item.classList.remove('dock-click');
+      // Reset shadow
+      item.style.boxShadow = 'none';
     });
   });
 }

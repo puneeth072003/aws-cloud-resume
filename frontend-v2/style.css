@@ -57,90 +57,88 @@ body {
 #bottom-nav {
   position: fixed;
   bottom: 1rem;
-  right: 1rem;
-  left: auto;
-  transform: none;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1000;
-}
-
-@media (min-width: 768px) {
-  #bottom-nav {
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-  }
 }
 
 #bottom-dock {
   display: flex;
-  align-items: flex-end;
-  gap: 0.8rem;
-  height: 60px;
-  z-index: 1000;
-  padding: 0 1rem;
-  transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  width: auto;
+  align-items: center;
   justify-content: center;
+  height: 70px;
+  z-index: 1000;
+  padding: 0 1.5rem;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 40px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), 
+              0 0 30px rgba(56, 189, 248, 0.3);
+  gap: 1rem;
 }
 
 .dock-item {
-  color: var(--text-secondary);
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  will-change: transform;
-  position: relative;
+  color: white;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   display: flex;
   justify-content: center;
   align-items: center;
   width: 50px;
   height: 50px;
+  min-width: 50px;
+  min-height: 50px;
   font-size: 1.25rem;
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 2px solid transparent;
-  border-radius: 9999px;
+  background: rgba(15, 23, 42, 0.7);
+  border-radius: 50%;
   cursor: pointer;
   z-index: 1000;
+  transform-origin: center;
+  flex-shrink: 0;
 }
 
 .dock-item:hover {
   color: var(--text-accent);
-  border-color: var(--text-accent);
-  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
 }
 
 .dock-item i {
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.dock-item:hover i {
-  transform: scale(1.2);
+  transition: color 0.3s ease;
 }
 
 /* Add a subtle glow effect to the dock */
 #bottom-dock::before {
   content: '';
   position: absolute;
-  bottom: -5px;
+  bottom: -8px;
   left: 50%;
   transform: translateX(-50%);
-  width: 70%;
-  height: 10px;
+  width: 80%;
+  height: 15px;
   background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.3) 0%, rgba(56, 189, 248, 0) 70%);
   border-radius: 50%;
   z-index: -1;
+}
+
+/* Add a subtle bounce effect when clicking dock items */
+@keyframes dockClick {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+.dock-click {
+  animation: dockClick 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 /* Mobile Dock */
 #mobile-dock-toggle {
   display: none;
   z-index: 1000;
-  color: var(--text-secondary);
-  background: var(--glass-bg);
+  color: white;
+  background: rgba(15, 23, 42, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 2px solid transparent;
-  border-radius: 9999px;
+  border-radius: 50%;
   transition: all 0.3s ease;
 }
 
@@ -190,11 +188,6 @@ body {
     font-size: 1.5rem;
     cursor: pointer;
   }
-}
-
-/* Add a subtle bounce effect when clicking dock items */
-.dock-item:active {
-  transform: scale(0.9) !important;
 }
 
 /* Section Reveal Animation */
