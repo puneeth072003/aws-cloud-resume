@@ -793,7 +793,7 @@ function setupPhotographyCarousel() {
     "./assets/photos/DSC03302.png",
     "./assets/photos/DSC03471.jpg",
     "./assets/photos/DSC03550.JPG",
-    "./assets/photos/DSC03307.jpg",
+    "./assets/photos/DSC03763.JPG",
     "./assets/photos/DSC03529.JPG",
   ];
 
