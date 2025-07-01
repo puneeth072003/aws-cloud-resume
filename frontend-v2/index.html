@@ -111,10 +111,11 @@
         <div class="relative z-10 p-4">
           <h1
             class="font-orbitron text-4xl sm:text-5xl md:text-8xl font-black text-white uppercase tracking-wider"
+            data-i18n="hero.name"
           >
             Puneeth Y
           </h1>
-          <p class="mt-4 text-lg md:text-2xl text-sky-300 max-w-3xl mx-auto">
+          <p class="mt-4 text-lg md:text-2xl text-sky-300 max-w-3xl mx-auto" data-i18n="hero.subtitle">
             An Aspiring DevOps Engineer & Cloud Architect crafting resilient,
             automated, and scalable infrastructure for tomorrow's technology.
           </p>
@@ -134,23 +135,23 @@
             />
           </div>
           <div class="reveal-section">
-            <h2 class="font-orbitron text-3xl md:text-4xl text-white">
+            <h2 class="font-orbitron text-3xl md:text-4xl text-white" data-i18n="about.title">
               About Me
             </h2>
             <p class="mt-4 text-md md:text-lg text-slate-300 leading-relaxed">
-              <span class="text-sky-300 weight-bold"
+              <span class="text-sky-300 weight-bold" data-i18n="about.intro"
                 >Howdy, I’m an aspiring DevOps engineer with a passion for
                 automation and system orchestration.</span
               >
               <br />
-              I love building efficient and reliable infrastructure using tools
+              <span data-i18n="about.description">I love building efficient and reliable infrastructure using tools
               like Docker, Kubernetes, and AWS. Whether it’s writing
               Infrastructure as Code, managing containers, or setting up CI/CD
               pipelines, I’m all about creating systems that make life easier
               for developers, helping them ship faster, safer, and with
-              confidence.
+              confidence.</span>
             </p>
-            <p class="mt-4 text-md md:text-lg text-slate-300 leading-relaxed">
+            <p class="mt-4 text-md md:text-lg text-slate-300 leading-relaxed" data-i18n="about.hobby">
               Outside of tech, I enjoy photography and often spend time
               exploring nature with my camera, capturing moments when I can.
             </p>
@@ -166,7 +167,7 @@
           >
             <div class="reveal-section">
               <p class="font-orbitron text-3xl md:text-4xl text-sky-300"><1</p>
-              <p class="text-slate-400 mt-2">Years of Experience</p>
+              <p class="text-slate-400 mt-2" data-i18n="stats.experience">Years of Experience</p>
             </div>
             <div class="reveal-section">
               <p
@@ -175,8 +176,8 @@
               >
                 0
               </p>
-              <p class="text-slate-400 mt-2">Visitors</p>
-              <p class="font-orbitron text-slate-600 mt-2 text-sm">
+              <p class="text-slate-400 mt-2" data-i18n="stats.visitors">Visitors</p>
+              <p class="font-orbitron text-slate-600 mt-2 text-sm" data-i18n="stats.poweredBy">
                 Powered by AWS Lambda
               </p>
             </div>
@@ -184,7 +185,7 @@
               <p class="font-orbitron text-3xl md:text-4xl text-sky-300">
                 100%
               </p>
-              <p class="text-slate-400 mt-2">Commitment to Automation</p>
+              <p class="text-slate-400 mt-2" data-i18n="stats.commitment">Commitment to Automation</p>
             </div>
           </div>
         </div>
@@ -199,7 +200,7 @@
           class="container mx-auto px-6 grid md:grid-cols-2 gap-8 md:gap-16 items-center"
         >
           <div class="feature-content reveal-section">
-            <h2 class="font-orbitron text-3xl md:text-4xl text-white">
+            <h2 class="font-orbitron text-3xl md:text-4xl text-white" data-i18n="skills.title">
               My skills
             </h2>
             <p class="mt-4 text-md md:text-lg text-slate-400">
@@ -226,22 +227,22 @@
               <div class="pipeline-visual w-full">
                 <div class="pipeline-stage">
                   <i class="fas fa-code-branch"></i>
-                  <p class="mt-2 text-xs md:text-sm font-semibold">Code</p>
+                  <p class="mt-2 text-xs md:text-sm font-semibold" data-i18n="pipeline.code">Code</p>
                 </div>
                 <div class="pipeline-connector"></div>
                 <div class="pipeline-stage">
                   <i class="fas fa-box-open"></i>
-                  <p class="mt-2 text-xs md:text-sm font-semibold">Build</p>
+                  <p class="mt-2 text-xs md:text-sm font-semibold" data-i18n="pipeline.build">Build</p>
                 </div>
                 <div class="pipeline-connector"></div>
                 <div class="pipeline-stage">
                   <i class="fas fa-shield-halved"></i>
-                  <p class="mt-2 text-xs md:text-sm font-semibold">Test</p>
+                  <p class="mt-2 text-xs md:text-sm font-semibold" data-i18n="pipeline.test">Test</p>
                 </div>
                 <div class="pipeline-connector"></div>
                 <div class="pipeline-stage">
                   <i class="fas fa-rocket"></i>
-                  <p class="mt-2 text-xs md:text-sm font-semibold">Deploy</p>
+                  <p class="mt-2 text-xs md:text-sm font-semibold" data-i18n="pipeline.deploy">Deploy</p>
                 </div>
               </div>
             </div>
@@ -249,7 +250,7 @@
               onclick="window.open('./assets/Puneeth_Y.pdf', '_blank')"
               class="font-orbitron mt-5 bg-sky-500 hover:bg-sky-600 text-white font-semibold text-lg px-6 py-1 rounded-lg transition-colors"
             >
-              View CV
+              <span data-i18n="skills.viewCV">View CV</span>
             </button>
           </div>
         </div>
@@ -264,10 +265,10 @@
           class="container mx-auto px-6 grid md:grid-cols-2 gap-8 md:gap-16 items-center"
         >
           <div class="feature-content reveal-section">
-            <h2 class="font-orbitron text-3xl md:text-4xl text-white">
+            <h2 class="font-orbitron text-3xl md:text-4xl text-white" data-i18n="certifications.title">
               Awards & Certifications
             </h2>
-            <p class="mt-4 text-md md:text-lg text-slate-400">
+            <p class="mt-4 text-md md:text-lg text-slate-400" data-i18n="certifications.description">
               A collection of certifications and recognitions I’ve received
               along my learning and DevOps journey.
             </p>
@@ -288,10 +289,10 @@
       >
         <div class="container mx-auto px-6">
           <div class="text-center reveal-section">
-            <h2 class="font-orbitron text-3xl md:text-4xl text-white">
+            <h2 class="font-orbitron text-3xl md:text-4xl text-white" data-i18n="portfolio.title">
               Featured Projects
             </h2>
-            <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto">
+            <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto" data-i18n="portfolio.description">
               A selection of my recent software and DevOps projects. Hover over
               each card to see more details.
             </p>
@@ -306,10 +307,10 @@
       <section id="experience" class="py-16 md:py-24 overflow-hidden">
         <div class="container mx-auto px-6">
           <div class="text-center reveal-section">
-            <h2 class="font-orbitron text-3xl md:text-4xl text-white">
+            <h2 class="font-orbitron text-3xl md:text-4xl text-white" data-i18n="experience.title">
               Work Experience
             </h2>
-            <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto">
+            <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto" data-i18n="experience.description">
               My professional journey in the world of DevOps and cloud
               engineering.
             </p>
@@ -331,10 +332,10 @@
       <section id="blogs" class="py-16 md:py-24 bg-black/20 overflow-hidden">
         <div class="container mx-auto px-6">
           <div class="text-center reveal-section">
-            <h2 class="font-orbitron text-3xl md:text-4xl text-white">
+            <h2 class="font-orbitron text-3xl md:text-4xl text-white" data-i18n="blog.title">
               My Blog
             </h2>
-            <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto">
+            <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto" data-i18n="blog.description">
               Sharing my journey and insights in cloud computing and DevOps.
             </p>
           </div>
@@ -351,10 +352,10 @@
       >
         <div class="container mx-auto px-6">
           <div class="text-center reveal-section">
-            <h2 class="font-orbitron text-3xl md:text-4xl text-white">
+            <h2 class="font-orbitron text-3xl md:text-4xl text-white" data-i18n="photography.title">
               Photography Portfolio
             </h2>
-            <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto">
+            <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto" data-i18n="photography.description">
               Beyond the code, I enjoy capturing the world through my lens.
               Here's a glimpse of my creative side.
             </p>
@@ -403,10 +404,10 @@
                 ><i class="fab fa-twitter"></i
               ></a>
             </div>
-            <p class="font-orbitron mt-12 text-sm">
+            <p class="font-orbitron mt-12 text-sm" data-i18n="footer.builtWith">
               Built as part of the AWS Cloud Resume Challenge.
             </p>
-            <p class="mt-8 text-sm">
+            <p class="mt-8 text-sm" data-i18n="footer.copyright">
               &copy; 2025 Puneeth Y. All Rights Reserved.
             </p>
           </div>
@@ -432,6 +433,7 @@
       <span class="lightbox-close">&times;</span>
       <img id="lightbox-img" src="" alt="Full-size view" />
     </div>
+    <script src="./lang.js"></script>
     <script src="./index.js"></script>
   </body>
 </html>
@@ -443,9 +445,9 @@
     <img src="./assets/avatar-alt1.png" alt="Avatar" class="w-12 h-12 rounded-full border-2 border-sky-400">
   </div>
   <div class="flex-grow">
-    <h3 class="font-orbitron text-white text-lg">Welcome!</h3>
-    <p class="text-slate-300 text-sm">Thanks for visiting my portfolio.</p>
-    <p id="visitor-toast-number" class="text-sky-400 font-semibold mt-1">You are visitor #<span>0</span></p>
+    <h3 class="font-orbitron text-white text-lg" data-i18n="toast.welcome">Welcome!</h3>
+    <p class="text-slate-300 text-sm" data-i18n="toast.thanks">Thanks for visiting my portfolio.</p>
+    <p id="visitor-toast-number" class="text-sky-400 font-semibold mt-1"><span data-i18n="toast.visitor">You are visitor #</span><span>0</span></p>
   </div>
   <button id="toast-close" class="ml-2 text-slate-400 hover:text-white transition-colors">
     <i class="fas fa-times"></i>

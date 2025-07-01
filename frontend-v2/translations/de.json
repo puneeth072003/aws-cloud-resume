@@ -1,0 +1,130 @@
+{
+  "meta": {
+    "title": "Puneeth Y | Cloud-Lebenslauf",
+    "description": "Puneeth Y's Cloud Resume Challenge – DevOps, Cloud, AWS, Kubernetes und kreatives Portfolio. Entdecken Sie meine Reise, Fähigkeiten, Projekte und Erfolge.",
+    "keywords": "Puneeth Y, Cloud-Lebenslauf, DevOps, AWS, Kubernetes, Portfolio, Open Source, Ingenieur, Blog, Fotografie",
+    "author": "Puneeth Y",
+    "ogTitle": "Puneeth Y | Cloud-Lebenslauf | DevOps-Ingenieur & Cloud-Enthusiast",
+    "ogDescription": "Puneeth Y's Cloud Resume Challenge – DevOps, Cloud, AWS, Kubernetes und kreatives Portfolio.",
+    "twitterTitle": "Puneeth Y | Cloud-Lebenslauf | DevOps-Ingenieur & Cloud-Enthusiast",
+    "twitterDescription": "Puneeth Y's Cloud Resume Challenge – DevOps, Cloud, AWS, Kubernetes und kreatives Portfolio."
+  },
+  "navigation": {
+    "home": "Startseite",
+    "about": "Über mich",
+    "pipeline": "Pipeline",
+    "skills": "Fähigkeiten",
+    "projects": "Projekte",
+    "experience": "Erfahrung",
+    "blogs": "Blogs",
+    "photography": "Fotografie"
+  },
+  "hero": {
+    "name": "Puneeth Y",
+    "subtitle": "Ein angehender DevOps-Ingenieur & Cloud-Architekt, der widerstandsfähige, automatisierte und skalierbare Infrastruktur für die Technologie von morgen entwickelt."
+  },
+  "about": {
+    "title": "Über mich",
+    "intro": "Hallo, ich bin ein angehender DevOps-Ingenieur mit einer Leidenschaft für Automatisierung und Systemorchestrierung.",
+    "description": "Ich liebe es, effiziente und zuverlässige Infrastrukturen mit Tools wie Docker, Kubernetes und AWS zu erstellen. Ob es darum geht, Infrastructure as Code zu schreiben, Container zu verwalten oder CI/CD-Pipelines einzurichten – ich bin darauf fokussiert, Systeme zu schaffen, die Entwicklern das Leben erleichtern und ihnen helfen, schneller, sicherer und mit Vertrauen zu liefern.",
+    "hobby": "Außerhalb der Technik genieße ich die Fotografie und verbringe oft Zeit damit, die Natur mit meiner Kamera zu erkunden und Momente festzuhalten, wann immer ich kann."
+  },
+  "stats": {
+    "experience": "Jahre Erfahrung",
+    "visitors": "Besucher",
+    "poweredBy": "Powered by AWS Lambda",
+    "commitment": "Engagement für Automatisierung"
+  },
+  "skills": {
+    "title": "Meine Fähigkeiten",
+    "description": "Ich habe praktische Erfahrung mit HTML, CSS, JavaScript, Python und Golang. Ich bin auch vertraut mit Frameworks und Bibliotheken wie React, .NET, Django und Node.js und integriere sie oft in Full-Stack-Entwicklungsprojekte. Auf der Datenseite habe ich mit relationalen und nicht-relationalen Datenbanken gearbeitet, einschließlich MSSQL und MongoDB. Ich habe auch praktische Erfahrung mit AWS-Services gesammelt, insbesondere für die Bereitstellung und Skalierung von cloud-nativen Anwendungen. Mein Infrastrukturwissen umfasst die Arbeit mit Kubernetes, Helm, Terraform, Prometheus und Grafana, um Anwendungen effizient zu verwalten, bereitzustellen und zu überwachen. Neugierig auf mehr? Schauen Sie gerne meinen Lebenslauf an!",
+    "infrastructure": "Mein Infrastrukturwissen umfasst die Arbeit mit Kubernetes, Helm, Terraform, Prometheus und Grafana, um Anwendungen effizient zu verwalten, bereitzustellen und zu überwachen.",
+    "curious": "Neugierig auf mehr? Schauen Sie gerne meinen Lebenslauf an!",
+    "viewCV": "Lebenslauf ansehen"
+  },
+  "pipeline": {
+    "code": "Code",
+    "build": "Build",
+    "test": "Test",
+    "deploy": "Deploy"
+  },
+  "certifications": {
+    "title": "Auszeichnungen & Zertifizierungen",
+    "description": "Eine Sammlung von Zertifizierungen und Anerkennungen, die ich auf meiner Lern- und DevOps-Reise erhalten habe.",
+    "items": [
+      "Top 1% in GSSoC'ext 2024",
+      "1. Platz im abteilungsweiten Mini-Projekt",
+      "AZ-305 Microsoft Azure Architect Design Prerequisites",
+      "AWS Cloud Practitioner Essentials",
+      "Postman API Fundamentals Student Expert"
+    ]
+  },
+  "portfolio": {
+    "title": "Ausgewählte Projekte",
+    "description": "Eine Auswahl meiner neuesten Software- und DevOps-Projekte. Bewegen Sie den Mauszeiger über jede Karte, um weitere Details zu sehen.",
+    "projects": [
+      {
+        "title": "CODESOURCERER",
+        "description": "Ein Tool, das die Generierung von Testsuiten für Code-Änderungen mit einem Gemini-betriebenen Proxy-Server automatisiert und vollständig in GitHub integriert ist, um gefilterte Tests über Pull-Requests zu erstellen."
+      },
+      {
+        "title": "Vitista",
+        "description": "Eine umfassende persönliche Gesundheits-App, die darauf ausgelegt ist, Einzelpersonen auf ihrem Weg zu optimalem Wohlbefinden zu stärken."
+      },
+      {
+        "title": "Sputilties",
+        "description": "Eine Sammlung von Spotify-Utilities und Tools zur Verbesserung Ihres Musik-Streaming-Erlebnisses."
+      },
+      {
+        "title": "Huddle",
+        "description": "Eine kollaborative Meeting- und Teamkommunikationsplattform für Remote-Teams."
+      }
+    ]
+  },
+  "experience": {
+    "title": "Berufserfahrung",
+    "description": "Meine berufliche Reise in der Welt von DevOps und Cloud-Engineering.",
+    "jobs": [
+      {
+        "company": "HCLSoftware",
+        "position": "Praktikant",
+        "period": "Mär 2025 - Heute",
+        "description": "Mitwirkung als primäres Teammitglied bei der Architektur des kommenden cloud-nativen Migrations-Blueprints, mit Fokus auf die Definition der Zielarchitektur, des Technologie-Stacks und der Deployment-Patterns, die auf zukünftige Skalierbarkeit und Wartbarkeit zugeschnitten sind. Leitete mehrere gezielte Proof-of-Concepts (PoCs) zur Validierung neuer Tools, Frameworks und Deployment-Strategien, die direkt die finalen Architekturentscheidungen beeinflussten und das Release-Automatisierungs-Framework prägten, das später im Unternehmensprodukt übernommen wurde."
+      },
+      {
+        "company": "GirlScript Summer of Code (GSSoC-ext'24)",
+        "position": "Open Source Contributor",
+        "period": "Okt 2024 - Nov 2024",
+        "description": "Aktive Beiträge zu Open-Source-Repositories als Teil von GSSoC-ext 2024, demonstrierte starke Programmierfähigkeiten, Zusammenarbeit und Problemlösungsfähigkeiten. Erreichte eine Top-Platzierung von 281 von 60.000 Teilnehmern, was hohe technische Kompetenz und konsequentes Engagement während des gesamten Programms widerspiegelt."
+      }
+    ]
+  },
+  "blog": {
+    "title": "Mein Blog",
+    "description": "Teilen meiner Reise und Erkenntnisse im Cloud Computing und DevOps.",
+    "readBlog": "Blog lesen",
+    "posts": [
+      {
+        "title": "Mein Versuch bei der AWS Cloud Resume Challenge",
+        "excerpt": "Neugierig darauf, wie die Architektur hinter dieser Website mit modernen DevOps-Praktiken strukturiert ist? Ich erkläre alles in meinem Blog-Post als Teil der Cloud Resume Challenge.\n\nVon CI/CD bis Infrastructure as Code, alles ist dort drin. Schauen Sie es sich unbedingt an!"
+      }
+    ]
+  },
+  "photography": {
+    "title": "Fotografie-Portfolio",
+    "description": "Jenseits des Codes genieße ich es, die Welt durch meine Linse einzufangen. Hier ist ein Einblick in meine kreative Seite.",
+    "viewFull": "Vollständiges Fotografie-Portfolio ansehen"
+  },
+  "footer": {
+    "builtWith": "Erstellt als Teil der AWS Cloud Resume Challenge.",
+    "copyright": "© 2025 Puneeth Y. Alle Rechte vorbehalten."
+  },
+  "toast": {
+    "welcome": "Willkommen!",
+    "thanks": "Danke für den Besuch meines Portfolios.",
+    "visitor": "Sie sind Besucher #"
+  },
+  "ui": {
+    "close": "×"
+  }
+}

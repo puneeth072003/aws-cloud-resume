@@ -80,7 +80,7 @@ body {
 #bottom-dock {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   height: 70px;
   z-index: 1000;
   padding: 0 1.5rem;
@@ -88,16 +88,17 @@ body {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 40px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), 
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5),
               0 0 30px rgba(56, 189, 248, 0.3);
-  transition: width 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: width 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
   position: relative;
+  overflow: visible;
 }
 
 .dock-item {
   color: white;
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+  transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1),
+              left 0.2s cubic-bezier(0.4, 0.0, 0.2, 1),
               box-shadow 0.3s ease;
   display: flex;
   justify-content: center;
@@ -116,6 +117,28 @@ body {
 
 .dock-item:hover {
   color: var(--text-accent);
+}
+
+/* Language switcher specific styles */
+.dock-item .lang-text {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 4px rgba(56, 189, 248, 0.5);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.dock-item:hover .lang-text {
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
+  color: #38bdf8;
+}
+
+/* Dock separator */
+.dock-separator {
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
 }
 
 .dock-item i {

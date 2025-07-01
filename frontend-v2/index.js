@@ -1,32 +1,43 @@
 // --- DATA ---
 const navData = [
-  { href: "#home", label: "Home", icon: "fas fa-house" },
-  { href: "#about", label: "About", icon: "fas fa-user" },
-  { href: "#pipeline", label: "Pipeline", icon: "fas fa-file" },
-  { href: "#skills", label: "Skills", icon: "fas fa-trophy" },
-  { href: "#portfolio", label: "Projects", icon: "fas fa-laptop" },
-  { href: "#experience", label: "Experience", icon: "fa-briefcase" },
-  { href: "#blogs", label: "Blogs", icon: "fas fa-pen-nib" },
-  { href: "#photography", label: "Photography", icon: "fas fa-camera-retro" },
+  { href: "#home", labelKey: "navigation.home", icon: "fas fa-house" },
+  { href: "#about", labelKey: "navigation.about", icon: "fas fa-user" },
+  { href: "#pipeline", labelKey: "navigation.pipeline", icon: "fas fa-file" },
+  { href: "#skills", labelKey: "navigation.skills", icon: "fas fa-trophy" },
+  {
+    href: "#portfolio",
+    labelKey: "navigation.projects",
+    icon: "fas fa-laptop",
+  },
+  {
+    href: "#experience",
+    labelKey: "navigation.experience",
+    icon: "fa-briefcase",
+  },
+  { href: "#blogs", labelKey: "navigation.blogs", icon: "fas fa-pen-nib" },
+  {
+    href: "#photography",
+    labelKey: "navigation.photography",
+    icon: "fas fa-camera-retro",
+  },
 ];
 const certificationsData = [
-  { name: "Top 1% in GSSoC'ext 2024", icon: "fa fa-trophy" },
+  { nameKey: "certifications.items.0", icon: "fa fa-trophy" },
   {
-    name: "1st Place in the department-level mini-project",
+    nameKey: "certifications.items.1",
     icon: "fa fa-trophy",
   },
   {
-    name: "AZ-305 Microsoft Azure Architect Design Prerequisites",
+    nameKey: "certifications.items.2",
     icon: "fa fa-trophy",
   },
-  { name: "AWS Cloud Practitioner Essentials", icon: "fa fa-trophy" },
-  { name: "Postman API Fundamentals Student Expert", icon: "fa fa-trophy" },
+  { nameKey: "certifications.items.3", icon: "fa fa-trophy" },
+  { nameKey: "certifications.items.4", icon: "fa fa-trophy" },
 ];
 const portfolioData = [
   {
-    title: "CODESOURCERER",
-    description:
-      "A tool that automates test suite generation for code changes using a Gemini-powered proxy server, completely integrates with GitHub to create filtered tests via pull requests.",
+    titleKey: "portfolio.projects.0.title",
+    descriptionKey: "portfolio.projects.0.description",
     icon: "fa-code",
     video: "./videos/CS-demo.mp4",
     links: {
@@ -35,9 +46,8 @@ const portfolioData = [
     },
   },
   {
-    title: "Vitista",
-    description:
-      "A comprehensive personal healthcare app designed to empower individuals on their journey to optimal well-being.",
+    titleKey: "portfolio.projects.1.title",
+    descriptionKey: "portfolio.projects.1.description",
     icon: "fa-building-columns",
     video: "./videos/vitista.mp4",
     links: {
@@ -46,9 +56,8 @@ const portfolioData = [
     },
   },
   {
-    title: "Sputilties",
-    description:
-      "A collection of Spotify utilities and tools to enhance your music streaming experience.",
+    titleKey: "portfolio.projects.2.title",
+    descriptionKey: "portfolio.projects.2.description",
     icon: "fa-music",
     video: "./videos/Sputilties-demo.mp4",
     links: {
@@ -57,9 +66,8 @@ const portfolioData = [
     },
   },
   {
-    title: "Huddle",
-    description:
-      "A collaborative meeting and team communication platform for remote teams.",
+    titleKey: "portfolio.projects.3.title",
+    descriptionKey: "portfolio.projects.3.description",
     icon: "fa-users",
     video: "./videos/huddle.mp4",
     links: {
@@ -70,9 +78,8 @@ const portfolioData = [
 ];
 const blogData = [
   {
-    title: "My Attempt at the AWS Cloud Resume Challenge",
-    excerpt:
-      "Curious about how the architecture behind this website is structured using modern DevOps practices? I break it all down in my blog post as part of the Cloud Resume Challenge.\n\nFrom CI/CD to infrastructure as code, it's all in there. Be sure to check it out!",
+    titleKey: "blog.posts.0.title",
+    excerptKey: "blog.posts.0.excerpt",
     link: "https://dev.to/puneeth072003/my-attempt-at-the-aws-cloud-resume-challenge-a-journey-in-the-cloud-13gd",
     featured: true,
     image: "./assets/Cover.png",
@@ -108,10 +115,10 @@ const photographyData = [
 // Add experience data
 const experienceData = [
   {
-    company: "HCLSoftware",
-    position: "Intern",
-    period: "Mar 2025 - Present",
-    description:
+    companyKey: "experience.jobs.0.company",
+    positionKey: "experience.jobs.0.position",
+    periodKey: "experience.jobs.0.period",
+    descriptionKey:
       "Contributed as a primary team member in architecting the upcoming cloud-native migration blueprint, focusing on defining the target architecture, technology stack, and deployment patterns tailored for future scalability and maintainability. Led several targeted proofs of concept (PoCs) to validate new tools, frameworks, and deployment strategies, directly influencing final architecture decisions and shaping the release automation framework later adopted in the company’s product.",
     technologies: [
       "AWS",
@@ -123,22 +130,31 @@ const experienceData = [
     ],
   },
   {
-    company: "GirlScript Summer of Code (GSSoC-ext'24)",
-    position: "Open Source Contributor",
-    period: "Oct 2024 - Nov 2024",
-    description:
+    companyKey: "experience.jobs.1.company",
+    positionKey: "experience.jobs.1.position",
+    periodKey: "experience.jobs.1.period",
+    descriptionKey:
       "Actively contributed to open-source repositories as part of GSSoC-ext 2024, demonstrating strong coding proficiency, collaboration, and problem-solving abilities. Achieved a top ranking of 281 out of 60,000 participants, reflecting high technical competence and consistent engagement throughout the program.",
     technologies: ["Git", "GitHub", "React", "Markdown", "HTML", "CSS"],
   },
 ];
 
 // --- CORE LOGIC ---
-function main() {
+async function main() {
   console.log("Initializing main function");
-  
+
   // Check if data is properly loaded
   checkDataLoading();
-  
+
+  // Listen for language changes
+  document.addEventListener("languageChanged", handleLanguageChange);
+
+  // Wait for i18n to be ready
+  if (window.i18n) {
+    // Wait a bit for i18n to initialize
+    await new Promise((resolve) => setTimeout(resolve, 300));
+  }
+
   // Rest of the main function...
   try {
     setupHeroAnimation();
@@ -147,11 +163,11 @@ function main() {
     const heroCanvas = document.getElementById("hero-canvas");
     if (heroCanvas) heroCanvas.style.display = "none";
   }
-  
+
   setupSkillsRadar();
   setupScrollAnimations();
   setupEasterEggs(); // Add Easter Eggs
-  
+
   console.log("Populating content...");
   try {
     populateDock();
@@ -164,13 +180,13 @@ function main() {
     console.error("Failed to populate content:", e);
     console.error(e.stack);
   }
-  
+
   setupDockAnimation();
   setupPhotographyCarousel();
   setupLightbox();
   setupThemeSwitcher();
   updateCounter(); // This will now also show the toast
-  
+
   ensureBottomDockOnTop();
 }
 
@@ -241,113 +257,111 @@ function setupHeroAnimation() {
 function setupDockAnimation() {
   const dock = document.getElementById("bottom-dock");
   const items = Array.from(dock.querySelectorAll(".dock-item"));
-  
+  const separators = Array.from(dock.querySelectorAll(".dock-separator"));
+
   if (!dock || items.length === 0) return;
-  
-  // Calculate initial width based on items
-  const itemWidth = 50; // Base width of each item
-  const gap = 16; // Gap between items (1rem = ~16px)
-  const padding = 48; // Padding on both sides (1.5rem = ~24px on each side)
-  
-  // Initialize dock width
-  const initialWidth = items.length * itemWidth + (items.length - 1) * gap + padding;
-  dock.style.width = `${initialWidth}px`;
-  
-  // Set initial positions for all items - evenly distributed
-  positionItemsEvenly(dock, items, itemWidth, gap, padding);
-  
+
+  // MacBook dock configuration
+  const itemSize = 50; // Base size of each item
+  const gap = 12; // Gap between items
+  const padding = 24; // Padding on both sides
+  const maxScale = 1.4; // Maximum scale factor (reduced from 1.8)
+  const effectRadius = 80; // Radius of magnification effect
+
+  // Calculate initial dock width
+  const baseWidth =
+    items.length * itemSize + (items.length - 1) * gap + padding * 2;
+  dock.style.width = `${baseWidth}px`;
+
+  // Initialize items with proper positioning
+  items.forEach((item, index) => {
+    item.style.position = "absolute";
+    item.style.width = `${itemSize}px`;
+    item.style.height = `${itemSize}px`;
+    item.style.display = "flex";
+    item.style.alignItems = "center";
+    item.style.justifyContent = "center";
+    item.style.transformOrigin = "center bottom";
+
+    // Set initial position
+    const initialLeft = padding + index * (itemSize + gap);
+    item.style.left = `${initialLeft}px`;
+    item.style.transform = "scale(1)";
+  });
+
+  let isAnimating = false;
+
   dock.addEventListener("mousemove", (e) => {
+    if (isAnimating) return;
+
     const dockRect = dock.getBoundingClientRect();
     const mouseX = e.clientX - dockRect.left;
-    
-    // Calculate scales for all items
-    const scales = items.map((item) => {
-      const itemRect = item.getBoundingClientRect();
-      const itemCenterX = itemRect.left - dockRect.left + itemRect.width / 2;
-      const distance = Math.abs(mouseX - itemCenterX);
-      
-      // Scale factors
-      const maxScale = 1.6;
-      const effectRadius = 80;
-      
-      let scale = 1.0;
+
+    // Calculate scales and positions
+    const scales = [];
+    const positions = [];
+    let totalWidth = padding;
+
+    items.forEach((item, index) => {
+      const itemCenter = padding + index * (itemSize + gap) + itemSize / 2;
+      const distance = Math.abs(mouseX - itemCenter);
+
+      // Calculate scale with smooth falloff
+      let scale = 1;
       if (distance < effectRadius) {
-        scale = maxScale - (distance / effectRadius) * (maxScale - 1.0);
+        const normalizedDistance = distance / effectRadius;
+        scale =
+          1 + (maxScale - 1) * Math.cos((normalizedDistance * Math.PI) / 2);
       }
-      
-      return scale;
+
+      scales.push(scale);
     });
-    
-    // Calculate expanded dock width based on scales
-    let expandedWidth = padding;
-    scales.forEach(scale => {
-      expandedWidth += itemWidth * scale;
-    });
-    expandedWidth += gap * (items.length - 1);
-    
-    // Update dock width
-    dock.style.width = `${expandedWidth}px`;
-    
-    // Position items with proper spacing
-    let currentPosition = padding / 2;
-    
+
+    // Calculate new positions based on scales
     items.forEach((item, index) => {
       const scale = scales[index];
-      
-      // Apply scale transform
-      item.style.transform = `scale(${scale.toFixed(2)})`;
-      
-      // Position the item
-      item.style.position = 'absolute';
-      item.style.left = `${currentPosition}px`;
-      
-      // Update position for next item
-      currentPosition += (itemWidth * scale) + gap;
-      
-      // Add highlight effect for the active item
-      if (scale > 1.3) {
-        item.style.boxShadow = `0 0 15px rgba(56, 189, 248, ${((scale - 1) / 0.6).toFixed(2)})`;
+      const scaledWidth = itemSize * scale;
+
+      positions.push(totalWidth);
+      totalWidth += scaledWidth + gap;
+    });
+
+    // Remove last gap and add final padding
+    totalWidth = totalWidth - gap + padding;
+
+    // Update dock width smoothly
+    dock.style.width = `${totalWidth}px`;
+
+    // Apply transformations
+    items.forEach((item, index) => {
+      const scale = scales[index];
+      const position = positions[index];
+
+      item.style.left = `${position}px`;
+      item.style.transform = `scale(${scale})`;
+
+      // Add glow effect for highly scaled items
+      if (scale > 1.4) {
+        const glowIntensity = (scale - 1) / (maxScale - 1);
+        item.style.filter = `drop-shadow(0 0 ${
+          10 * glowIntensity
+        }px rgba(56, 189, 248, ${0.6 * glowIntensity}))`;
       } else {
-        item.style.boxShadow = 'none';
+        item.style.filter = "none";
       }
     });
   });
-  
-  dock.addEventListener("mouseleave", () => {
-    // Reset dock width to initial size
-    dock.style.width = `${initialWidth}px`;
-    
-    // Reset all items to evenly distributed positions
-    positionItemsEvenly(dock, items, itemWidth, gap, padding);
-    
-    // Reset scales and shadows
-    items.forEach((item) => {
-      item.style.transform = "scale(1)";
-      item.style.boxShadow = 'none';
-    });
-  });
-}
 
-// Helper function to position items evenly across the dock
-function positionItemsEvenly(dock, items, itemWidth, gap, padding) {
-  const dockWidth = items.length * itemWidth + (items.length - 1) * gap + padding;
-  const availableSpace = dockWidth - padding;
-  const totalItemsWidth = items.length * itemWidth;
-  const totalGapsWidth = availableSpace - totalItemsWidth;
-  
-  // Calculate even gap size
-  const evenGap = items.length > 1 ? totalGapsWidth / (items.length - 1) : 0;
-  
-  // Position each item
-  let currentPosition = padding / 2;
-  
-  items.forEach((item, index) => {
-    // Position the item
-    item.style.position = 'absolute';
-    item.style.left = `${currentPosition}px`;
-    
-    // Update position for next item
-    currentPosition += itemWidth + evenGap;
+  dock.addEventListener("mouseleave", () => {
+    // Smooth reset animation
+    dock.style.width = `${baseWidth}px`;
+
+    items.forEach((item, index) => {
+      const initialLeft = padding + index * (itemSize + gap);
+      item.style.left = `${initialLeft}px`;
+      item.style.transform = "scale(1)";
+      item.style.filter = "none";
+    });
   });
 }
 
@@ -363,24 +377,26 @@ async function updateCounter() {
   if (!sessionStorage.getItem("counterIncremented")) {
     method = "POST";
   }
-  
+
   try {
     const response = await fetch(COUNTER_URL, { method });
     if (!response.ok) throw new Error("Failed to fetch");
     const data = await response.json();
-    
+
     // Update the counter display
     counter.innerHTML = data.views;
-    
+
     // Also update the visitor number in the toast
-    const visitorToastNumber = document.querySelector("#visitor-toast-number span");
+    const visitorToastNumber = document.querySelector(
+      "#visitor-toast-number span"
+    );
     if (visitorToastNumber) {
       visitorToastNumber.textContent = data.views;
     }
-    
+
     // Show the greeting toast
     showGreetingToast();
-    
+
     if (method === "POST") {
       sessionStorage.setItem("counterIncremented", "true");
     }
@@ -491,30 +507,62 @@ function animateCounter(el, from, to, duration) {
 function createDockItem(item) {
   const dockItem = document.createElement("div");
   dockItem.className = "dock-item";
-  
-  // Create icon
-  const icon = document.createElement("i");
-  icon.className = `fas ${item.icon}`;
-  dockItem.appendChild(icon);
-  
-  // Add href if available
-  if (item.href) {
-    dockItem.addEventListener("click", function () {
-      document.querySelector(item.href).scrollIntoView({
-        behavior: "smooth",
+
+  if (item.id === "language-switcher") {
+    // Create language switcher with just text (no icon)
+    const textSpan = document.createElement("span");
+    textSpan.className = "lang-text";
+    textSpan.textContent = item.text || "EN";
+    textSpan.style.fontSize = "14px";
+    textSpan.style.fontWeight = "bold";
+    textSpan.style.fontFamily = "'Orbitron', monospace";
+
+    dockItem.appendChild(textSpan);
+    dockItem.addEventListener("click", toggleLanguage);
+
+    console.log(`Created language switcher with text: ${item.text}`);
+  } else {
+    // Create regular icon
+    const icon = document.createElement("i");
+    icon.className = `fas ${item.icon}`;
+    dockItem.appendChild(icon);
+
+    // Add tooltip with translated label if available
+    if (item.labelKey) {
+      const label = getTranslation(item.labelKey) || item.labelKey;
+      dockItem.setAttribute("title", label);
+    }
+
+    // Add href if available
+    if (item.href) {
+      dockItem.addEventListener("click", function () {
+        document.querySelector(item.href).scrollIntoView({
+          behavior: "smooth",
+        });
+
+        // Close mobile menu if open
+        const mobileMenu = document.getElementById("mobile-dock-menu");
+        if (mobileMenu && mobileMenu.classList.contains("open")) {
+          mobileMenu.classList.remove("open");
+        }
       });
-      
-      // Close mobile menu if open
-      const mobileMenu = document.getElementById("mobile-dock-menu");
-      if (mobileMenu && mobileMenu.classList.contains("open")) {
-        mobileMenu.classList.remove("open");
-      }
-    });
-  } else if (item.id === "theme-switcher") {
-    dockItem.addEventListener("click", toggleTheme);
+    } else if (item.id === "theme-switcher") {
+      dockItem.addEventListener("click", toggleTheme);
+    }
   }
-  
+
   return dockItem;
+}
+
+function createSeparator() {
+  const separator = document.createElement("div");
+  separator.className = "dock-separator";
+  separator.style.width = "1px";
+  separator.style.height = "30px";
+  separator.style.background = "rgba(255, 255, 255, 0.3)";
+  separator.style.margin = "0 8px";
+  separator.style.alignSelf = "center";
+  return separator;
 }
 
 function populateDock() {
@@ -532,10 +580,34 @@ function populateDock() {
     label: "", // Empty label to prevent tooltip
     icon: "fa-moon",
   };
-  const allNavData = [...navData, themeItemData];
 
-  allNavData.forEach((item) => {
-    // Create dock items without tooltips
+  // Language switcher button data - get current language for display
+  const currentLang = window.i18n ? window.i18n.getCurrentLanguage() : "en";
+  const langItemData = {
+    id: "language-switcher",
+    label: "", // Empty label to prevent tooltip
+    text: currentLang.toUpperCase(), // Show current language
+  };
+
+  const toggleableItems = [themeItemData, langItemData];
+
+  // Add navigation items
+  navData.forEach((item) => {
+    const desktopItem = createDockItem(item);
+    if (item.id) desktopItem.id = `desktop-${item.id}`;
+    desktopDock.appendChild(desktopItem);
+
+    const mobileItem = createDockItem(item);
+    if (item.id) mobileItem.id = `mobile-${item.id}`;
+    mobileMenu.appendChild(mobileItem);
+  });
+
+  // Add separator before the last two toggle items
+  const separator = createSeparator();
+  desktopDock.appendChild(separator);
+
+  // Add toggleable items (theme and language) - these are the last two items
+  toggleableItems.forEach((item) => {
     const desktopItem = createDockItem(item);
     if (item.id) desktopItem.id = `desktop-${item.id}`;
     desktopDock.appendChild(desktopItem);
@@ -554,9 +626,9 @@ function populateDock() {
   }
 
   // Ensure z-index is applied
-  if (desktopDock) desktopDock.style.zIndex = '1000';
-  if (mobileMenu) mobileMenu.style.zIndex = '999';
-  if (mobileToggle) mobileToggle.style.zIndex = '1000';
+  if (desktopDock) desktopDock.style.zIndex = "1000";
+  if (mobileMenu) mobileMenu.style.zIndex = "999";
+  if (mobileToggle) mobileToggle.style.zIndex = "1000";
 }
 
 function setupThemeSwitcher() {
@@ -603,12 +675,20 @@ function setupThemeSwitcher() {
 function populateCertifications() {
   const container = document.getElementById("certifications-list");
   if (!container) return;
+
+  // Clear existing content
+  container.innerHTML = "";
+
   certificationsData.forEach((cert) => {
     const certEl = document.createElement("div");
     certEl.className = "flex items-center gap-4 text-slate-300";
+
+    // Get translation for the certification name
+    const certName = getTranslation(cert.nameKey) || cert.nameKey;
+
     certEl.innerHTML = `
                     <i class="${cert.icon} text-sky-400 text-2xl w-8 text-center"></i>
-                    <p class="text-lg">${cert.name}</p>
+                    <p class="text-lg">${certName}</p>
                 `;
     container.appendChild(certEl);
   });
@@ -649,7 +729,7 @@ function populatePortfolio() {
           project.video
         }" autoplay loop muted class="w-full h-48 object-cover"></video>
         <div class="video-title absolute bottom-0 left-0 w-full bg-black/50 p-2 text-white font-orbitron text-lg">
-          ${project.title}
+          ${getTranslation(project.titleKey) || project.titleKey}
         </div>
       </div>
       <div class="p-6">
@@ -674,7 +754,9 @@ function populatePortfolio() {
             }
           </div>
         </div>
-        <p class="text-slate-400 mt-2">${project.description}</p>
+        <p class="text-slate-400 mt-2">${
+          getTranslation(project.descriptionKey) || project.descriptionKey
+        }</p>
       </div>
     `;
 
@@ -717,10 +799,10 @@ function populateBlogs() {
       </div>
       <div class="p-8 md:w-3/5">
         <h3 class="font-orbitron text-2xl md:text-3xl text-white">${
-          blog.title
+          getTranslation(blog.titleKey) || blog.titleKey
         }</h3>
         <div class="text-slate-300 mt-4 text-md md:text-lg space-y-4">
-          ${blog.excerpt
+          ${(getTranslation(blog.excerptKey) || blog.excerptKey)
             .split("\n\n")
             .map((para) => `<p>${para}</p>`)
             .join("")}
@@ -728,7 +810,9 @@ function populateBlogs() {
         <a href="${
           blog.link
         }" target="_blank" class="inline-block mt-6 px-6 py-3 bg-sky-600 hover:bg-sky-500 text-white font-semibold rounded-lg transition-colors">
-          Read The Blog →
+          <span data-i18n="blog.readBlog">${
+            getTranslation("blog.readBlog") || "Read The Blog"
+          }</span> →
         </a>
       </div>
     </div>
@@ -1037,11 +1121,19 @@ function populateExperience() {
     jobEl.innerHTML = `
       <div class="glass-pane p-6 rounded-xl hover:border-sky-400 transition-all">
         <div class="flex justify-between items-start mb-3">
-          <h3 class="font-orbitron text-xl text-white">${job.company}</h3>
-          <span class="text-sky-400 text-sm font-semibold">${job.period}</span>
+          <h3 class="font-orbitron text-xl text-white">${
+            getTranslation(job.companyKey) || job.companyKey
+          }</h3>
+          <span class="text-sky-400 text-sm font-semibold">${
+            getTranslation(job.periodKey) || job.periodKey
+          }</span>
         </div>
-        <h4 class="text-sky-300 font-semibold mb-3">${job.position}</h4>
-        <p class="text-slate-400 mb-4">${job.description}</p>
+        <h4 class="text-sky-300 font-semibold mb-3">${
+          getTranslation(job.positionKey) || job.positionKey
+        }</h4>
+        <p class="text-slate-400 mb-4">${
+          getTranslation(job.descriptionKey) || job.descriptionKey
+        }</p>
         <div class="flex flex-wrap gap-2">
           ${job.technologies
             .map(
@@ -1086,28 +1178,28 @@ document.addEventListener("DOMContentLoaded", () => {
 // Add a function to ensure the bottom dock is always on top
 function ensureBottomDockOnTop() {
   // Get all elements that might overlap with the dock
-  const bottomNav = document.getElementById('bottom-nav');
+  const bottomNav = document.getElementById("bottom-nav");
   if (!bottomNav) return;
-  
+
   // Force a repaint to ensure z-index is applied
-  bottomNav.style.display = 'none';
+  bottomNav.style.display = "none";
   setTimeout(() => {
-    bottomNav.style.display = '';
+    bottomNav.style.display = "";
   }, 10);
-  
+
   // Add event listener to ensure dock stays on top during scrolling
-  window.addEventListener('scroll', () => {
-    bottomNav.style.zIndex = '1000';
+  window.addEventListener("scroll", () => {
+    bottomNav.style.zIndex = "1000";
   });
-  
+
   // Check for any dynamically added content that might overlap
   const observer = new MutationObserver(() => {
-    bottomNav.style.zIndex = '1000';
+    bottomNav.style.zIndex = "1000";
   });
-  
-  observer.observe(document.body, { 
-    childList: true, 
-    subtree: true 
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
   });
 }
 
@@ -1115,24 +1207,24 @@ function ensureBottomDockOnTop() {
 function showGreetingToast() {
   const toast = document.getElementById("greeting-toast");
   const closeBtn = document.getElementById("toast-close");
-  
+
   if (!toast || !closeBtn) return;
-  
+
   // Remove any existing animations
   toast.classList.remove("show", "hide");
-  
+
   // Force a reflow to ensure the animation restarts
   void toast.offsetWidth;
-  
+
   // Show the toast with animation
   toast.classList.add("show");
-  
+
   // Set up close button
   closeBtn.addEventListener("click", () => {
     toast.classList.remove("show");
     toast.classList.add("hide");
   });
-  
+
   // Auto-hide after 6 seconds
   setTimeout(() => {
     if (toast.classList.contains("show")) {
@@ -1144,28 +1236,40 @@ function showGreetingToast() {
 
 // Add Easter Egg: Konami Code
 function setupEasterEggs() {
-  let konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+  let konamiCode = [
+    "ArrowUp",
+    "ArrowUp",
+    "ArrowDown",
+    "ArrowDown",
+    "ArrowLeft",
+    "ArrowRight",
+    "ArrowLeft",
+    "ArrowRight",
+    "b",
+    "a",
+  ];
   let konamiPosition = 0;
-  
-  document.addEventListener('keydown', function(e) {
+
+  document.addEventListener("keydown", function (e) {
     if (e.key === konamiCode[konamiPosition]) {
       konamiPosition++;
       if (konamiPosition === konamiCode.length) {
         // Trigger easter egg - rainbow effect on name
-        const name = document.querySelector('h1.font-orbitron');
+        const name = document.querySelector("h1.font-orbitron");
         if (name) {
           // Create rainbow effect
-          name.style.background = 'linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet)';
-          name.style.backgroundSize = '200% auto';
-          name.style.webkitBackgroundClip = 'text';
-          name.style.backgroundClip = 'text';
-          name.style.color = 'transparent';
-          name.style.animation = 'rainbow 2s linear infinite';
-          
+          name.style.background =
+            "linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet)";
+          name.style.backgroundSize = "200% auto";
+          name.style.webkitBackgroundClip = "text";
+          name.style.backgroundClip = "text";
+          name.style.color = "transparent";
+          name.style.animation = "rainbow 2s linear infinite";
+
           // Add rainbow animation if not already defined
-          if (!document.querySelector('style#rainbow-style')) {
-            const style = document.createElement('style');
-            style.id = 'rainbow-style';
+          if (!document.querySelector("style#rainbow-style")) {
+            const style = document.createElement("style");
+            style.id = "rainbow-style";
             style.textContent = `
               @keyframes rainbow {
                 0% { background-position: 0% 50%; }
@@ -1174,39 +1278,44 @@ function setupEasterEggs() {
             `;
             document.head.appendChild(style);
           }
-          
+
           // Show a special toast
           const toast = document.getElementById("greeting-toast");
           if (toast) {
-            const toastTitle = toast.querySelector('h3');
-            const toastMessage = toast.querySelector('p');
-            const visitorNumber = toast.querySelector('#visitor-toast-number');
-            
-            if (toastTitle) toastTitle.textContent = "🌈 Konami Code Activated!";
-            if (toastMessage) toastMessage.textContent = "You found a secret! Enjoy the rainbow effect.";
+            const toastTitle = toast.querySelector("h3");
+            const toastMessage = toast.querySelector("p");
+            const visitorNumber = toast.querySelector("#visitor-toast-number");
+
+            if (toastTitle)
+              toastTitle.textContent = "🌈 Konami Code Activated!";
+            if (toastMessage)
+              toastMessage.textContent =
+                "You found a secret! Enjoy the rainbow effect.";
             if (visitorNumber) visitorNumber.style.display = "none";
-            
+
             // Show the toast
             toast.classList.remove("show", "hide");
             void toast.offsetWidth;
             toast.classList.add("show");
-            
+
             // Auto-hide after 6 seconds
             setTimeout(() => {
               if (toast.classList.contains("show")) {
                 toast.classList.remove("show");
                 toast.classList.add("hide");
-                
+
                 // Reset toast content after hiding
                 setTimeout(() => {
                   if (toastTitle) toastTitle.textContent = "Welcome!";
-                  if (toastMessage) toastMessage.textContent = "Thanks for visiting my portfolio.";
+                  if (toastMessage)
+                    toastMessage.textContent =
+                      "Thanks for visiting my portfolio.";
                   if (visitorNumber) visitorNumber.style.display = "block";
                 }, 500);
               }
             }, 6000);
           }
-          
+
           konamiPosition = 0;
         }
       }
@@ -1219,10 +1328,10 @@ function setupEasterEggs() {
 // Update the main function to include the Easter Eggs
 function main() {
   console.log("Initializing main function");
-  
+
   // Check if data is properly loaded
   checkDataLoading();
-  
+
   // Rest of the main function...
   try {
     setupHeroAnimation();
@@ -1231,11 +1340,11 @@ function main() {
     const heroCanvas = document.getElementById("hero-canvas");
     if (heroCanvas) heroCanvas.style.display = "none";
   }
-  
+
   setupSkillsRadar();
   setupScrollAnimations();
   setupEasterEggs(); // Add Easter Eggs
-  
+
   console.log("Populating content...");
   try {
     populateDock();
@@ -1248,37 +1357,141 @@ function main() {
     console.error("Failed to populate content:", e);
     console.error(e.stack);
   }
-  
+
   setupDockAnimation();
   setupPhotographyCarousel();
   setupLightbox();
   setupThemeSwitcher();
   updateCounter(); // This will now also show the toast
-  
+
   ensureBottomDockOnTop();
+}
+
+// Language switcher setup
+function setupLanguageSwitcher() {
+  console.log("Setting up language switcher...");
+
+  // Wait a bit for DOM to be ready, then update language display
+  setTimeout(() => {
+    updateLanguageDisplay();
+  }, 500);
+}
+
+async function toggleLanguage() {
+  console.log("toggleLanguage called");
+  if (window.i18n) {
+    const currentLang = window.i18n.getCurrentLanguage();
+    const newLang = currentLang === "en" ? "de" : "en";
+    console.log(`Switching language from ${currentLang} to ${newLang}`);
+
+    try {
+      await window.i18n.switchLanguage(newLang);
+      console.log("Language switch completed, updating display...");
+
+      // Force update the language display immediately
+      updateLanguageDisplay();
+    } catch (error) {
+      console.error("Error switching language:", error);
+    }
+  } else {
+    console.error("window.i18n not available");
+  }
+}
+
+function updateLanguageDisplay() {
+  const langSwitchers = [
+    document.getElementById("desktop-language-switcher"),
+    document.getElementById("mobile-language-switcher"),
+  ];
+
+  const currentLang = window.i18n ? window.i18n.getCurrentLanguage() : "en";
+  const displayText = currentLang.toUpperCase();
+
+  console.log(`Updating language display to: ${displayText}`);
+
+  langSwitchers.forEach((switcher, index) => {
+    if (switcher) {
+      // Find the text span within the switcher
+      const textSpan =
+        switcher.querySelector(".lang-text") || switcher.querySelector("span");
+
+      if (textSpan) {
+        textSpan.textContent = displayText;
+        console.log(
+          `Updated language text to: ${displayText} for switcher ${index}`
+        );
+      } else {
+        console.warn(`No text span found in language switcher ${index}`);
+      }
+    } else {
+      console.log(`Language switcher ${index} element not found`);
+    }
+  });
+}
+
+function handleLanguageChange(event) {
+  const { language } = event.detail;
+  console.log(`Language changed to: ${language}`);
+
+  // Update dynamic content that uses translation keys
+  updateDynamicTranslations();
+
+  // Update language display in dock
+  updateLanguageDisplay();
+}
+
+function updateDynamicTranslations() {
+  // Re-populate content with new translations
+  try {
+    console.log("Updating dynamic translations...");
+    populateDock();
+    populatePortfolio();
+    populateCertifications();
+    populateExperience();
+    populateBlogs();
+
+    // Re-setup dock animation after repopulating
+    setupDockAnimation();
+
+    console.log("Dynamic translations updated successfully");
+  } catch (e) {
+    console.error("Failed to update dynamic translations:", e);
+  }
+}
+
+// Helper function to get translation from global i18n instance
+function getTranslation(key) {
+  if (window.i18n) {
+    return window.i18n.getTranslation(key);
+  }
+  return null;
 }
 
 // Add a function to handle theme switching
 function toggleTheme() {
   const body = document.body;
   const isDark = !body.classList.contains("light-theme");
-  
+
   if (isDark) {
     body.classList.add("light-theme");
     localStorage.setItem("theme", "light");
-    
+
     // Update theme icon
-    const themeIcons = document.querySelectorAll("#desktop-theme-switcher i, #mobile-theme-switcher i");
-    themeIcons.forEach(icon => {
+    const themeIcons = document.querySelectorAll(
+      "#desktop-theme-switcher i, #mobile-theme-switcher i"
+    );
+    themeIcons.forEach((icon) => {
       icon.className = "fas fa-sun";
     });
   } else {
     body.classList.remove("light-theme");
     localStorage.setItem("theme", "dark");
-    
+
     // Update theme icon
-    const themeIcons = document.querySelectorAll("#desktop-theme-switcher i, #mobile-theme-switcher i");
-    themeIcons.forEach(icon => {
+    const themeIcons = document.querySelectorAll(
+      "#desktop-theme-switcher i, #mobile-theme-switcher i"
+    );
+    themeIcons.forEach((icon) => {
       icon.className = "fas fa-moon";
     });
   }
@@ -1287,13 +1500,15 @@ function toggleTheme() {
 // Setup theme switcher based on saved preference
 function setupThemeSwitcher() {
   const savedTheme = localStorage.getItem("theme");
-  
+
   if (savedTheme === "light") {
     document.body.classList.add("light-theme");
-    
+
     // Update theme icon
-    const themeIcons = document.querySelectorAll("#desktop-theme-switcher i, #mobile-theme-switcher i");
-    themeIcons.forEach(icon => {
+    const themeIcons = document.querySelectorAll(
+      "#desktop-theme-switcher i, #mobile-theme-switcher i"
+    );
+    themeIcons.forEach((icon) => {
       icon.className = "fas fa-sun";
     });
   }
