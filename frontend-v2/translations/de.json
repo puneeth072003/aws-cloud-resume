@@ -62,53 +62,34 @@
   "portfolio": {
     "title": "Ausgewählte Projekte",
     "description": "Eine Auswahl meiner neuesten Software- und DevOps-Projekte. Bewegen Sie den Mauszeiger über jede Karte, um weitere Details zu sehen.",
-    "projects": [
-      {
-        "title": "CODESOURCERER",
-        "description": "Ein Tool, das die Generierung von Testsuiten für Code-Änderungen mit einem Gemini-betriebenen Proxy-Server automatisiert und vollständig in GitHub integriert ist, um gefilterte Tests über Pull-Requests zu erstellen."
-      },
-      {
-        "title": "Vitista",
-        "description": "Eine umfassende persönliche Gesundheits-App, die darauf ausgelegt ist, Einzelpersonen auf ihrem Weg zu optimalem Wohlbefinden zu stärken."
-      },
-      {
-        "title": "Sputilties",
-        "description": "Eine Sammlung von Spotify-Utilities und Tools zur Verbesserung Ihres Musik-Streaming-Erlebnisses."
-      },
-      {
-        "title": "Huddle",
-        "description": "Eine kollaborative Meeting- und Teamkommunikationsplattform für Remote-Teams."
-      }
-    ]
+    "portfolioProject0title": "CODESOURCERER",
+    "portfolioProject0title": "CODESOURCERER",
+    "portfolioProject1title": "Vitista",
+    "portfolioProject2title": "Sputilties",
+    "portfolioProject3title": "Huddle",
+    "portfolioProject0description": "Ein Tool, das die Generierung von Testsuiten für Code-Änderungen mit einem Gemini-betriebenen Proxy-Server automatisiert und vollständig in GitHub integriert ist, um gefilterte Tests über Pull-Requests zu erstellen.",
+    "portfolioProject1description": "Eine umfassende persönliche Gesundheits-App, die darauf ausgelegt ist, Einzelpersonen auf ihrem Weg zu optimalem Wohlbefinden zu stärken.",
+    "portfolioProject2description": "Eine Sammlung von Spotify-Utilities und Tools zur Verbesserung Ihres Musik-Streaming-Erlebnisses.",
+    "portfolioProject3description": "Eine kollaborative Meeting- und Teamkommunikationsplattform für Remote-Teams."
   },
   "experience": {
     "title": "Berufserfahrung",
     "description": "Meine berufliche Reise in der Welt von DevOps und Cloud-Engineering.",
-    "jobs": [
-      {
-        "company": "HCLSoftware",
-        "position": "Praktikant",
-        "period": "Mär 2025 - Heute",
-        "description": "Mitwirkung als primäres Teammitglied bei der Architektur des kommenden cloud-nativen Migrations-Blueprints, mit Fokus auf die Definition der Zielarchitektur, des Technologie-Stacks und der Deployment-Patterns, die auf zukünftige Skalierbarkeit und Wartbarkeit zugeschnitten sind. Leitete mehrere gezielte Proof-of-Concepts (PoCs) zur Validierung neuer Tools, Frameworks und Deployment-Strategien, die direkt die finalen Architekturentscheidungen beeinflussten und das Release-Automatisierungs-Framework prägten, das später im Unternehmensprodukt übernommen wurde."
-      },
-      {
-        "company": "GirlScript Summer of Code (GSSoC-ext'24)",
-        "position": "Open Source Contributor",
-        "period": "Okt 2024 - Nov 2024",
-        "description": "Aktive Beiträge zu Open-Source-Repositories als Teil von GSSoC-ext 2024, demonstrierte starke Programmierfähigkeiten, Zusammenarbeit und Problemlösungsfähigkeiten. Erreichte eine Top-Platzierung von 281 von 60.000 Teilnehmern, was hohe technische Kompetenz und konsequentes Engagement während des gesamten Programms widerspiegelt."
-      }
-    ]
+    "jobs0company": "HCLSoftware",
+    "jobs0position": "Praktikant",
+    "jobs0period": "Mär 2025 - Heute",
+    "jobs0description": "Mitwirkung als primäres Teammitglied bei der Architektur des kommenden cloud-nativen Migrations-Blueprints, mit Fokus auf die Definition der Zielarchitektur, des Technologie-Stacks und der Deployment-Patterns, die auf zukünftige Skalierbarkeit und Wartbarkeit zugeschnitten sind. Leitete mehrere gezielte Proof-of-Concepts (PoCs) zur Validierung neuer Tools, Frameworks und Deployment-Strategien, die direkt die finalen Architekturentscheidungen beeinflussten und das Release-Automatisierungs-Framework prägten, das später im Unternehmensprodukt übernommen wurde.",
+    "jobs1company": "GirlScript Summer of Code (GSSoC-ext'24)",
+    "jobs1position": "Open Source Contributor",
+    "jobs1period": "Okt 2024 - Nov 2024",
+    "jobs1description": "Aktive Beiträge zu Open-Source-Repositories als Teil von GSSoC-ext 2024, demonstrierte starke Programmierfähigkeiten, Zusammenarbeit und Problemlösungsfähigkeiten. Erreichte eine Top-Platzierung von 281 von 60.000 Teilnehmern, was hohe technische Kompetenz und konsequentes Engagement während des gesamten Programms widerspiegelt."
   },
   "blog": {
     "title": "Mein Blog",
     "description": "Teilen meiner Reise und Erkenntnisse im Cloud Computing und DevOps.",
     "readBlog": "Blog lesen",
-    "posts": [
-      {
-        "title": "Mein Versuch bei der AWS Cloud Resume Challenge",
-        "excerpt": "Neugierig darauf, wie die Architektur hinter dieser Website mit modernen DevOps-Praktiken strukturiert ist? Ich erkläre alles in meinem Blog-Post als Teil der Cloud Resume Challenge.\n\nVon CI/CD bis Infrastructure as Code, alles ist dort drin. Schauen Sie es sich unbedingt an!"
-      }
-    ]
+    "posts0title": "Mein Versuch bei der AWS Cloud Resume Challenge",
+    "posts0excerpt": "Neugierig darauf, wie die Architektur hinter dieser Website mit modernen DevOps-Praktiken strukturiert ist? Ich erkläre alles in meinem Blog-Post als Teil der Cloud Resume Challenge.\n\nVon CI/CD bis Infrastructure as Code, alles ist dort drin. Schauen Sie es sich unbedingt an!"
   },
   "photography": {
     "title": "Fotografie-Portfolio",

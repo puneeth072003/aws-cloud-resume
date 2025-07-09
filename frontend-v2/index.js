@@ -36,7 +36,7 @@ const certificationsData = [
 ];
 const portfolioData = [
   {
-    titleKey: "portfolio.projects.0.title",
+    titleKey: "portfolioProject0title",
     descriptionKey: "portfolio.projects.0.description",
     icon: "fa-code",
     video: "./videos/CS-demo.mp4",
