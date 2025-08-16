@@ -360,7 +360,7 @@ async function updateCounter() {
 
     // Also update the visitor number in the toast
     const visitorToastNumber = document.querySelector(
-      "#visitor-toast-number span"
+      "#visitor-toast-number span:last-child"
     );
     if (visitorToastNumber) {
       visitorToastNumber.textContent = data.views;
@@ -936,6 +936,18 @@ function showGreetingToast() {
 
   if (!toast || !closeBtn) return;
 
+  // Ensure translations are applied to the toast
+  if (window.i18n) {
+    const elementsInToast = toast.querySelectorAll("[data-i18n]");
+    elementsInToast.forEach((element) => {
+      const key = element.getAttribute("data-i18n");
+      const translation = window.i18n.getTranslation(key);
+      if (translation && translation !== key) {
+        element.textContent = translation;
+      }
+    });
+  }
+
   // Remove any existing animations
   toast.classList.remove("show", "hide");
 
@@ -1192,6 +1204,19 @@ function updateDynamicTranslations() {
 
     // Re-setup dock animation after repopulating
     setupDockAnimation();
+
+    // Update toast translations if toast is visible
+    const toast = document.getElementById("greeting-toast");
+    if (toast && toast.classList.contains("show") && window.i18n) {
+      const elementsInToast = toast.querySelectorAll("[data-i18n]");
+      elementsInToast.forEach((element) => {
+        const key = element.getAttribute("data-i18n");
+        const translation = window.i18n.getTranslation(key);
+        if (translation && translation !== key) {
+          element.textContent = translation;
+        }
+      });
+    }
 
     console.log("Dynamic translations updated successfully");
   } catch (e) {
