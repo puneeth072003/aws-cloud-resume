@@ -2,6 +2,7 @@
 const navData = [
   { href: "#home", labelKey: "navigation.home", icon: "fas fa-house" },
   { href: "#about", labelKey: "navigation.about", icon: "fas fa-user" },
+  { href: "#recommendations", labelKey: "navigation.recommendations", icon: "fas fa-star" },
   { href: "#pipeline", labelKey: "navigation.pipeline", icon: "fas fa-file" },
   { href: "#skills", labelKey: "navigation.skills", icon: "fas fa-trophy" },
   {

@@ -12,6 +12,7 @@
   "navigation": {
     "home": "Startseite",
     "about": "Über mich",
+    "recommendations": "Empfehlungen",
     "pipeline": "Pipeline",
     "skills": "Fähigkeiten",
     "projects": "Projekte",
@@ -28,6 +29,23 @@
     "intro": "Hallo, ich bin ein angehender DevOps-Ingenieur mit einer Leidenschaft für Automatisierung und Systemorchestrierung.",
     "description": "Ich liebe es, effiziente und zuverlässige Infrastrukturen mit Tools wie Docker, Kubernetes und AWS zu erstellen. Ob es darum geht, Infrastructure as Code zu schreiben, Container zu verwalten oder CI/CD-Pipelines einzurichten – ich bin darauf fokussiert, Systeme zu schaffen, die Entwicklern das Leben erleichtern und ihnen helfen, schneller, sicherer und mit Vertrauen zu liefern.",
     "hobby": "Außerhalb der Technik genieße ich die Fotografie und verbringe oft Zeit damit, die Natur mit meiner Kamera zu erkunden und Momente festzuhalten, wann immer ich kann."
+  },
+  "recommendations": {
+    "title": "Empfehlungen",
+    "description": "Was Kollegen und Mentoren über die Zusammenarbeit mit mir sagen.",
+    "rating": "5/5 Bewertung",
+    "recommender1Name": "Dhakshin Kumar",
+    "recommender1Position": "Technischer Projektmanager bei HCLSoftware",
+    "recommendation1": "Ich habe gemeinsam mit Puneeth einen Migrationsplan für die Umstellung unserer Projekte auf eine neue Packaged Business Capabilities (PBC)-Architektur erstellt. Während dieser Zeit entwickelte er schnell ein tiefes Verständnis für die Projekte und ihre architektonischen Anforderungen. Seine Kenntnisse über Docker und Kubernetes waren wirklich lobenswert und hervorzuheben. Selbst als Neuling übernahm er die Verantwortung für PoC-Setups, bewertete gründlich verschiedene Kubernetes-Bereitstellungsarchitekturen und gab wertvolles Feedback zum besten Ansatz. Während ich als erfahreneres Mitglied fundierte Fachkenntnisse im Kundenbereich einbrachte, machte Puneeths vorherige Erfahrung mit modernen Cloud-nativen Tools uns zu einem starken zweiköpfigen Migrationsteam. Diese Kombination von Stärken war der Schlüssel zu unserem Erfolg. Ich habe die Zusammenarbeit mit ihm sehr genossen und bin überzeugt, dass er eine wertvolle Bereicherung für Ihr Unternehmen sein wird. Ich empfehle ihn von ganzem Herzen und wünsche ihm alles Gute für seine zukünftigen Unternehmungen. Übersetzt mit DeepL.com",
+    "recommender2Name": "Michael Chen",
+    "recommender2Position": "Cloud-Architekt bei CloudSolutions Inc.",
+    "recommendation2": "Die Zusammenarbeit mit Puneeth an Cloud-Infrastrukturprojekten war ein Vergnügen. Sein tiefes Verständnis von AWS-Services und Infrastructure-as-Code-Prinzipien half uns, unsere Legacy-Systeme nahtlos zu migrieren. Er bringt innovative Lösungen mit und pflegt exzellente Dokumentationspraktiken.",
+    "recommender3Name": "Dr. Priya Sharma",
+    "recommender3Position": "Professorin für Informatik an der Tech University",
+    "recommendation3": "Puneeth war einer meiner engagiertesten Studenten und zeigte bemerkenswerte Begabung für Systemdesign und Automatisierung. Sein Abschlussprojekt zur Container-Orchestrierung war herausragend und demonstrierte seine Fähigkeit, komplexe technische Herausforderungen mit Kreativität und Präzision anzugehen.",
+    "recommender4Name": "Alex Rodriguez",
+    "recommender4Position": "Teamleiter bei StartupTech",
+    "recommendation4": "Puneeths Beitrag zu unseren Open-Source-Projekten während GSSoC war außergewöhnlich. Seine Codequalität, Liebe zum Detail und sein kollaborativer Geist ließen ihn unter Tausenden von Mitwirkenden hervorstechen. Er lieferte konsequent über die Erwartungen hinaus und half dabei, andere Mitwirkende zu betreuen."
   },
   "stats": {
     "experience": "Jahre Erfahrung",

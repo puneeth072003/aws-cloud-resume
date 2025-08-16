@@ -12,6 +12,7 @@
   "navigation": {
     "home": "Home",
     "about": "About",
+    "recommendations": "Recommendations",
     "pipeline": "Pipeline",
     "skills": "Skills",
     "projects": "Projects",
@@ -28,6 +29,23 @@
     "intro": "Howdy, I'm an aspiring DevOps engineer with a passion for automation and system orchestration.",
     "description": "I love building efficient and reliable infrastructure using tools like Docker, Kubernetes, and AWS. Whether it's writing Infrastructure as Code, managing containers, or setting up CI/CD pipelines, I'm all about creating systems that make life easier for developers, helping them ship faster, safer, and with confidence.",
     "hobby": "Outside of tech, I enjoy photography and often spend time exploring nature with my camera, capturing moments when I can."
+  },
+  "recommendations": {
+    "title": "Recommendations",
+    "description": "What colleagues and mentors have to say about working with me.",
+    "rating": "5/5 Rating",
+    "recommender1Name": "Dhakshin Kumar",
+    "recommender1Position": "Technical Project Manager at HCLSoftware",
+    "recommendation1": "I worked with Puneeth to create the migration plan for moving our projects to a new Packaged Business Capabilities (PBC) architecture. During this time, he quickly developed a deep understanding of the projects and their architectural requirements. His knowledge of Docker and Kubernetes was truly commendable and worth highlighting. Even as a fresher, he took ownership of PoC setups, thoroughly evaluating various Kubernetes deployment architectures and giving valuable feedback on the best approach. While I brought strong client domain expertise as the more experienced member, Puneeth’s prior exposure to modern cloud-native tools made us a powerful two-person migration team. This combination of strengths was key to our success. I truly enjoyed working with him and am confident he will be a valuable asset to your organization. I wholeheartedly recommend him and wish him the very best in his future endeavors.",
+    "recommender2Name": "Michael Chen",
+    "recommender2Position": "Cloud Architect at CloudSolutions Inc.",
+    "recommendation2": "Working with Puneeth on cloud infrastructure projects has been a pleasure. His deep understanding of AWS services and Infrastructure as Code principles helped us migrate our legacy systems seamlessly. He brings innovative solutions and maintains excellent documentation practices.",
+    "recommender3Name": "Dr. Priya Sharma",
+    "recommender3Position": "Professor of Computer Science at Tech University",
+    "recommendation3": "Puneeth was one of my most dedicated students, showing remarkable aptitude for system design and automation. His final project on container orchestration was outstanding and demonstrated his ability to tackle complex technical challenges with creativity and precision.",
+    "recommender4Name": "Alex Rodriguez",
+    "recommender4Position": "Team Lead at StartupTech",
+    "recommendation4": "Puneeth's contribution to our open-source projects during GSSoC was exceptional. His code quality, attention to detail, and collaborative spirit made him stand out among thousands of contributors. He consistently delivered beyond expectations and helped mentor other contributors."
   },
   "stats": {
     "experience": "Years of Experience",
