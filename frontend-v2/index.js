@@ -593,8 +593,16 @@ function populateDock() {
   // Setup mobile dock toggle
   const mobileToggle = document.getElementById("mobile-dock-toggle");
   if (mobileToggle) {
-    mobileToggle.addEventListener("click", function () {
+    // Remove any existing event listeners to prevent duplicates
+    mobileToggle.replaceWith(mobileToggle.cloneNode(true));
+    const newMobileToggle = document.getElementById("mobile-dock-toggle");
+
+    newMobileToggle.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log("Mobile dock toggle clicked");
       mobileMenu.classList.toggle("open");
+      console.log("Mobile menu open state:", mobileMenu.classList.contains("open"));
     });
   }
 
