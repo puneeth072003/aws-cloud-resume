@@ -51,18 +51,15 @@
   "certifications": {
     "title": "Auszeichnungen & Zertifizierungen",
     "description": "Eine Sammlung von Zertifizierungen und Anerkennungen, die ich auf meiner Lern- und DevOps-Reise erhalten habe.",
-    "items": [
-      "Top 1% in GSSoC'ext 2024",
-      "1. Platz im abteilungsweiten Mini-Projekt",
-      "AZ-305 Microsoft Azure Architect Design Prerequisites",
-      "AWS Cloud Practitioner Essentials",
-      "Postman API Fundamentals Student Expert"
-    ]
+    "items0": "Top 1% in GSSoC'ext 2024",
+    "items1": "1. Platz im abteilungsweiten Mini-Projekt",
+    "items2": "AZ-305 Microsoft Azure Architect Design Prerequisites",
+    "items3": "AWS Cloud Practitioner Essentials",
+    "items4": "Postman API Fundamentals Student Expert"
   },
   "portfolio": {
     "title": "Ausgewählte Projekte",
     "description": "Eine Auswahl meiner neuesten Software- und DevOps-Projekte. Bewegen Sie den Mauszeiger über jede Karte, um weitere Details zu sehen.",
-    "portfolioProject0title": "CODESOURCERER",
     "portfolioProject0title": "CODESOURCERER",
     "portfolioProject1title": "Vitista",
     "portfolioProject2title": "Sputilties",
@@ -75,11 +72,11 @@
   "experience": {
     "title": "Berufserfahrung",
     "description": "Meine berufliche Reise in der Welt von DevOps und Cloud-Engineering.",
-    "jobs0company": "HCLSoftware",
+    "jobs0Company": "HCLSoftware",
     "jobs0position": "Praktikant",
     "jobs0period": "Mär 2025 - Heute",
     "jobs0description": "Mitwirkung als primäres Teammitglied bei der Architektur des kommenden cloud-nativen Migrations-Blueprints, mit Fokus auf die Definition der Zielarchitektur, des Technologie-Stacks und der Deployment-Patterns, die auf zukünftige Skalierbarkeit und Wartbarkeit zugeschnitten sind. Leitete mehrere gezielte Proof-of-Concepts (PoCs) zur Validierung neuer Tools, Frameworks und Deployment-Strategien, die direkt die finalen Architekturentscheidungen beeinflussten und das Release-Automatisierungs-Framework prägten, das später im Unternehmensprodukt übernommen wurde.",
-    "jobs1company": "GirlScript Summer of Code (GSSoC-ext'24)",
+    "jobs1Company": "GirlScript Summer of Code (GSSoC-ext'24)",
     "jobs1position": "Open Source Contributor",
     "jobs1period": "Okt 2024 - Nov 2024",
     "jobs1description": "Aktive Beiträge zu Open-Source-Repositories als Teil von GSSoC-ext 2024, demonstrierte starke Programmierfähigkeiten, Zusammenarbeit und Problemlösungsfähigkeiten. Erreichte eine Top-Platzierung von 281 von 60.000 Teilnehmern, was hohe technische Kompetenz und konsequentes Engagement während des gesamten Programms widerspiegelt."

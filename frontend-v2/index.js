@@ -21,130 +21,16 @@ const navData = [
     icon: "fas fa-camera-retro",
   },
 ];
-const certificationsData = [
-  { nameKey: "certifications.items.0", icon: "fa fa-trophy" },
-  {
-    nameKey: "certifications.items.1",
-    icon: "fa fa-trophy",
-  },
-  {
-    nameKey: "certifications.items.2",
-    icon: "fa fa-trophy",
-  },
-  { nameKey: "certifications.items.3", icon: "fa fa-trophy" },
-  { nameKey: "certifications.items.4", icon: "fa fa-trophy" },
-];
-const portfolioData = [
-  {
-    titleKey: "portfolioProject0title",
-    descriptionKey: "portfolio.projects.0.description",
-    icon: "fa-code",
-    video: "./videos/CS-demo.mp4",
-    links: {
-      live: "https://codesourcerer.webflow.io",
-      github: "https://github.com/puneeth072003/CODESOURCERER",
-    },
-  },
-  {
-    titleKey: "portfolio.projects.1.title",
-    descriptionKey: "portfolio.projects.1.description",
-    icon: "fa-building-columns",
-    video: "./videos/vitista.mp4",
-    links: {
-      live: "https://vitista.vercel.app/",
-      github: "https://github.com/puneeth072003/Vitista",
-    },
-  },
-  {
-    titleKey: "portfolio.projects.2.title",
-    descriptionKey: "portfolio.projects.2.description",
-    icon: "fa-music",
-    video: "./videos/Sputilties-demo.mp4",
-    links: {
-      live: "https://sputilities.netlify.app/",
-      github: "https://github.com/puneeth072003/sputilities.V1",
-    },
-  },
-  {
-    titleKey: "portfolio.projects.3.title",
-    descriptionKey: "portfolio.projects.3.description",
-    icon: "fa-users",
-    video: "./videos/huddle.mp4",
-    links: {
-      live: "https://ho-huddle.vercel.app/",
-      github: "https://github.com/puneeth072003/huddle",
-    },
-  },
-];
-const blogData = [
-  {
-    titleKey: "blog.posts.0.title",
-    excerptKey: "blog.posts.0.excerpt",
-    link: "https://dev.to/puneeth072003/my-attempt-at-the-aws-cloud-resume-challenge-a-journey-in-the-cloud-13gd",
-    featured: true,
-    image: "./assets/Cover.png",
-  },
-];
-const photographyData = [
-  {
-    src: "https://placehold.co/800x600/050816/e0f2fe?text=Neon+Grid",
-    alt: "A glowing neon grid stretching into the distance",
-  },
-  {
-    src: "https://placehold.co/800x600/1e3a8a/e0f2fe?text=Circuitry",
-    alt: "Macro shot of a complex circuit board",
-  },
-  {
-    src: "https://placehold.co/800x600/0284c7/e0f2fe?text=Data+Flow",
-    alt: "Abstract long exposure of fiber optic lights",
-  },
-  {
-    src: "https://placehold.co/800x600/0891b2/e0f2fe?text=Hologram",
-    alt: "A projected data hologram in a dark room",
-  },
-  {
-    src: "https://placehold.co/800x600/0f172a/e0f2fe?text=Digital+Rain",
-    alt: "Code cascading down a screen, digital rain effect",
-  },
-  {
-    src: "https://placehold.co/800x600/1e40af/e0f2fe?text=Server+Aisle",
-    alt: "A long aisle of server racks",
-  },
-];
 
-// Add experience data
-const experienceData = [
-  {
-    companyKey: "experience.jobs.0.company",
-    positionKey: "experience.jobs.0.position",
-    periodKey: "experience.jobs.0.period",
-    descriptionKey:
-      "Contributed as a primary team member in architecting the upcoming cloud-native migration blueprint, focusing on defining the target architecture, technology stack, and deployment patterns tailored for future scalability and maintainability. Led several targeted proofs of concept (PoCs) to validate new tools, frameworks, and deployment strategies, directly influencing final architecture decisions and shaping the release automation framework later adopted in the company’s product.",
-    technologies: [
-      "AWS",
-      "Azure",
-      "Terraform",
-      "Docker",
-      "Kubernetes",
-      "GitHub Actions",
-    ],
-  },
-  {
-    companyKey: "experience.jobs.1.company",
-    positionKey: "experience.jobs.1.position",
-    periodKey: "experience.jobs.1.period",
-    descriptionKey:
-      "Actively contributed to open-source repositories as part of GSSoC-ext 2024, demonstrating strong coding proficiency, collaboration, and problem-solving abilities. Achieved a top ranking of 281 out of 60,000 participants, reflecting high technical competence and consistent engagement throughout the program.",
-    technologies: ["Git", "GitHub", "React", "Markdown", "HTML", "CSS"],
-  },
-];
+
+
+
+
+
 
 // --- CORE LOGIC ---
 async function main() {
   console.log("Initializing main function");
-
-  // Check if data is properly loaded
-  checkDataLoading();
 
   // Listen for language changes
   document.addEventListener("languageChanged", handleLanguageChange);
@@ -153,6 +39,8 @@ async function main() {
   if (window.i18n) {
     // Wait a bit for i18n to initialize
     await new Promise((resolve) => setTimeout(resolve, 300));
+    // Update language display after i18n is ready
+    updateLanguageDisplay();
   }
 
   // Rest of the main function...
@@ -171,10 +59,6 @@ async function main() {
   console.log("Populating content...");
   try {
     populateDock();
-    populatePortfolio();
-    populateCertifications();
-    populateExperience();
-    populateBlogs();
     populatePhotography();
   } catch (e) {
     console.error("Failed to populate content:", e);
@@ -188,6 +72,12 @@ async function main() {
   updateCounter(); // This will now also show the toast
 
   ensureBottomDockOnTop();
+
+  // Final language display update
+  setTimeout(() => {
+    console.log("Final language display update...");
+    updateLanguageDisplay();
+  }, 1000);
 }
 
 function checkDependencies() {
@@ -197,7 +87,88 @@ function checkDependencies() {
     setTimeout(checkDependencies, 100);
   }
 }
-document.addEventListener("DOMContentLoaded", checkDependencies);
+
+// Initialize language switcher immediately when DOM is ready, independent of other dependencies
+document.addEventListener("DOMContentLoaded", function() {
+  console.log("DOM loaded, initializing language switcher...");
+
+  // Initialize language switcher first
+  initializeLanguageSwitcher();
+
+  // Then check for other dependencies
+  checkDependencies();
+});
+
+// Function to initialize language switcher independently
+function initializeLanguageSwitcher() {
+  console.log("Initializing language switcher independently...");
+
+  // Wait for i18n to be ready
+  const waitForI18n = () => {
+    if (window.i18n) {
+      console.log("i18n is ready, setting up language switcher");
+
+      // Create language switcher if dock exists
+      const desktopDock = document.getElementById("bottom-dock");
+      const mobileMenu = document.getElementById("mobile-dock-menu");
+
+      if (desktopDock && mobileMenu) {
+        // Only create language switcher if it doesn't exist yet
+        if (!document.getElementById("desktop-language-switcher")) {
+          createLanguageSwitcherOnly();
+        }
+      }
+
+      // Update language display
+      setTimeout(() => {
+        updateLanguageDisplay();
+      }, 100);
+    } else {
+      console.log("Waiting for i18n...");
+      setTimeout(waitForI18n, 100);
+    }
+  };
+
+  waitForI18n();
+}
+
+// Function to create only the language switcher
+function createLanguageSwitcherOnly() {
+  console.log("createLanguageSwitcherOnly called");
+  const desktopDock = document.getElementById("bottom-dock");
+  const mobileMenu = document.getElementById("mobile-dock-menu");
+
+  console.log("Desktop dock:", desktopDock);
+  console.log("Mobile menu:", mobileMenu);
+
+  if (!desktopDock || !mobileMenu) {
+    console.log("Dock elements not found, skipping language switcher creation");
+    return;
+  }
+
+  const currentLang = window.i18n ? window.i18n.getCurrentLanguage() : "en";
+  console.log("Current language for switcher:", currentLang);
+
+  const langItemData = {
+    id: "language-switcher",
+    label: "", // Empty label to prevent tooltip
+    text: currentLang.toUpperCase(), // Show current language
+  };
+
+  // Create desktop language switcher
+  const desktopItem = createDockItem(langItemData);
+  desktopItem.id = "desktop-language-switcher";
+  desktopDock.appendChild(desktopItem);
+  console.log("Desktop language switcher created:", desktopItem);
+
+  // Create mobile language switcher
+  const mobileItem = createDockItem(langItemData);
+  mobileItem.id = "mobile-language-switcher";
+  mobileMenu.appendChild(mobileItem);
+  console.log("Mobile language switcher created:", mobileItem);
+
+  console.log("Language switcher created independently");
+}
 
 // --- ANIMATIONS & DYNAMIC CONTENT ---
 
@@ -583,6 +554,7 @@ function populateDock() {
 
   // Language switcher button data - get current language for display
   const currentLang = window.i18n ? window.i18n.getCurrentLanguage() : "en";
+  console.log(`Creating dock with current language: ${currentLang}`);
   const langItemData = {
     id: "language-switcher",
     label: "", // Empty label to prevent tooltip
@@ -629,6 +601,12 @@ function populateDock() {
   if (desktopDock) desktopDock.style.zIndex = "1000";
   if (mobileMenu) mobileMenu.style.zIndex = "999";
   if (mobileToggle) mobileToggle.style.zIndex = "1000";
+
+  // Update language display after dock is populated
+  setTimeout(() => {
+    updateLanguageDisplay();
+    debugLanguageSwitcher();
+  }, 100);
 }
 
 function setupThemeSwitcher() {
@@ -672,156 +650,11 @@ function setupThemeSwitcher() {
   });
 }
 
-function populateCertifications() {
-  const container = document.getElementById("certifications-list");
-  if (!container) return;
 
-  // Clear existing content
-  container.innerHTML = "";
 
-  certificationsData.forEach((cert) => {
-    const certEl = document.createElement("div");
-    certEl.className = "flex items-center gap-4 text-slate-300";
 
-    // Get translation for the certification name
-    const certName = getTranslation(cert.nameKey) || cert.nameKey;
 
-    certEl.innerHTML = `
-                    <i class="${cert.icon} text-sky-400 text-2xl w-8 text-center"></i>
-                    <p class="text-lg">${certName}</p>
-                `;
-    container.appendChild(certEl);
-  });
-}
 
-function populatePortfolio() {
-  const container = document.getElementById("portfolio-grid");
-  if (!container) {
-    console.warn("Portfolio grid container not found");
-    return;
-  }
-
-  // Clear existing content
-  container.innerHTML = "";
-
-  // Check if we have portfolio data
-  if (
-    !portfolioData ||
-    !Array.isArray(portfolioData) ||
-    portfolioData.length === 0
-  ) {
-    console.warn("Portfolio data is missing or empty");
-    container.innerHTML =
-      "<p class='text-center text-slate-400'>No projects available at the moment.</p>";
-    return;
-  }
-
-  // Create and append project elements
-  portfolioData.forEach((project) => {
-    const projectEl = document.createElement("div");
-    projectEl.className =
-      "reveal-section project-card glass-pane rounded-xl block hover:border-sky-400 transition-colors overflow-hidden";
-
-    // Create HTML with video
-    projectEl.innerHTML = `
-      <div class="video-container relative">
-        <video src="${
-          project.video
-        }" autoplay loop muted class="w-full h-48 object-cover"></video>
-        <div class="video-title absolute bottom-0 left-0 w-full bg-black/50 p-2 text-white font-orbitron text-lg">
-          ${getTranslation(project.titleKey) || project.titleKey}
-        </div>
-      </div>
-      <div class="p-6">
-        <div class="flex justify-between items-start mb-4">
-          <div class="text-sky-400 text-3xl">
-            <i class="fas ${project.icon}"></i>
-          </div>
-          <div class="flex gap-3">
-            ${
-              project.links?.live
-                ? `<a href="${project.links.live}" target="_blank" title="Live Site" class="text-2xl text-slate-400 hover:text-sky-400 transition-colors">
-                <i class="far fa-eye"></i>
-              </a>`
-                : ""
-            }
-            ${
-              project.links?.github
-                ? `<a href="${project.links.github}" target="_blank" title="Source Code" class="text-2xl text-slate-400 hover:text-sky-400 transition-colors">
-                <i class="fab fa-github"></i>
-              </a>`
-                : ""
-            }
-          </div>
-        </div>
-        <p class="text-slate-400 mt-2">${
-          getTranslation(project.descriptionKey) || project.descriptionKey
-        }</p>
-      </div>
-    `;
-
-    container.appendChild(projectEl);
-  });
-
-  console.log(`Populated portfolio with ${portfolioData.length} projects`);
-}
-
-function populateBlogs() {
-  const container = document.getElementById("blog-grid");
-  if (!container) {
-    console.warn("Blog grid container not found");
-    return;
-  }
-
-  // Clear existing content
-  container.innerHTML = "";
-
-  // Check if we have blog data
-  if (!blogData || !Array.isArray(blogData) || blogData.length === 0) {
-    console.warn("Blog data is missing or empty");
-    container.innerHTML =
-      "<p class='text-center text-slate-400'>No blog posts available at the moment.</p>";
-    return;
-  }
-
-  // Since we only have one blog, create a featured card
-  const blog = blogData[0];
-  const blogEl = document.createElement("div");
-  blogEl.className =
-    "reveal-section glass-pane rounded-xl overflow-hidden hover:border-sky-400 transition-all";
-
-  blogEl.innerHTML = `
-    <div class="flex flex-col md:flex-row">
-      <div class="md:w-2/5">
-        <img src="${
-          blog.image
-        }" alt="Blog cover image" class="w-full h-full object-cover" />
-      </div>
-      <div class="p-8 md:w-3/5">
-        <h3 class="font-orbitron text-2xl md:text-3xl text-white">${
-          getTranslation(blog.titleKey) || blog.titleKey
-        }</h3>
-        <div class="text-slate-300 mt-4 text-md md:text-lg space-y-4">
-          ${(getTranslation(blog.excerptKey) || blog.excerptKey)
-            .split("\n\n")
-            .map((para) => `<p>${para}</p>`)
-            .join("")}
-        </div>
-        <a href="${
-          blog.link
-        }" target="_blank" class="inline-block mt-6 px-6 py-3 bg-sky-600 hover:bg-sky-500 text-white font-semibold rounded-lg transition-colors">
-          <span data-i18n="blog.readBlog">${
-            getTranslation("blog.readBlog") || "Read The Blog"
-          }</span> →
-        </a>
-      </div>
-    </div>
-  `;
-
-  container.appendChild(blogEl);
-
-  console.log("Populated blogs section with 1 blog post");
-}
 
 function populatePhotography() {
   // Skip populating since we're using Swiper directly in the HTML
@@ -1031,125 +864,9 @@ document.addEventListener("DOMContentLoaded", function () {
   setupPhotographyCarousel();
 });
 
-// Add a function to check if data is loaded properly
-function checkDataLoading() {
-  // Check if data variables are defined
-  if (typeof portfolioData === "undefined") {
-    console.error("portfolioData is not defined");
-    // Define fallback data
-    window.portfolioData = [
-      {
-        title: "GitOps Infrastructure for E-Commerce",
-        description:
-          "Built a fully automated, GitOps-driven infrastructure on AWS EKS using ArgoCD, Terraform, and GitHub Actions, reducing deployment times by 90%.",
-        icon: "fa-cart-shopping",
-      },
-      {
-        title: "Centralized Logging Platform",
-        description:
-          "Designed and deployed a centralized logging and monitoring stack using the ELK stack (Elasticsearch, Logstash, Kibana) and Prometheus on Kubernetes.",
-        icon: "fa-magnifying-glass-chart",
-      },
-      {
-        title: "Serverless Data Processing Pipeline",
-        description:
-          "Architected a serverless pipeline using AWS Lambda, S3, and API Gateway to process real-time data streams with high availability and low operational cost.",
-        icon: "fa-gears",
-      },
-    ];
-  }
 
-  if (typeof blogData === "undefined") {
-    console.error("blogData is not defined");
-    // Define fallback data
-    window.blogData = [
-      {
-        title: "The Power of Idempotency in IaC",
-        excerpt:
-          "Why ensuring your Terraform or Pulumi scripts can run multiple times without side effects is critical for stable automation...",
-        link: "#",
-        featured: true,
-      },
-      {
-        title: "Kubernetes Cost Management Strategies",
-        excerpt:
-          "Practical tips for optimizing resource requests, implementing cluster autoscaling, and using spot instances to control cloud spend...",
-        link: "#",
-        featured: false,
-      },
-      {
-        title: "Service Mesh: Is Istio or Linkerd Right for You?",
-        excerpt:
-          "A comparative analysis of the leading service meshes, breaking down their features, performance, and operational complexity...",
-        link: "#",
-        featured: false,
-      },
-    ];
-  }
-}
 
-// Add a function to populate the experience section
-function populateExperience() {
-  const container = document.getElementById("experience-timeline");
-  if (!container) {
-    console.warn("Experience timeline container not found");
-    return;
-  }
 
-  // Clear existing content
-  container.innerHTML = "";
-
-  // Check if we have experience data
-  if (
-    !experienceData ||
-    !Array.isArray(experienceData) ||
-    experienceData.length === 0
-  ) {
-    console.warn("Experience data is missing or empty");
-    container.innerHTML =
-      "<p class='text-center text-slate-400'>No experience entries available at the moment.</p>";
-    return;
-  }
-
-  // Create and append experience elements
-  experienceData.forEach((job, index) => {
-    const jobEl = document.createElement("div");
-    jobEl.className = `reveal-section timeline-item ${
-      index % 2 === 0 ? "left" : "right"
-    }`;
-
-    jobEl.innerHTML = `
-      <div class="glass-pane p-6 rounded-xl hover:border-sky-400 transition-all">
-        <div class="flex justify-between items-start mb-3">
-          <h3 class="font-orbitron text-xl text-white">${
-            getTranslation(job.companyKey) || job.companyKey
-          }</h3>
-          <span class="text-sky-400 text-sm font-semibold">${
-            getTranslation(job.periodKey) || job.periodKey
-          }</span>
-        </div>
-        <h4 class="text-sky-300 font-semibold mb-3">${
-          getTranslation(job.positionKey) || job.positionKey
-        }</h4>
-        <p class="text-slate-400 mb-4">${
-          getTranslation(job.descriptionKey) || job.descriptionKey
-        }</p>
-        <div class="flex flex-wrap gap-2">
-          ${job.technologies
-            .map(
-              (tech) =>
-                `<span class="bg-slate-800 text-sky-300 text-xs px-3 py-1 rounded-full">${tech}</span>`
-            )
-            .join("")}
-        </div>
-      </div>
-    `;
-
-    container.appendChild(jobEl);
-  });
-
-  console.log(`Populated experience with ${experienceData.length} entries`);
-}
 
 function handleScrollAnimations() {
   const revealElements = document.querySelectorAll(".reveal-section");
@@ -1325,47 +1042,7 @@ function setupEasterEggs() {
   });
 }
 
-// Update the main function to include the Easter Eggs
-function main() {
-  console.log("Initializing main function");
 
-  // Check if data is properly loaded
-  checkDataLoading();
-
-  // Rest of the main function...
-  try {
-    setupHeroAnimation();
-  } catch (e) {
-    console.error("Failed to initialize Hero Animation:", e);
-    const heroCanvas = document.getElementById("hero-canvas");
-    if (heroCanvas) heroCanvas.style.display = "none";
-  }
-
-  setupSkillsRadar();
-  setupScrollAnimations();
-  setupEasterEggs(); // Add Easter Eggs
-
-  console.log("Populating content...");
-  try {
-    populateDock();
-    populatePortfolio();
-    populateCertifications();
-    populateExperience();
-    populateBlogs();
-    populatePhotography();
-  } catch (e) {
-    console.error("Failed to populate content:", e);
-    console.error(e.stack);
-  }
-
-  setupDockAnimation();
-  setupPhotographyCarousel();
-  setupLightbox();
-  setupThemeSwitcher();
-  updateCounter(); // This will now also show the toast
-
-  ensureBottomDockOnTop();
-}
 
 // Language switcher setup
 function setupLanguageSwitcher() {
@@ -1388,8 +1065,11 @@ async function toggleLanguage() {
       await window.i18n.switchLanguage(newLang);
       console.log("Language switch completed, updating display...");
 
-      // Force update the language display immediately
-      updateLanguageDisplay();
+      // The language display will be updated automatically by the languageChanged event
+      // But we can also force update it here for immediate feedback
+      setTimeout(() => {
+        updateLanguageDisplay();
+      }, 100);
     } catch (error) {
       console.error("Error switching language:", error);
     }
@@ -1397,6 +1077,51 @@ async function toggleLanguage() {
     console.error("window.i18n not available");
   }
 }
+
+// Make toggleLanguage globally accessible
+window.toggleLanguage = toggleLanguage;
+
+// Also make updateLanguageDisplay globally accessible for debugging
+window.updateLanguageDisplay = updateLanguageDisplay;
+
+// Debug function to check language switcher status
+window.debugLanguageSwitcher = function() {
+  console.log("=== Language Switcher Debug ===");
+  console.log("window.i18n available:", !!window.i18n);
+  if (window.i18n) {
+    console.log("Current language:", window.i18n.getCurrentLanguage());
+  }
+
+  const desktopSwitcher = document.getElementById("desktop-language-switcher");
+  const mobileSwitcher = document.getElementById("mobile-language-switcher");
+
+  console.log("Desktop switcher element:", desktopSwitcher);
+  console.log("Mobile switcher element:", mobileSwitcher);
+
+  if (desktopSwitcher) {
+    console.log("Desktop switcher text:", desktopSwitcher.textContent);
+    console.log("Desktop switcher has click listener:", desktopSwitcher.onclick !== null);
+  }
+
+  if (mobileSwitcher) {
+    console.log("Mobile switcher text:", mobileSwitcher.textContent);
+    console.log("Mobile switcher has click listener:", mobileSwitcher.onclick !== null);
+  }
+
+  const dock = document.getElementById("bottom-dock");
+  const mobileMenu = document.getElementById("mobile-dock-menu");
+  console.log("Dock element:", dock);
+  console.log("Mobile menu element:", mobileMenu);
+
+  if (dock) {
+    console.log("Dock children:", dock.children.length);
+    Array.from(dock.children).forEach((child, index) => {
+      console.log(`Dock child ${index}:`, child.id, child.className, child.textContent);
+    });
+  }
+
+  console.log("=== End Debug ===");
+};
 
 function updateLanguageDisplay() {
   const langSwitchers = [
@@ -1422,6 +1147,16 @@ function updateLanguageDisplay() {
         );
       } else {
         console.warn(`No text span found in language switcher ${index}`);
+        // If no span found, create one
+        const newSpan = document.createElement("span");
+        newSpan.className = "lang-text";
+        newSpan.textContent = displayText;
+        newSpan.style.fontSize = "14px";
+        newSpan.style.fontWeight = "bold";
+        newSpan.style.fontFamily = "'Orbitron', monospace";
+        switcher.innerHTML = "";
+        switcher.appendChild(newSpan);
+        console.log(`Created new language text span for switcher ${index}`);
       }
     } else {
       console.log(`Language switcher ${index} element not found`);
@@ -1433,11 +1168,11 @@ function handleLanguageChange(event) {
   const { language } = event.detail;
   console.log(`Language changed to: ${language}`);
 
+  // Update language display in dock immediately
+  updateLanguageDisplay();
+
   // Update dynamic content that uses translation keys
   updateDynamicTranslations();
-
-  // Update language display in dock
-  updateLanguageDisplay();
 }
 
 function updateDynamicTranslations() {
@@ -1445,10 +1180,6 @@ function updateDynamicTranslations() {
   try {
     console.log("Updating dynamic translations...");
     populateDock();
-    populatePortfolio();
-    populateCertifications();
-    populateExperience();
-    populateBlogs();
 
     // Re-setup dock animation after repopulating
     setupDockAnimation();
@@ -1462,10 +1193,38 @@ function updateDynamicTranslations() {
 // Helper function to get translation from global i18n instance
 function getTranslation(key) {
   if (window.i18n) {
-    return window.i18n.getTranslation(key);
+    const translation = window.i18n.getTranslation(key);
+    // Return the translation if it exists and is not the same as the key (meaning it was found)
+    return translation && translation !== key ? translation : null;
   }
   return null;
 }
+
+// Debug function to check language switcher state
+function debugLanguageSwitcher() {
+  console.log("=== Language Switcher Debug ===");
+  console.log("window.i18n available:", !!window.i18n);
+  if (window.i18n) {
+    console.log("Current language:", window.i18n.getCurrentLanguage());
+  }
+
+  const desktopSwitcher = document.getElementById("desktop-language-switcher");
+  const mobileSwitcher = document.getElementById("mobile-language-switcher");
+
+  console.log("Desktop switcher found:", !!desktopSwitcher);
+  if (desktopSwitcher) {
+    console.log("Desktop switcher content:", desktopSwitcher.innerHTML);
+  }
+
+  console.log("Mobile switcher found:", !!mobileSwitcher);
+  if (mobileSwitcher) {
+    console.log("Mobile switcher content:", mobileSwitcher.innerHTML);
+  }
+  console.log("=== End Debug ===");
+}
+
+// Make debug function available globally
+window.debugLanguageSwitcher = debugLanguageSwitcher;
 
 // Add a function to handle theme switching
 function toggleTheme() {
