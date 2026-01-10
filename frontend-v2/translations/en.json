@@ -22,13 +22,13 @@
   },
   "hero": {
     "name": "Puneeth Y",
-    "subtitle": "An Aspiring DevOps Engineer & Cloud Architect crafting resilient, automated, and scalable infrastructure for tomorrow's technology."
+    "subtitle": "DevOps Engineer building resilient, automated, and scalable cloud infrastructure for modern technology."
   },
   "about": {
     "title": "About Me",
-    "intro": "Howdy, I'm an aspiring DevOps engineer with a passion for automation and system orchestration.",
-    "description": "I love building efficient and reliable infrastructure using tools like Docker, Kubernetes, and AWS. Whether it's writing Infrastructure as Code, managing containers, or setting up CI/CD pipelines, I'm all about creating systems that make life easier for developers, helping them ship faster, safer, and with confidence.",
-    "hobby": "Outside of tech, I enjoy photography and often spend time exploring nature with my camera, capturing moments when I can."
+    "intro": "Howdy, I'm Puneeth! a DevOps Engineer with a passion for automation and system orchestration.",
+    "description": "I build efficient and reliable infrastructure using tools like Docker and Kubernetes. From automating deployments to keeping container workflows smooth, I focus on building setups that save time, reduce friction, and keep releases running clean.",
+    "hobby": "Outside of tech, I'm a bit obsessed with open‑source. Most of my free time disappears into reading in libraries (places filled with books and quiet corners to get lost in), poking around repos, and breaking things (then usually fixing them), all happily powered by a strict daily caffeine quota that keeps my brain compiling, the fingers typing, and the side‑quests into random rabbit holes running at full speed. Away from the screen, I love photography and enjoy exploring nature with my camera, capturing moments whenever I can."
   },
   "recommendations": {
     "title": "Recommendations",
@@ -48,14 +48,14 @@
     "recommendation4": "Puneeth's contribution to our open-source projects during GSSoC was exceptional. His code quality, attention to detail, and collaborative spirit made him stand out among thousands of contributors. He consistently delivered beyond expectations and helped mentor other contributors."
   },
   "stats": {
-    "experience": "Years of Experience",
+    "experience": "1+ Years of Experience",
     "visitors": "Visitors",
     "poweredBy": "Powered by AWS Lambda",
     "commitment": "Commitment to Automation"
   },
   "skills": {
     "title": "My skills",
-    "description": "I have strong hands-on experience with DevOps tools and practices, particularly in deploying and managing cloud-native applications on AWS. My skill set includes working with Kubernetes, Helm, and Terraform to automate deployments, as well as using Prometheus and Grafana for monitoring and observability. I also bring experience in building CI/CD pipelines, integrating automated testing, and ensuring smooth delivery workflows. On the development side, I’m comfortable with languages like Python, Golang, JavaScript, and frameworks such as Node.js, Django, and .NET, which helps me bridge the gap between development and operations. I’ve worked with both MSSQL and MongoDB for data-driven applications, making me well-rounded in managing full-stack systems from code to production.  Curious for more? Feel free to check out my CV along the way!",
+    "description": "I've got solid hands‑on experience with DevOps tools and practices, especially around deploying and managing cloud‑native applications. I enjoy working with Kubernetes, Helm, and Terraform to automate deployments. I've built and maintained CI/CD pipelines with automated testing to keep delivery smooth and reliable. On the development side, I'm comfortable with Golang, Python and C#, along with frameworks like Node.js, Django, and .NET — which helps me bridge the gap between dev and ops. I've also worked with MSSQL and MongoDB for data‑driven apps, giving me a well‑rounded view of full‑stack systems from code to production. Curious to see more? Feel free to check out my CV along the way!",
     "infrastructure": "On the development side, I’m comfortable with languages like Python, Golang, JavaScript, and frameworks such as Node.js, Django, and .NET, which helps me bridge the gap between development and operations. I’ve worked with both MSSQL and MongoDB for data-driven applications, making me well-rounded in managing full-stack systems from code to production.",
     "curious": "Curious for more? Feel free to check out my CV along the way!",
     "viewCV": "View CV"
@@ -90,14 +90,18 @@
   "experience": {
     "title": "Work Experience",
     "description": "My professional journey in the world of DevOps and cloud engineering.",
-    "jobs0Company": "HCLSoftware",
-    "jobs0position": "Intern",
-    "jobs0period": "Mar 2025 - Aug 2025",
-    "jobs0description": "Played a key role in transitioning a client’s monolithic application to a modular, Packaged Business Capabilities (PBC) oriented architecture, resulting in a significant improvement in deployment speed and system scalability; leveraged Docker and Multi-node K8s within Agile workflows to streamline delivery and enhance maintainability in serveral initial proof of concept (PoC) applications; implemented a complete observability stack including monitoring, logging, and distributed tracing to ensure end-to-end system visibility and maintainability; Was one of the first members of the two-person migration team tasked with designing the migration plan; contributed to the initial PoC validating the feasibility of implementing the client project in the new PBCoriented architecture, and successfully migrated it while upgrading the tech stack along the way.",
-    "jobs1Company": "GirlScript Summer of Code (GSSoC-ext'24)",
-    "jobs1position": "Open Source Contributor",
-    "jobs1period": "Oct 2024 - Nov 2024",
-    "jobs1description": "Actively contributed to open-source repositories as part of GSSoC-ext 2024, demonstrating strong coding proficiency, collaboration, and problem-solving abilities. Achieved a top ranking of 281 out of 60,000 participants, reflecting high technical competence and consistent engagement throughout the program."
+    "jobs0Company": "Scontain",
+    "jobs0position": "Working Student",
+    "jobs0period": "Jan 2026 - Present",
+    "jobs0description": "In this role, I focus on exploring and advancing the field of Confidential Computing, with a strong emphasis on building and optimizing SCONE‑enabled confidential workflows on Kubernetes.",
+    "jobs1Company": "HCLSoftware",
+    "jobs1position": "Intern",
+    "jobs1period": "Mar 2025 - Aug 2025",
+    "jobs1description": "Architected the migration of a legacy monolith to a modular PBC-based system, engineering a multi-node Kubernetes and Docker infrastructure with full-stack observability to enhance scalability, reliability, and deployment velocity, while co-developing the migration strategy and validating architectural feasibility through PoCs.",
+    "jobs2Company": "GirlScript Summer of Code (GSSoC-ext'24)",
+    "jobs2position": "Open Source Contributor",
+    "jobs2period": "Oct 2024 - Nov 2024",
+    "jobs2description": "Actively contributed to open-source repositories as part of GSSoC-ext 2024, demonstrating strong coding proficiency, collaboration, and problem-solving abilities. Achieved a top ranking of 281 out of 60,000 participants, reflecting high technical competence and consistent engagement throughout the program."
   },
   "blog": {
     "title": "My Blog",

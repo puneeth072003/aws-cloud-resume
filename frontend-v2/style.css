@@ -66,6 +66,22 @@ body {
   transition: all 0.3s ease;
   max-width: 600px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 280px; /* Ensure minimum height for consistency */
+}
+
+.recommendation-card .recommendation-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.recommendation-card blockquote {
+  flex-grow: 1;
+  margin: 0;
+  padding: 0;
 }
 
 .recommendation-card:hover {
@@ -98,6 +114,20 @@ body {
 
 .recommendation-card:hover .recommendation-quote-icon {
   opacity: 0.6;
+}
+
+/* Additional responsive improvements for recommendations */
+@media (max-width: 1024px) {
+  .recommendation-card {
+    max-width: 100%;
+    min-height: auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .recommendation-card {
+    min-height: 320px; /* Ensure consistent height on larger screens */
+  }
 }
 
 /* Light theme adjustments for recommendations */

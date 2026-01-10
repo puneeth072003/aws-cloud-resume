@@ -22,13 +22,13 @@
   },
   "hero": {
     "name": "Puneeth Y",
-    "subtitle": "Ein angehender DevOps-Ingenieur & Cloud-Architekt, der widerstandsfähige, automatisierte und skalierbare Infrastruktur für die Technologie von morgen entwickelt."
+    "subtitle": "DevOps-Ingenieur, der widerstandsfähige, automatisierte und skalierbare Cloud-Infrastruktur für moderne Technologien entwickelt."
   },
   "about": {
     "title": "Über mich",
-    "intro": "Hallo, ich bin ein angehender DevOps-Ingenieur mit einer Leidenschaft für Automatisierung und Systemorchestrierung.",
-    "description": "Ich liebe es, effiziente und zuverlässige Infrastrukturen mit Tools wie Docker, Kubernetes und AWS zu erstellen. Ob es darum geht, Infrastructure as Code zu schreiben, Container zu verwalten oder CI/CD-Pipelines einzurichten – ich bin darauf fokussiert, Systeme zu schaffen, die Entwicklern das Leben erleichtern und ihnen helfen, schneller, sicherer und mit Vertrauen zu liefern.",
-    "hobby": "Außerhalb der Technik genieße ich die Fotografie und verbringe oft Zeit damit, die Natur mit meiner Kamera zu erkunden und Momente festzuhalten, wann immer ich kann."
+    "intro": "Hallo, ich bin Puneeth! ein DevOps-Ingenieur mit einer Leidenschaft für Automatisierung und Systemorchestrierung.",
+    "description": "Ich erstelle effiziente und zuverlässige Infrastrukturen mit Tools wie Docker und Kubernetes. Von der Automatisierung von Deployments bis hin zu reibungslosen Container-Workflows konzentriere ich mich auf den Aufbau von Setups, die Zeit sparen, Reibungsverluste reduzieren und Releases sauber laufen lassen.",
+    "hobby": "Außerhalb der Technik bin ich etwas besessen von Open‑Source. Der Großteil meiner Freizeit verschwindet beim Lesen in Bibliotheken (Orten voller Bücher und ruhiger Ecken, um sich zu verlieren), beim Stöbern in Repositories und beim Kaputtmachen von Dingen (und sie dann meist wieder reparieren), alles angetrieben von einer strengen täglichen Koffein-Quote, die mein Gehirn am Kompilieren, die Finger am Tippen und die Seitenquests in zufällige Rabbit-Holes auf Hochtouren hält. Abseits des Bildschirms liebe ich Fotografie und erkunde gerne die Natur mit meiner Kamera, um Momente festzuhalten, wann immer ich kann."
   },
   "recommendations": {
     "title": "Empfehlungen",
@@ -48,14 +48,14 @@
     "recommendation4": "Puneeths Beitrag zu unseren Open-Source-Projekten während GSSoC war außergewöhnlich. Seine Codequalität, Liebe zum Detail und sein kollaborativer Geist ließen ihn unter Tausenden von Mitwirkenden hervorstechen. Er lieferte konsequent über die Erwartungen hinaus und half dabei, andere Mitwirkende zu betreuen."
   },
   "stats": {
-    "experience": "Jahre Erfahrung",
+    "experience": "1+ Jahre Erfahrung",
     "visitors": "Besucher",
     "poweredBy": "Powered by AWS Lambda",
     "commitment": "Engagement für Automatisierung"
   },
   "skills": {
     "title": "Meine Fähigkeiten",
-    "description": "Ich verfüge über fundierte praktische Erfahrung mit DevOps-Tools und -Praktiken, insbesondere bei der Bereitstellung und Verwaltung von Cloud-nativen Anwendungen auf AWS. Zu meinen Fähigkeiten gehören die Arbeit mit Kubernetes, Helm und Terraform zur Automatisierung von Bereitstellungen sowie die Verwendung von Prometheus und Grafana für die Überwachung und Beobachtbarkeit. Darüber hinaus bringe ich Erfahrung im Aufbau von CI/CD-Pipelines, der Integration automatisierter Tests und der Sicherstellung reibungsloser Bereitstellungsworkflows mit. Auf der Entwicklungsseite bin ich mit Sprachen wie Python, Golang, JavaScript und Frameworks wie Node.js, Django und .NET vertraut, was mir hilft, die Lücke zwischen Entwicklung und Betrieb zu schließen. Ich habe sowohl mit MSSQL als auch mit MongoDB für datengesteuerte Anwendungen gearbeitet, wodurch ich über umfassende Kenntnisse im Management von Full-Stack-Systemen vom Code bis zur Produktion verfüge. Neugierig auf mehr? Schauen Sie sich gerne meinen Lebenslauf an!",
+    "description": "Ich habe fundierte praktische Erfahrung mit DevOps-Tools und -Praktiken, insbesondere bei der Bereitstellung und Verwaltung von Cloud‑nativen Anwendungen. Ich arbeite gerne mit Kubernetes, Helm und Terraform zur Automatisierung von Deployments. Ich habe CI/CD-Pipelines mit automatisierten Tests aufgebaut und gepflegt, um die Bereitstellung reibungslos und zuverlässig zu gestalten. Auf der Entwicklungsseite bin ich mit Golang, Python und C# vertraut, sowie mit Frameworks wie Node.js, Django und .NET — was mir hilft, die Lücke zwischen Dev und Ops zu überbrücken. Ich habe auch mit MSSQL und MongoDB für datengesteuerte Apps gearbeitet, was mir eine umfassende Sicht auf Full‑Stack-Systeme vom Code bis zur Produktion gibt. Neugierig auf mehr? Schauen Sie sich gerne meinen Lebenslauf an!",
     "infrastructure": "Auf der Entwicklungsseite bin ich mit Sprachen wie Python, Golang, JavaScript und Frameworks wie Node.js, Django und .NET vertraut, was mir hilft, die Lücke zwischen Entwicklung und Betrieb zu schließen. Ich habe sowohl mit MSSQL als auch mit MongoDB für datengesteuerte Anwendungen gearbeitet, wodurch ich über umfassende Kenntnisse im Management von Full-Stack-Systemen vom Code bis zur Produktion verfüge.",
     "curious": "Möchten Sie mehr erfahren? Dann schauen Sie sich gerne meinen Lebenslauf an!",
     "viewCV": "Lebenslauf ansehen"
@@ -90,14 +90,18 @@
   "experience": {
     "title": "Berufserfahrung",
     "description": "Meine berufliche Reise in der Welt von DevOps und Cloud-Engineering.",
-    "jobs0Company": "HCLSoftware",
-    "jobs0position": "Praktikant",
-    "jobs0period": "Mär 2025 - Aug 2025",
-    "jobs0description": "Spielte eine Schlüsselrolle bei der Umstellung der monolithischen Anwendung eines Kunden auf eine modulare, PBC-orientierte Architektur (Packaged Business Capabilities), was zu einer deutlichen Verbesserung der Bereitstellungsgeschwindigkeit und der Skalierbarkeit des Systems führte; Nutzung von Docker und Multi-Node-K8s innerhalb agiler Workflows zur Optimierung der Bereitstellung und Verbesserung der Wartbarkeit in mehreren ersten Proof-of-Concept-Anwendungen (PoC); Implementierung eines vollständigen Observability-Stacks einschließlich Überwachung, Protokollierung und verteiltem Tracing, um eine durchgängige Systemtransparenz und Wartbarkeit sicherzustellen; War eines der ersten Mitglieder des zweiköpfigen Migrationsteams, das mit der Erstellung des Migrationsplans beauftragt war; trug zum ersten PoC bei, der die Machbarkeit der Umsetzung des Kundenprojekts in der neuen PBC-orientierten Architektur validierte, und migrierte es erfolgreich, während gleichzeitig der Tech-Stack aktualisiert wurde.",
-    "jobs1Company": "GirlScript Summer of Code (GSSoC-ext'24)",
-    "jobs1position": "Open Source Contributor",
-    "jobs1period": "Okt 2024 - Nov 2024",
-    "jobs1description": "Aktive Beiträge zu Open-Source-Repositories als Teil von GSSoC-ext 2024, demonstrierte starke Programmierfähigkeiten, Zusammenarbeit und Problemlösungsfähigkeiten. Erreichte eine Top-Platzierung von 281 von 60.000 Teilnehmern, was hohe technische Kompetenz und konsequentes Engagement während des gesamten Programms widerspiegelt."
+    "jobs0Company": "Scontain",
+    "jobs0position": "Werkstudent",
+    "jobs0period": "Jan 2026 - Gegenwart",
+    "jobs0description": "In dieser Rolle konzentriere ich mich auf die Erforschung und Weiterentwicklung des Bereichs Confidential Computing mit einem starken Fokus auf die Entwicklung und Optimierung von SCONE-basierten sicheren Workflows in Kubernetes.",
+    "jobs1Company": "HCLSoftware",
+    "jobs1position": "Praktikant",
+    "jobs1period": "Mär 2025 - Aug 2025",
+    "jobs1description": "Architektur der Migration eines Legacy-Monolithen zu einem modularen PBC-basierten System, Engineering einer Multi-Node-Kubernetes- und Docker-Infrastruktur mit vollständiger Observability zur Verbesserung von Skalierbarkeit, Zuverlässigkeit und Deployment-Geschwindigkeit, während die Migrationsstrategie mitentwickelt und die architektonische Machbarkeit durch PoCs validiert wurde.",
+    "jobs2Company": "GirlScript Summer of Code (GSSoC-ext'24)",
+    "jobs2position": "Open Source Contributor",
+    "jobs2period": "Okt 2024 - Nov 2024",
+    "jobs2description": "Aktive Beiträge zu Open-Source-Repositories als Teil von GSSoC-ext 2024, demonstrierte starke Programmierfähigkeiten, Zusammenarbeit und Problemlösungsfähigkeiten. Erreichte eine Top-Platzierung von 281 von 60.000 Teilnehmern, was hohe technische Kompetenz und konsequentes Engagement während des gesamten Programms widerspiegelt."
   },
   "blog": {
     "title": "Mein Blog",
