@@ -229,112 +229,222 @@ function setupHeroAnimation() {
 function setupDockAnimation() {
   const dock = document.getElementById("bottom-dock");
   const items = Array.from(dock.querySelectorAll(".dock-item"));
-  const separators = Array.from(dock.querySelectorAll(".dock-separator"));
-
+  
   if (!dock || items.length === 0) return;
-
-  // MacBook dock configuration
-  const itemSize = 50; // Base size of each item
-  const gap = 12; // Gap between items
-  const padding = 24; // Padding on both sides
-  const maxScale = 1.4; // Maximum scale factor (reduced from 1.8)
-  const effectRadius = 80; // Radius of magnification effect
-
-  // Calculate initial dock width
-  const baseWidth =
-    items.length * itemSize + (items.length - 1) * gap + padding * 2;
-  dock.style.width = `${baseWidth}px`;
-
-  // Initialize items with proper positioning
-  items.forEach((item, index) => {
-    item.style.position = "absolute";
-    item.style.width = `${itemSize}px`;
-    item.style.height = `${itemSize}px`;
-    item.style.display = "flex";
-    item.style.alignItems = "center";
-    item.style.justifyContent = "center";
-    item.style.transformOrigin = "center bottom";
-
-    // Set initial position
-    const initialLeft = padding + index * (itemSize + gap);
-    item.style.left = `${initialLeft}px`;
-    item.style.transform = "scale(1)";
-  });
-
-  let isAnimating = false;
-
-  dock.addEventListener("mousemove", (e) => {
-    if (isAnimating) return;
-
+  
+  // Configuration for Apple-style magnetic dock
+  const config = {
+    baseSize: 50,           // Base icon size  
+    maxSize: 90,            // Maximum icon size
+    influenceRadius: 130,   // Distance where icons start reacting
+    magneticStrength: 0.35, // How much icons move toward cursor
+    smoothness: 0.15,       // Animation smoothness (lower = smoother)
+    gap: 10,                // Space between icons
+    padding: 20             // Dock padding
+  };
+  
+  // State management
+  let animationFrame = null;
+  let isActive = false;
+  let mouseX = 0;
+  let mouseY = 0;
+  
+  // Store item states
+  const itemStates = items.map(() => ({
+    currentScale: 1,
+    currentX: 0,
+    targetScale: 1,
+    targetX: 0
+  }));
+  
+  // Calculate base positions
+  const calculateBasePositions = () => {
+    return items.map((_, index) => {
+      return config.padding + (index * (config.baseSize + config.gap)) + (config.baseSize / 2);
+    });
+  };
+  
+  const basePositions = calculateBasePositions();
+  
+  // Calculate magnetic effects for all items
+  const calculateEffects = (mouseX, mouseY) => {
     const dockRect = dock.getBoundingClientRect();
-    const mouseX = e.clientX - dockRect.left;
-
-    // Calculate scales and positions
-    const scales = [];
-    const positions = [];
-    let totalWidth = padding;
-
+    const effects = [];
+    
     items.forEach((item, index) => {
-      const itemCenter = padding + index * (itemSize + gap) + itemSize / 2;
-      const distance = Math.abs(mouseX - itemCenter);
-
-      // Calculate scale with smooth falloff
-      let scale = 1;
-      if (distance < effectRadius) {
-        const normalizedDistance = distance / effectRadius;
-        scale =
-          1 + (maxScale - 1) * Math.cos((normalizedDistance * Math.PI) / 2);
+      const itemRect = item.getBoundingClientRect();
+      const itemCenterX = itemRect.left + itemRect.width / 2 - dockRect.left;
+      const itemCenterY = itemRect.top + itemRect.height / 2 - dockRect.top;
+      
+      // Calculate distance from cursor to item center
+      const distanceX = mouseX - itemCenterX;
+      const distanceY = mouseY - itemCenterY;
+      const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+      
+      if (distance > config.influenceRadius) {
+        effects.push({
+          scale: 1,
+          magneticX: 0
+        });
+        return;
       }
-
-      scales.push(scale);
+      
+      // Calculate influence based on distance (0 to 1)
+      const influence = Math.max(0, 1 - (distance / config.influenceRadius));
+      
+      // Apply easing curve for more natural feel
+      const easedInfluence = influence * influence * (3 - 2 * influence); // Smooth step
+      
+      // Calculate scale (grows as cursor gets closer)
+      const scale = 1 + (easedInfluence * ((config.maxSize / config.baseSize) - 1));
+      
+      // Calculate magnetic attraction (icons move toward cursor)
+      const magneticX = distanceX * config.magneticStrength * easedInfluence;
+      
+      effects.push({
+        scale: Math.min(scale, config.maxSize / config.baseSize),
+        magneticX: Math.max(-20, Math.min(20, magneticX)) // Limit displacement
+      });
     });
-
-    // Calculate new positions based on scales
-    items.forEach((item, index) => {
-      const scale = scales[index];
-      const scaledWidth = itemSize * scale;
-
-      positions.push(totalWidth);
-      totalWidth += scaledWidth + gap;
+    
+    return effects;
+  };
+  
+  // Calculate dock width based on current scales
+  const calculateDockWidth = (effects) => {
+    let totalWidth = config.padding * 2;
+    effects.forEach((effect, index) => {
+      totalWidth += config.baseSize * effect.scale;
+      if (index < effects.length - 1) {
+        totalWidth += config.gap;
+      }
     });
-
-    // Remove last gap and add final padding
-    totalWidth = totalWidth - gap + padding;
-
-    // Update dock width smoothly
-    dock.style.width = `${totalWidth}px`;
-
-    // Apply transformations
-    items.forEach((item, index) => {
-      const scale = scales[index];
-      const position = positions[index];
-
-      item.style.left = `${position}px`;
-      item.style.transform = `scale(${scale})`;
-
-      // Add glow effect for highly scaled items
-      if (scale > 1.4) {
-        const glowIntensity = (scale - 1) / (maxScale - 1);
-        item.style.filter = `drop-shadow(0 0 ${
-          10 * glowIntensity
-        }px rgba(56, 189, 248, ${0.6 * glowIntensity}))`;
+    return totalWidth;
+  };
+  
+  // Animation loop
+  const animate = () => {
+    if (!isActive) {
+      animationFrame = null;
+      return;
+    }
+    
+    // Calculate target effects
+    const effects = calculateEffects(mouseX - dock.getBoundingClientRect().left, mouseY - dock.getBoundingClientRect().top);
+    
+    // Calculate target dock width
+    const targetWidth = calculateDockWidth(effects);
+    const currentWidth = dock.offsetWidth;
+    const newWidth = currentWidth + (targetWidth - currentWidth) * 0.2;
+    dock.style.width = `${newWidth}px`;
+    
+    let needsContinue = false;
+    
+    // Update item states with smooth interpolation
+    itemStates.forEach((state, index) => {
+      const effect = effects[index];
+      
+      // Smooth interpolation toward target values
+      state.currentScale += (effect.scale - state.currentScale) * config.smoothness;
+      state.currentX += (effect.magneticX - state.currentX) * config.smoothness;
+      
+      // Check if still animating
+      if (Math.abs(effect.scale - state.currentScale) > 0.01 || 
+          Math.abs(effect.magneticX - state.currentX) > 0.1) {
+        needsContinue = true;
+      }
+      
+      // Apply transformations
+      const transform = `scale(${state.currentScale}) translateX(${state.currentX}px)`;
+      items[index].style.transform = transform;
+      
+      // Add glow effect for enlarged items
+      if (state.currentScale > 1.3) {
+        const intensity = (state.currentScale - 1) * 0.6;
+        items[index].style.filter = `drop-shadow(0 0 ${12 * intensity}px rgba(56, 189, 248, ${0.7 * intensity}))`;
       } else {
-        item.style.filter = "none";
+        items[index].style.filter = 'none';
       }
     });
+    
+    // Continue animation if needed
+    if (needsContinue) {
+      animationFrame = requestAnimationFrame(animate);
+    } else {
+      animationFrame = null;
+    }
+  };
+  
+  // Start animation if not already running
+  const startAnimation = () => {
+    if (!animationFrame) {
+      animationFrame = requestAnimationFrame(animate);
+    }
+  };
+  
+  // Event handlers
+  const handleMouseMove = (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    startAnimation();
+  };
+  
+  const handleMouseEnter = () => {
+    isActive = true;
+    dock.addEventListener('mousemove', handleMouseMove);
+    startAnimation();
+  };
+  
+  const handleMouseLeave = () => {
+    isActive = false;
+    dock.removeEventListener('mousemove', handleMouseMove);
+    
+    // Animate back to original state
+    const resetAnimation = () => {
+      let allReset = true;
+      
+      itemStates.forEach((state, index) => {
+        // Animate back to defaults
+        state.currentScale += (1 - state.currentScale) * 0.12;
+        state.currentX += (0 - state.currentX) * 0.12;
+        
+        // Check if still resetting
+        if (Math.abs(1 - state.currentScale) > 0.01 || Math.abs(state.currentX) > 0.1) {
+          allReset = false;
+        }
+        
+        // Apply reset transformation
+        items[index].style.transform = `scale(${state.currentScale}) translateX(${state.currentX}px)`;
+        items[index].style.filter = 'none';
+      });
+      
+      // Animate dock width back to original
+      const baseWidth = (config.baseSize * items.length) + (config.gap * (items.length - 1)) + (config.padding * 2);
+      const currentWidth = dock.offsetWidth;
+      const newWidth = currentWidth + (baseWidth - currentWidth) * 0.12;
+      dock.style.width = `${newWidth}px`;
+      
+      if (!allReset) {
+        requestAnimationFrame(resetAnimation);
+      } else {
+        dock.style.width = ''; // Let CSS handle default width
+      }
+    };
+    
+    requestAnimationFrame(resetAnimation);
+  };
+  
+  // Setup initial styles
+  items.forEach((item, index) => {
+    item.style.transformOrigin = 'center bottom';
+    item.style.transition = 'none'; // We handle all animation via JS
   });
-
-  dock.addEventListener("mouseleave", () => {
-    // Smooth reset animation
-    dock.style.width = `${baseWidth}px`;
-
-    items.forEach((item, index) => {
-      const initialLeft = padding + index * (itemSize + gap);
-      item.style.left = `${initialLeft}px`;
-      item.style.transform = "scale(1)";
-      item.style.filter = "none";
-    });
-  });
+  
+  // Add event listeners
+  dock.addEventListener('mouseenter', handleMouseEnter);
+  dock.addEventListener('mouseleave', handleMouseLeave);
+  
+  console.log(`Fresh magnetic dock initialized with ${items.length} items`);
 }
 
 // Counter Logic
