@@ -1,0 +1,130 @@
+{
+  "meta": {
+    "title": "Puneeth Y | Cloud Resume",
+    "description": "Puneeth Y's Cloud Resume Challenge – DevOps, Cloud, AWS, Kubernetes, and creative portfolio. Explore my journey, skills, projects, and achievements.",
+    "keywords": "Puneeth Y, Cloud Resume, DevOps, AWS, Kubernetes, Portfolio, Open Source, Engineer, Blog, Photography",
+    "author": "Puneeth Y",
+    "ogTitle": "Puneeth Y | Cloud Resume | DevOps Engineer & Cloud Enthusiast",
+    "ogDescription": "Puneeth Y's Cloud Resume Challenge – DevOps, Cloud, AWS, Kubernetes, and creative portfolio.",
+    "twitterTitle": "Puneeth Y | Cloud Resume | DevOps Engineer & Cloud Enthusiast",
+    "twitterDescription": "Puneeth Y's Cloud Resume Challenge – DevOps, Cloud, AWS, Kubernetes, and creative portfolio."
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "recommendations": "Recommendations",
+    "pipeline": "Pipeline",
+    "skills": "Skills",
+    "projects": "Projects",
+    "experience": "Experience",
+    "blogs": "Blogs",
+    "photography": "Photography"
+  },
+  "hero": {
+    "name": "Puneeth Y",
+    "subtitle": "DevOps Engineer building resilient, automated, and scalable cloud infrastructure for modern technology."
+  },
+  "about": {
+    "title": "About Me",
+    "intro": "Howdy, I'm Puneeth! a DevOps Engineer with a passion for automation and system orchestration.",
+    "description": "I build efficient and reliable infrastructure using tools like Docker and Kubernetes. From automating deployments to keeping container workflows smooth, I focus on building setups that save time, reduce friction, and keep releases running clean.",
+    "hobby": "Outside of tech, I'm a bit obsessed with open‑source. Most of my free time disappears into reading in libraries (places filled with books and quiet corners to get lost in), poking around repos, and breaking things (then usually fixing them), all happily powered by a strict daily caffeine quota that keeps my brain compiling, the fingers typing, and the side‑quests into random rabbit holes running at full speed. Away from the screen, I love photography and enjoy exploring nature with my camera, capturing moments whenever I can."
+  },
+  "recommendations": {
+    "title": "Recommendations",
+    "description": "What colleagues and mentors have to say about working with me.",
+    "rating": "5/5 Rating",
+    "recommender1Name": "Dhakshin Kumar",
+    "recommender1Position": "Technical Project Manager at HCLSoftware",
+    "recommendation1": "I worked with Puneeth to create the migration plan for moving our projects to a new Packaged Business Capabilities (PBC) architecture. During this time, he quickly developed a deep understanding of the projects and their architectural requirements. His knowledge of Docker and Kubernetes was truly commendable and worth highlighting. Even as a fresher, he took ownership of PoC setups, thoroughly evaluating various Kubernetes deployment architectures and giving valuable feedback on the best approach. While I brought strong client domain expertise as the more experienced member, Puneeth’s prior exposure to modern cloud-native tools made us a powerful two-person migration team. This combination of strengths was key to our success. I truly enjoyed working with him and am confident he will be a valuable asset to your organization. I wholeheartedly recommend him and wish him the very best in his future endeavors.",
+    "recommender2Name": "Jeroen Willemsen",
+    "recommender2Position": "Principal security architect, OWASP Wrongsecrets lead",
+    "recommendation2": "I had the pleasure of working with Puneeth on OWASP WrongSecrets in 2023. Puneeth joined as a volunteer with very little knowledge about most of the project back then. Still, that did not hold back Puneeth of creating very valuable additions to our project. I was impressed by how he studied the technologies we used and ended up creating very valuable contributions which we still use today. He shows to be an avid learner, have great perseverance, a good communicator, and a great guy to work with!",
+    "recommender3Name": "Dr. Pushapa Ravikumar",
+    "recommender3Position": "Head of Department at Adichunchanagiri Institute of Technology",
+    "recommendation3": "I had the pleasure of supervising Puneeth Yogeesha during his studies at Adichunchanagiri Institute of Technology, and I can confidently say he is among the best students I have worked with. He has consistently demonstrated exceptional technical skills, academic excellence, and the ability to translate sophisticated concepts into impactful projects. From developing a highly acclaimed sentiment analyzer for Reddit posts in his third year to leading an ambitious final-year project on automated test suite generation in CI/CD pipelines using generative AI, Puneeth has shown both innovation and practical problem-solving ability. His dedication to producing high-quality, practical solutions, coupled with his curiosity and commitment to professional growth, makes him an outstanding candidate for any organization seeking a talented and forward-thinking engineer.",
+    "recommender4Name": "Alex Rodriguez",
+    "recommender4Position": "Team Lead at StartupTech",
+    "recommendation4": "Puneeth's contribution to our open-source projects during GSSoC was exceptional. His code quality, attention to detail, and collaborative spirit made him stand out among thousands of contributors. He consistently delivered beyond expectations and helped mentor other contributors."
+  },
+  "stats": {
+    "experience": "1+ Years of Experience",
+    "visitors": "Visitors",
+    "poweredBy": "Powered by AWS Lambda",
+    "commitment": "Commitment to Automation"
+  },
+  "skills": {
+    "title": "My skills",
+    "description": "I've got solid hands‑on experience with DevOps tools and practices, especially around deploying and managing cloud‑native applications. I enjoy working with Kubernetes, Helm, and Terraform to automate deployments. I've built and maintained CI/CD pipelines with automated testing to keep delivery smooth and reliable. On the development side, I'm comfortable with Golang, Python and C#, along with frameworks like Node.js, Django, and .NET — which helps me bridge the gap between dev and ops. I've also worked with MSSQL and MongoDB for data‑driven apps, giving me a well‑rounded view of full‑stack systems from code to production. Curious to see more? Feel free to check out my CV along the way!",
+    "infrastructure": "On the development side, I’m comfortable with languages like Python, Golang, JavaScript, and frameworks such as Node.js, Django, and .NET, which helps me bridge the gap between development and operations. I’ve worked with both MSSQL and MongoDB for data-driven applications, making me well-rounded in managing full-stack systems from code to production.",
+    "curious": "Curious for more? Feel free to check out my CV along the way!",
+    "viewCV": "View CV"
+  },
+  "pipeline": {
+    "code": "Code",
+    "build": "Build",
+    "test": "Test",
+    "deploy": "Deploy"
+  },
+  "portfolio": {
+    "title": "Featured Projects",
+    "description": "A selection of my recent software and DevOps projects. Hover over each card to see more details.",
+    "portfolioProject0title": "CODESOURCERER",
+    "portfolioProject1title": "Vitista",
+    "portfolioProject2title": "Sputilties",
+    "portfolioProject3title": "Huddle",
+    "portfolioProject0description": "A tool that automates test suite generation for code changes using a Gemini-powered proxy server, completely integrates with GitHub to create filtered tests via pull requests.",
+    "portfolioProject1description": "A comprehensive personal healthcare app designed to empower individuals on their journey to optimal well-being.",
+    "portfolioProject2description": "A collection of Spotify utilities and tools to enhance your music streaming experience.",
+    "portfolioProject3description": "A collaborative meeting and team communication platform for remote teams."
+  },
+  "certifications": {
+    "title": "Awards & Certifications",
+    "description": "A collection of certifications and recognitions I've received along my learning and DevOps journey.",
+    "items0": "Top 1% in GSSoC'ext 2024",
+    "items1": "1st Place in the department-level mini-project",
+    "items2": "AZ-305 Microsoft Azure Architect Design Prerequisites",
+    "items3": "AWS Cloud Practitioner Essentials",
+    "items4": "Postman API Fundamentals Student Expert"
+  },
+  "experience": {
+    "title": "Work Experience",
+    "description": "My professional journey in the world of DevOps and cloud engineering.",
+    "jobs0Company": "Scontain",
+    "jobs0position": "Working Student",
+    "jobs0period": "Jan 2026 - Present",
+    "jobs0description": "In this role, I focus on exploring and advancing the field of Confidential Computing, with a strong emphasis on building and optimizing SCONE‑enabled confidential workflows on Kubernetes.",
+    "jobs1Company": "HCLSoftware",
+    "jobs1position": "Intern",
+    "jobs1period": "Mar 2025 - Aug 2025",
+    "jobs1description": "Architected the migration of a legacy monolith to a modular PBC-based system, engineering a multi-node Kubernetes and Docker infrastructure with full-stack observability to enhance scalability, reliability, and deployment velocity, while co-developing the migration strategy and validating architectural feasibility through PoCs.",
+    "jobs2Company": "GirlScript Summer of Code (GSSoC-ext'24)",
+    "jobs2position": "Open Source Contributor",
+    "jobs2period": "Oct 2024 - Nov 2024",
+    "jobs2description": "Actively contributed to open-source repositories as part of GSSoC-ext 2024, demonstrating strong coding proficiency, collaboration, and problem-solving abilities. Achieved a top ranking of 281 out of 60,000 participants, reflecting high technical competence and consistent engagement throughout the program."
+  },
+  "blog": {
+    "title": "My Blog",
+    "description": "Sharing my journey and insights in cloud computing and DevOps.",
+    "readBlog": "Read The Blog",
+    "posts0title": "My Attempt at the AWS Cloud Resume Challenge",
+    "posts0excerpt": "Curious about how the architecture behind this website is structured using modern DevOps practices? I break it all down in my blog post as part of the Cloud Resume Challenge.\n\nFrom CI/CD to infrastructure as code, it's all in there. Be sure to check it out!"
+  },
+  "photography": {
+    "title": "Photography Portfolio",
+    "description": "Beyond the code, I enjoy capturing the world through my lens. Here's a glimpse of my creative side.",
+    "viewFull": "View Full Photography Portfolio"
+  },
+  "footer": {
+    "builtWith": "Built as part of the AWS Cloud Resume Challenge.",
+    "copyright": "© 2025 Puneeth Y. All Rights Reserved."
+  },
+  "toast": {
+    "welcome": "Welcome!",
+    "thanks": "Thanks for visiting my portfolio.",
+    "visitor": "You are visitor #"
+  },
+  "ui": {
+    "close": "×"
+  }
+}

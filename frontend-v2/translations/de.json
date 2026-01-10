@@ -1,0 +1,130 @@
+{
+  "meta": {
+    "title": "Puneeth Y | Cloud-Lebenslauf",
+    "description": "Puneeth Y's Cloud Resume Challenge – DevOps, Cloud, AWS, Kubernetes und kreatives Portfolio. Entdecken Sie meine Reise, Fähigkeiten, Projekte und Erfolge.",
+    "keywords": "Puneeth Y, Cloud-Lebenslauf, DevOps, AWS, Kubernetes, Portfolio, Open Source, Ingenieur, Blog, Fotografie",
+    "author": "Puneeth Y",
+    "ogTitle": "Puneeth Y | Cloud-Lebenslauf | DevOps-Ingenieur & Cloud-Enthusiast",
+    "ogDescription": "Puneeth Y's Cloud Resume Challenge – DevOps, Cloud, AWS, Kubernetes und kreatives Portfolio.",
+    "twitterTitle": "Puneeth Y | Cloud-Lebenslauf | DevOps-Ingenieur & Cloud-Enthusiast",
+    "twitterDescription": "Puneeth Y's Cloud Resume Challenge – DevOps, Cloud, AWS, Kubernetes und kreatives Portfolio."
+  },
+  "navigation": {
+    "home": "Startseite",
+    "about": "Über mich",
+    "recommendations": "Empfehlungen",
+    "pipeline": "Pipeline",
+    "skills": "Fähigkeiten",
+    "projects": "Projekte",
+    "experience": "Erfahrung",
+    "blogs": "Blogs",
+    "photography": "Fotografie"
+  },
+  "hero": {
+    "name": "Puneeth Y",
+    "subtitle": "DevOps-Ingenieur, der widerstandsfähige, automatisierte und skalierbare Cloud-Infrastruktur für moderne Technologien entwickelt."
+  },
+  "about": {
+    "title": "Über mich",
+    "intro": "Hallo, ich bin Puneeth! ein DevOps-Ingenieur mit einer Leidenschaft für Automatisierung und Systemorchestrierung.",
+    "description": "Ich erstelle effiziente und zuverlässige Infrastrukturen mit Tools wie Docker und Kubernetes. Von der Automatisierung von Deployments bis hin zu reibungslosen Container-Workflows konzentriere ich mich auf den Aufbau von Setups, die Zeit sparen, Reibungsverluste reduzieren und Releases sauber laufen lassen.",
+    "hobby": "Außerhalb der Technik bin ich etwas besessen von Open‑Source. Der Großteil meiner Freizeit verschwindet beim Lesen in Bibliotheken (Orten voller Bücher und ruhiger Ecken, um sich zu verlieren), beim Stöbern in Repositories und beim Kaputtmachen von Dingen (und sie dann meist wieder reparieren), alles angetrieben von einer strengen täglichen Koffein-Quote, die mein Gehirn am Kompilieren, die Finger am Tippen und die Seitenquests in zufällige Rabbit-Holes auf Hochtouren hält. Abseits des Bildschirms liebe ich Fotografie und erkunde gerne die Natur mit meiner Kamera, um Momente festzuhalten, wann immer ich kann."
+  },
+  "recommendations": {
+    "title": "Empfehlungen",
+    "description": "Was Kollegen und Mentoren über die Zusammenarbeit mit mir sagen.",
+    "rating": "5/5 Bewertung",
+    "recommender1Name": "Dhakshin Kumar",
+    "recommender1Position": "Technischer Projektmanager bei HCLSoftware",
+    "recommendation1": "Ich habe gemeinsam mit Puneeth einen Migrationsplan für die Umstellung unserer Projekte auf eine neue Packaged Business Capabilities (PBC)-Architektur erstellt. Während dieser Zeit entwickelte er schnell ein tiefes Verständnis für die Projekte und ihre architektonischen Anforderungen. Seine Kenntnisse über Docker und Kubernetes waren wirklich lobenswert und hervorzuheben. Selbst als Neuling übernahm er die Verantwortung für PoC-Setups, bewertete gründlich verschiedene Kubernetes-Bereitstellungsarchitekturen und gab wertvolles Feedback zum besten Ansatz. Während ich als erfahreneres Mitglied fundierte Fachkenntnisse im Kundenbereich einbrachte, machte Puneeths vorherige Erfahrung mit modernen Cloud-nativen Tools uns zu einem starken zweiköpfigen Migrationsteam. Diese Kombination von Stärken war der Schlüssel zu unserem Erfolg. Ich habe die Zusammenarbeit mit ihm sehr genossen und bin überzeugt, dass er eine wertvolle Bereicherung für Ihr Unternehmen sein wird. Ich empfehle ihn von ganzem Herzen und wünsche ihm alles Gute für seine zukünftigen Unternehmungen.",
+    "recommender2Name": "Jeroen Willemsen",
+    "recommender2Position": "Leitender Sicherheitsarchitekt, OWASP Wrongsecrets-Leiter",
+    "recommendation2": "Ich hatte das Vergnügen, 2023 mit Puneeth an OWASP WrongSecrets zusammenzuarbeiten. Puneeth kam damals als Freiwilliger dazu und hatte nur sehr wenig Wissen über den Großteil des Projekts. Dennoch hielt das Puneeth nicht davon ab, sehr wertvolle Beiträge zu unserem Projekt zu leisten. Ich war beeindruckt davon, wie er sich mit den von uns verwendeten Technologien auseinandergesetzt und schließlich sehr wertvolle Beiträge geleistet hat, die wir noch heute nutzen. Er ist ein eifriger Lerner, verfügt über große Ausdauer, ist ein guter Kommunikator und ein großartiger Kollege!",
+    "recommender3Name": "Dr. Pushapa Ravikumar",
+    "recommender3Position": "Leiter der Abteilung am Adichunchanagiri Institute of Technology",
+    "recommendation3": "Ich hatte das Vergnügen, Puneeth Yogeesha während seines Studiums am Adichunchanagiri Institute of Technology zu betreuen, und ich kann mit Überzeugung sagen, dass er zu den besten Studenten gehört, mit denen ich je zusammengearbeitet habe. Er hat stets außergewöhnliche technische Fähigkeiten, akademische Exzellenz und die Fähigkeit bewiesen, komplexe Konzepte in wirkungsvolle Projekte umzusetzen. Von der Entwicklung eines hochgelobten Sentiment-Analysators für Reddit-Beiträge in seinem dritten Studienjahr bis hin zur Leitung eines ambitionierten Abschlussprojekts zur automatisierten Testsuite-Generierung in CI/CD-Pipelines unter Verwendung generativer KI hat Puneeth sowohl Innovationskraft als auch praktische Problemlösungsfähigkeiten bewiesen. Sein Engagement für die Entwicklung hochwertiger, praktischer Lösungen, gepaart mit seiner Neugier und seinem Engagement für berufliches Wachstum, machen ihn zu einem hervorragenden Kandidaten für jedes Unternehmen, das einen talentierten und zukunftsorientierten Ingenieur sucht.",
+    "recommender4Name": "Alex Rodriguez",
+    "recommender4Position": "Teamleiter bei StartupTech",
+    "recommendation4": "Puneeths Beitrag zu unseren Open-Source-Projekten während GSSoC war außergewöhnlich. Seine Codequalität, Liebe zum Detail und sein kollaborativer Geist ließen ihn unter Tausenden von Mitwirkenden hervorstechen. Er lieferte konsequent über die Erwartungen hinaus und half dabei, andere Mitwirkende zu betreuen."
+  },
+  "stats": {
+    "experience": "1+ Jahre Erfahrung",
+    "visitors": "Besucher",
+    "poweredBy": "Powered by AWS Lambda",
+    "commitment": "Engagement für Automatisierung"
+  },
+  "skills": {
+    "title": "Meine Fähigkeiten",
+    "description": "Ich habe fundierte praktische Erfahrung mit DevOps-Tools und -Praktiken, insbesondere bei der Bereitstellung und Verwaltung von Cloud‑nativen Anwendungen. Ich arbeite gerne mit Kubernetes, Helm und Terraform zur Automatisierung von Deployments. Ich habe CI/CD-Pipelines mit automatisierten Tests aufgebaut und gepflegt, um die Bereitstellung reibungslos und zuverlässig zu gestalten. Auf der Entwicklungsseite bin ich mit Golang, Python und C# vertraut, sowie mit Frameworks wie Node.js, Django und .NET — was mir hilft, die Lücke zwischen Dev und Ops zu überbrücken. Ich habe auch mit MSSQL und MongoDB für datengesteuerte Apps gearbeitet, was mir eine umfassende Sicht auf Full‑Stack-Systeme vom Code bis zur Produktion gibt. Neugierig auf mehr? Schauen Sie sich gerne meinen Lebenslauf an!",
+    "infrastructure": "Auf der Entwicklungsseite bin ich mit Sprachen wie Python, Golang, JavaScript und Frameworks wie Node.js, Django und .NET vertraut, was mir hilft, die Lücke zwischen Entwicklung und Betrieb zu schließen. Ich habe sowohl mit MSSQL als auch mit MongoDB für datengesteuerte Anwendungen gearbeitet, wodurch ich über umfassende Kenntnisse im Management von Full-Stack-Systemen vom Code bis zur Produktion verfüge.",
+    "curious": "Möchten Sie mehr erfahren? Dann schauen Sie sich gerne meinen Lebenslauf an!",
+    "viewCV": "Lebenslauf ansehen"
+  },
+  "pipeline": {
+    "code": "Code",
+    "build": "Build",
+    "test": "Test",
+    "deploy": "Deploy"
+  },
+  "certifications": {
+    "title": "Auszeichnungen & Zertifizierungen",
+    "description": "Eine Sammlung von Zertifizierungen und Anerkennungen, die ich auf meiner Lern- und DevOps-Reise erhalten habe.",
+    "items0": "Top 1% in GSSoC'ext 2024",
+    "items1": "1. Platz im abteilungsweiten Mini-Projekt",
+    "items2": "AZ-305 Microsoft Azure Architect Design Prerequisites",
+    "items3": "AWS Cloud Practitioner Essentials",
+    "items4": "Postman API Fundamentals Student Expert"
+  },
+  "portfolio": {
+    "title": "Ausgewählte Projekte",
+    "description": "Eine Auswahl meiner neuesten Software- und DevOps-Projekte. Bewegen Sie den Mauszeiger über jede Karte, um weitere Details zu sehen.",
+    "portfolioProject0title": "CODESOURCERER",
+    "portfolioProject1title": "Vitista",
+    "portfolioProject2title": "Sputilties",
+    "portfolioProject3title": "Huddle",
+    "portfolioProject0description": "Ein Tool, das die Generierung von Testsuiten für Code-Änderungen mit einem Gemini-betriebenen Proxy-Server automatisiert und vollständig in GitHub integriert ist, um gefilterte Tests über Pull-Requests zu erstellen.",
+    "portfolioProject1description": "Eine umfassende persönliche Gesundheits-App, die darauf ausgelegt ist, Einzelpersonen auf ihrem Weg zu optimalem Wohlbefinden zu stärken.",
+    "portfolioProject2description": "Eine Sammlung von Spotify-Utilities und Tools zur Verbesserung Ihres Musik-Streaming-Erlebnisses.",
+    "portfolioProject3description": "Eine kollaborative Meeting- und Teamkommunikationsplattform für Remote-Teams."
+  },
+  "experience": {
+    "title": "Berufserfahrung",
+    "description": "Meine berufliche Reise in der Welt von DevOps und Cloud-Engineering.",
+    "jobs0Company": "Scontain",
+    "jobs0position": "Werkstudent",
+    "jobs0period": "Jan 2026 - Gegenwart",
+    "jobs0description": "In dieser Rolle konzentriere ich mich auf die Erforschung und Weiterentwicklung des Bereichs Confidential Computing mit einem starken Fokus auf die Entwicklung und Optimierung von SCONE-basierten sicheren Workflows in Kubernetes.",
+    "jobs1Company": "HCLSoftware",
+    "jobs1position": "Praktikant",
+    "jobs1period": "Mär 2025 - Aug 2025",
+    "jobs1description": "Architektur der Migration eines Legacy-Monolithen zu einem modularen PBC-basierten System, Engineering einer Multi-Node-Kubernetes- und Docker-Infrastruktur mit vollständiger Observability zur Verbesserung von Skalierbarkeit, Zuverlässigkeit und Deployment-Geschwindigkeit, während die Migrationsstrategie mitentwickelt und die architektonische Machbarkeit durch PoCs validiert wurde.",
+    "jobs2Company": "GirlScript Summer of Code (GSSoC-ext'24)",
+    "jobs2position": "Open Source Contributor",
+    "jobs2period": "Okt 2024 - Nov 2024",
+    "jobs2description": "Aktive Beiträge zu Open-Source-Repositories als Teil von GSSoC-ext 2024, demonstrierte starke Programmierfähigkeiten, Zusammenarbeit und Problemlösungsfähigkeiten. Erreichte eine Top-Platzierung von 281 von 60.000 Teilnehmern, was hohe technische Kompetenz und konsequentes Engagement während des gesamten Programms widerspiegelt."
+  },
+  "blog": {
+    "title": "Mein Blog",
+    "description": "Teilen meiner Reise und Erkenntnisse im Cloud Computing und DevOps.",
+    "readBlog": "Blog lesen",
+    "posts0title": "Mein Versuch bei der AWS Cloud Resume Challenge",
+    "posts0excerpt": "Neugierig darauf, wie die Architektur hinter dieser Website mit modernen DevOps-Praktiken strukturiert ist? Ich erkläre alles in meinem Blog-Post als Teil der Cloud Resume Challenge.\n\nVon CI/CD bis Infrastructure as Code, alles ist dort drin. Schauen Sie es sich unbedingt an!"
+  },
+  "photography": {
+    "title": "Fotografie-Portfolio",
+    "description": "Jenseits des Codes genieße ich es, die Welt durch meine Linse einzufangen. Hier ist ein Einblick in meine kreative Seite.",
+    "viewFull": "Vollständiges Fotografie-Portfolio ansehen"
+  },
+  "footer": {
+    "builtWith": "Erstellt als Teil der AWS Cloud Resume Challenge.",
+    "copyright": "© 2025 Puneeth Y. Alle Rechte vorbehalten."
+  },
+  "toast": {
+    "welcome": "Willkommen!",
+    "thanks": "Danke für den Besuch meines Portfolios.",
+    "visitor": "Sie sind Besucher #"
+  },
+  "ui": {
+    "close": "×"
+  }
+}

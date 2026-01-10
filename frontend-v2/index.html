@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Puneeth Y | Cloud Resume</title>
+    <meta
+      name="description"
+      content="Puneeth Y's Cloud Resume Challenge – DevOps, Cloud, AWS, Kubernetes, and creative portfolio. Explore my journey, skills, projects, and achievements."
+    />
+    <meta
+      name="keywords"
+      content="Puneeth Y, Cloud Resume, DevOps, AWS, Kubernetes, Portfolio, Open Source, Engineer, Blog, Photography"
+    />
+    <meta name="author" content="Puneeth Y" />
+    <link rel="canonical" href="https://puneeth.is-a.dev/" />
+    <link rel="icon" type="image/png" href="./assets/avatar-alt1.png" />
+
+    <!-- Open Graph / Facebook -->
+    <meta
+      property="og:title"
+      content="Puneeth Y | Cloud Resume | DevOps Engineer & Cloud Enthusiast"
+    />
+    <meta
+      property="og:description"
+      content="Puneeth Y's Cloud Resume Challenge – DevOps, Cloud, AWS, Kubernetes, and creative portfolio."
+    />
+    <meta
+      property="og:image"
+      content="https://puneeth.is-a.dev/assets/avatar-alt1.png"
+    />
+    <meta property="og:url" content="https://puneeth.is-a.dev/" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Puneeth Y | Cloud Resume | DevOps Engineer & Cloud Enthusiast"
+    />
+    <meta
+      name="twitter:description"
+      content="Puneeth Y's Cloud Resume Challenge – DevOps, Cloud, AWS, Kubernetes, and creative portfolio."
+    />
+    <meta
+      name="twitter:image"
+      content="https://puneeth.is-a.dev/assets/avatar-alt1.png"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Puneeth Y",
+        "url": "https://puneeth.is-a.dev/",
+        "image": "https://puneeth.is-a.dev/assets/avatar-alt1.png",
+        "sameAs": [
+          "https://www.linkedin.com/in/puneeth072003/",
+          "https://github.com/puneeth072003",
+          "https://twitter.com/puneeth072003"
+        ],
+        "jobTitle": "DevOps Engineer",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "HCLSoftware"
+        }
+      }
+    </script>
+    <!-- Google Fonts: Inter & Orbitron -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./style.css" />
+
+    <!-- Font Awesome for Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- JS Libraries: Three.js for 3D, Chart.js for radar -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style></style>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+    />
+    <style></style>
+  </head>
+  <body class="w-full">
+    <main>
+      <!-- Hero Section -->
+      <section
+        id="home"
+        class="relative h-screen w-full flex items-center justify-center text-center overflow-hidden"
+      >
+        <canvas class="hero-canvas" id="hero-canvas"></canvas>
+        <div class="relative z-10 p-4">
+          <h1
+            class="font-orbitron text-4xl sm:text-5xl md:text-8xl font-black text-white uppercase tracking-wider"
+            data-i18n="hero.name"
+          >
+            Puneeth Y
+          </h1>
+          <p class="mt-4 text-lg md:text-2xl text-sky-300 max-w-3xl mx-auto" data-i18n="hero.subtitle">
+            DevOps Engineer building resilient, automated, and scalable cloud 
+            infrastructure for modern technology.
+          </p>
+        </div>
+      </section>
+
+      <!-- About Me Section -->
+      <section id="about" class="py-16 md:py-24 bg-black/20">
+        <div
+          class="container mx-auto px-6 grid md:grid-cols-2 gap-8 md:gap-16 items-center"
+        >
+          <div class="reveal-section">
+            <img
+              src="./assets/avatar-alt1.png"
+              alt="Puneeth"
+              class="md:w-80 md:h-80 mx-auto object-cover"
+            />
+          </div>
+          <div class="reveal-section">
+            <h2 class="font-orbitron text-3xl md:text-4xl text-white" data-i18n="about.title">
+              About Me
+            </h2>
+            <p class="mt-4 text-md md:text-lg text-slate-300 leading-relaxed">
+              <span class="text-sky-300 weight-bold" data-i18n="about.intro"
+                >Howdy, I’m an aspiring DevOps engineer with a passion for
+                automation and system orchestration.</span
+              >
+              <br />
+              <span data-i18n="about.description">I love building efficient and reliable infrastructure using tools
+              like Docker, Kubernetes, and AWS. Whether it’s writing
+              Infrastructure as Code, managing containers, or setting up CI/CD
+              pipelines, I’m all about creating systems that make life easier
+              for developers, helping them ship faster, safer, and with
+              confidence.</span>
+            </p>
+            <p class="mt-4 text-md md:text-lg text-slate-300 leading-relaxed" data-i18n="about.hobby">
+              Outside of tech, I enjoy photography and often spend time
+              exploring nature with my camera, capturing moments when I can.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Section -->
+      <section class="py-16">
+        <div class="container mx-auto px-6">
+          <div
+            class="glass-pane p-8 rounded-xl grid grid-cols-1 md:grid-cols-3 gap-8 text-center"
+          >
+            <div class="reveal-section">
+              <p class="font-orbitron text-3xl md:text-4xl text-sky-300">1</p>
+              <p class="text-slate-400 mt-2" data-i18n="stats.experience">Years of Experience</p>
+            </div>
+            <div class="reveal-section">
+              <p
+                id="counter-number"
+                class="font-orbitron text-3xl md:text-4xl text-sky-300"
+              >
+                0
+              </p>
+              <p class="text-slate-400 mt-2" data-i18n="stats.visitors">Visitors</p>
+              <p class="font-orbitron text-slate-600 mt-2 text-sm" data-i18n="stats.poweredBy">
+                Powered by AWS Lambda
+              </p>
+            </div>
+            <div class="reveal-section">
+              <p class="font-orbitron text-3xl md:text-4xl text-sky-300">
+                100%
+              </p>
+              <p class="text-slate-400 mt-2" data-i18n="stats.commitment">Commitment to Automation</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Recommendations Section -->
+      <section id="recommendations" class="py-16 md:py-24 overflow-hidden">
+        <div class="container mx-auto px-6">
+          <div class="text-center reveal-section">
+            <h2 class="font-orbitron text-3xl md:text-4xl text-white" data-i18n="recommendations.title">
+              Recommendations
+            </h2>
+            <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto" data-i18n="recommendations.description">
+              What colleagues and mentors have to say about working with me.
+            </p>
+          </div>
+
+          <div class="mt-16 grid md:grid-cols-1 lg:grid-cols-2 gap-8 justify-items-center items-stretch">
+            <!-- Recommendation Card 1 -->
+            <div class="reveal-section recommendation-card glass-pane rounded-xl p-6 hover:border-sky-400 transition-all">
+              <div class="recommendation-content">
+                <div class="flex items-start gap-4 mb-4">
+                  <div class="recommendation-avatar">
+                    <i class="fas fa-user-circle text-4xl text-sky-400"></i>
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="font-orbitron text-lg text-white" data-i18n="recommendations.recommender1Name">
+                      Dhakshin Kumar
+                    </h3>
+                    <p class="text-sky-300 text-sm font-semibold" data-i18n="recommendations.recommender1Position">
+                      Technical Project Manager at HCLSoftware
+                    </p>
+                  </div>
+                  <div class="recommendation-quote-icon">
+                    <i class="fas fa-quote-right text-2xl text-sky-400/30"></i>
+                  </div>
+                </div>
+                <blockquote class="text-slate-300 italic leading-relaxed" data-i18n="recommendations.recommendation1">
+                  I worked with Puneeth to create the migration plan for moving our projects to a new Packaged Business Capabilities (PBC) architecture. During this time, he quickly developed a deep understanding of the projects and their architectural requirements. His knowledge of Docker and Kubernetes was truly commendable and worth highlighting. Even as a fresher, he took ownership of PoC setups, thoroughly evaluating various Kubernetes deployment architectures and giving valuable feedback on the best approach. While I brought strong client domain expertise as the more experienced member, Puneeth's prior exposure to modern cloud-native tools made us a powerful two-person migration team. This combination of strengths was key to our success. I truly enjoyed working with him and am confident he will be a valuable asset to your organization. I wholeheartedly recommend him and wish him the very best in his future endeavors.
+                </blockquote>
+                <div class="mt-auto pt-4 flex items-center gap-2">
+                  <div class="flex text-yellow-400">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <span class="text-slate-400 text-sm ml-2" data-i18n="recommendations.rating">5/5 Rating</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recommendation Card 2 -->
+            <div class="reveal-section recommendation-card glass-pane rounded-xl p-6 hover:border-sky-400 transition-all">
+              <div class="recommendation-content">
+                <div class="flex items-start gap-4 mb-4">
+                  <div class="recommendation-avatar">
+                    <i class="fas fa-user-circle text-4xl text-sky-400"></i>
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="font-orbitron text-lg text-white" data-i18n="recommendations.recommender2Name">
+                      Jeroen Willemsen
+                    </h3>
+                    <p class="text-sky-300 text-sm font-semibold" data-i18n="recommendations.recommender2Position">
+                      Principal security architect, OWASP Wrongsecrets lead
+                    </p>
+                  </div>
+                  <div class="recommendation-quote-icon">
+                    <i class="fas fa-quote-right text-2xl text-sky-400/30"></i>
+                  </div>
+                </div>
+                <blockquote class="text-slate-300 italic leading-relaxed" data-i18n="recommendations.recommendation2">
+                  "I had the pleasure of working with Puneeth on OWASP WrongSecrets in 2023. Puneeth joined as a volunteer with very little knowledge about most of the project back then. Still, that did not hold back Puneeth of creating very valuable additions to our project. I was impressed by how he studied the technologies we used and ended up creating very valuable contributions which we still use today. He shows to be an avid learner, have great perseverance, a good communicator, and a great guy to work with!"
+                </blockquote>
+                <div class="mt-auto pt-4 flex items-center gap-2">
+                  <div class="flex text-yellow-400">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <span class="text-slate-400 text-sm ml-2" data-i18n="recommendations.rating">5/5 Rating</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recommendation Card 3 -->
+            <!-- <div class="reveal-section recommendation-card glass-pane rounded-xl p-6 hover:border-sky-400 transition-all">
+              <div class="flex items-start gap-4 mb-4">
+                <div class="recommendation-avatar">
+                  <i class="fas fa-user-circle text-4xl text-sky-400"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-orbitron text-lg text-white" data-i18n="recommendations.recommender3Name">
+                    Dr. Priya Sharma
+                  </h3>
+                  <p class="text-sky-300 text-sm font-semibold" data-i18n="recommendations.recommender3Position">
+                    Professor of Computer Science at Tech University
+                  </p>
+                </div>
+                <div class="recommendation-quote-icon">
+                  <i class="fas fa-quote-right text-2xl text-sky-400/30"></i>
+                </div>
+              </div>
+              <blockquote class="text-slate-300 italic leading-relaxed" data-i18n="recommendations.recommendation3">
+                "Puneeth was one of my most dedicated students, showing remarkable aptitude for system design and automation. His final project on container orchestration was outstanding and demonstrated his ability to tackle complex technical challenges with creativity and precision."
+              </blockquote>
+              <div class="mt-4 flex items-center gap-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <span class="text-slate-400 text-sm ml-2" data-i18n="recommendations.rating">5/5 Rating</span>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Add Experience Section -->
+      <section id="experience" class="py-16 md:py-24 overflow-hidden">
+        <div class="container mx-auto px-6">
+          <div class="text-center reveal-section">
+            <h2 class="font-orbitron text-3xl md:text-4xl text-white" data-i18n="experience.title">
+              Work Experience
+            </h2>
+            <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto" data-i18n="experience.description">
+              My professional journey in the world of DevOps and cloud
+              engineering.
+            </p>
+          </div>
+
+          <div class="mt-16 relative">
+            <!-- Timeline center line -->
+            <div class="timeline-line"></div>
+
+            <!-- Experience items -->
+            <div id="experience-timeline" class="relative z-10">
+              <!-- Experience Entry 1: HCLSoftware -->
+              <div class="reveal-section timeline-item left">
+                <div class="glass-pane p-6 rounded-xl hover:border-sky-400 transition-all">
+                  <div class="flex justify-between items-start mb-3">
+                    <h3 class="font-orbitron text-xl text-white" data-i18n="experience.jobs0Company">Scontain</h3>
+                    <span class="text-sky-400 text-sm font-semibold" data-i18n="experience.jobs0period">Jan 2026 - Present</span>
+                  </div>
+                  <h4 class="text-sky-300 font-semibold mb-3" data-i18n="experience.jobs0position">Working Student</h4>
+                  <p class="text-slate-400 mb-4" data-i18n="experience.jobs0description">In this role, I focus on exploring and advancing the field of Confidential Computing, with a strong emphasis on building and optimizing SCONE‑enabled confidential workflows on Kubernetes.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-slate-800 text-sky-300 text-xs px-3 py-1 rounded-full">SCONE</span>
+                    <span class="bg-slate-800 text-sky-300 text-xs px-3 py-1 rounded-full">Confidential Computing</span>
+                    <span class="bg-slate-800 text-sky-300 text-xs px-3 py-1 rounded-full">Kubernetes</span>
+                    <span class="bg-slate-800 text-sky-300 text-xs px-3 py-1 rounded-full">Docker</span>
+                    <span class="bg-slate-800 text-sky-300 text-xs px-3 py-1 rounded-full">Intel SGX</span>
+                    <span class="bg-slate-800 text-sky-300 text-xs px-3 py-1 rounded-full">Secure Enclaves</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Experience Entry 2: HCLSoftware -->
+              <div class="reveal-section timeline-item right">
+                <div class="glass-pane p-6 rounded-xl hover:border-sky-400 transition-all">
+                  <div class="flex justify-between items-start mb-3">
+                    <h3 class="font-orbitron text-xl text-white" data-i18n="experience.jobs1Company">HCLSoftware</h3>
+                    <span class="text-sky-400 text-sm font-semibold" data-i18n="experience.jobs1period">Mar 2025 - Aug 2025</span>
+                  </div>
+                  <h4 class="text-sky-300 font-semibold mb-3" data-i18n="experience.jobs1position">Intern</h4>
+                  <p class="text-slate-400 mb-4" data-i18n="experience.jobs1description">Architected the migration of a legacy monolith to a modular PBC-based system, engineering a multi-node Kubernetes and Docker infrastructure with full-stack observability to enhance scalability, reliability, and deployment velocity, while co-developing the migration strategy and validating architectural feasibility through PoCs.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-slate-800 text-sky-300 text-xs px-3 py-1 rounded-full">AWS</span>
+                    <span class="bg-slate-800 text-sky-300 text-xs px-3 py-1 rounded-full">Kubernetes</span>
+                    <span class="bg-slate-800 text-sky-300 text-xs px-3 py-1 rounded-full">Docker</span>
+                    <span class="bg-slate-800 text-sky-300 text-xs px-3 py-1 rounded-full">Terraform</span>
+                    <span class="bg-slate-800 text-sky-300 text-xs px-3 py-1 rounded-full">PBC</span>
+                    <span class="bg-slate-800 text-sky-300 text-xs px-3 py-1 rounded-full">Observability</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Experience Entry 3: GSSoC -->
+              <div class="reveal-section timeline-item left">
+                <div class="glass-pane p-6 rounded-xl hover:border-sky-400 transition-all">
+                  <div class="flex justify-between items-start mb-3">
+                    <h3 class="font-orbitron text-xl text-white" data-i18n="experience.jobs2Company">GirlScript Summer of Code (GSSoC-ext'24)</h3>
+                    <span class="text-sky-400 text-sm font-semibold" data-i18n="experience.jobs2period">Oct 2024 - Nov 2024</span>
+                  </div>
+                  <h4 class="text-sky-300 font-semibold mb-3" data-i18n="experience.jobs2position">Open Source Contributor</h4>
+                  <p class="text-slate-400 mb-4" data-i18n="experience.jobs2description">Actively contributed to open-source repositories as part of GSSoC-ext 2024, demonstrating strong coding proficiency, collaboration, and problem-solving abilities. Achieved a top ranking of 281 out of 60,000 participants, reflecting high technical competence and consistent engagement throughout the program.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-slate-800 text-sky-300 text-xs px-3 py-1 rounded-full">Git</span>
+                    <span class="bg-slate-800 text-sky-300 text-xs px-3 py-1 rounded-full">GitHub</span>
+                    <span class="bg-slate-800 text-sky-300 text-xs px-3 py-1 rounded-full">React</span>
+                    <span class="bg-slate-800 text-sky-300 text-xs px-3 py-1 rounded-full">Markdown</span>
+                    <span class="bg-slate-800 text-sky-300 text-xs px-3 py-1 rounded-full">HTML</span>
+                    <span class="bg-slate-800 text-sky-300 text-xs px-3 py-1 rounded-full">CSS</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- My skills Section -->
+      <section
+        id="pipeline"
+        class="feature-section py-16 md:py-24 bg-black/20 overflow-hidden"
+      >
+        <div
+          class="container mx-auto px-6 grid md:grid-cols-2 gap-8 md:gap-16 items-center"
+        >
+          <div class="feature-content reveal-section">
+            <h2 class="font-orbitron text-3xl md:text-4xl text-white" data-i18n="skills.title">
+              My skills
+            </h2>
+            <p class="mt-4 text-md md:text-lg text-slate-400" data-i18n="skills.description">
+              I have hands-on experience with HTML, CSS, JavaScript, Python, and
+              Golang. I'm also familiar with frameworks and libraries such as
+              React, .NET, Django, and Node.js, often integrating them in
+              full-stack development projects. On the data side, I’ve worked
+              with both relational and non-relational databases, including MSSQL
+              and MongoDB. I’ve also gained practical experience with AWS
+              services, particularly for deploying and scaling cloud-native
+              applications. <br />
+              My infrastructure knowledge includes working with Kubernetes,
+              Helm, Terraform, Prometheus, and Grafana to manage, deploy, and
+              monitor applications efficiently. <br />
+
+              <br />
+              Curious for more? Feel free to check out my CV along the way!
+            </p>
+          </div>
+          <div class="flex flex-col items-center justify-center gap-8">
+            <div
+              class="reveal-section glass-pane h-[200px] md:h-[300px] w-full flex items-center justify-center"
+            >
+              <div class="pipeline-visual w-full">
+                <div class="pipeline-stage">
+                  <i class="fas fa-code-branch"></i>
+                  <p class="mt-2 text-xs md:text-sm font-semibold" data-i18n="pipeline.code">Code</p>
+                </div>
+                <div class="pipeline-connector"></div>
+                <div class="pipeline-stage">
+                  <i class="fas fa-box-open"></i>
+                  <p class="mt-2 text-xs md:text-sm font-semibold" data-i18n="pipeline.build">Build</p>
+                </div>
+                <div class="pipeline-connector"></div>
+                <div class="pipeline-stage">
+                  <i class="fas fa-shield-halved"></i>
+                  <p class="mt-2 text-xs md:text-sm font-semibold" data-i18n="pipeline.test">Test</p>
+                </div>
+                <div class="pipeline-connector"></div>
+                <div class="pipeline-stage">
+                  <i class="fas fa-rocket"></i>
+                  <p class="mt-2 text-xs md:text-sm font-semibold" data-i18n="pipeline.deploy">Deploy</p>
+                </div>
+              </div>
+            </div>
+            <button
+              onclick="window.open('./assets/Puneeth_Y.pdf', '_blank')"
+              class="font-orbitron mt-5 bg-sky-500 hover:bg-sky-600 text-white font-semibold text-lg px-6 py-1 rounded-lg transition-colors"
+            >
+              <span data-i18n="skills.viewCV">View CV</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section
+        id="skills"
+        class="feature-section py-16 md:py-24 overflow-hidden"
+      >
+        <div
+          class="container mx-auto px-6 grid md:grid-cols-2 gap-8 md:gap-16 items-center"
+        >
+          <div class="feature-content reveal-section">
+            <h2 class="font-orbitron text-3xl md:text-4xl text-white" data-i18n="certifications.title">
+              Awards & Certifications
+            </h2>
+            <p class="mt-4 text-md md:text-lg text-slate-400" data-i18n="certifications.description">
+              A collection of certifications and recognitions I’ve received
+              along my learning and DevOps journey.
+            </p>
+            <div id="certifications-list" class="mt-6 space-y-4">
+              <!-- Certifications content -->
+              <div class="flex items-center gap-4 text-slate-300">
+                <i class="fa fa-trophy text-sky-400 text-2xl w-8 text-center"></i>
+                <p class="text-lg" data-i18n="certifications.items0">Top 1% in GSSoC'ext 2024</p>
+              </div>
+              <div class="flex items-center gap-4 text-slate-300">
+                <i class="fa fa-trophy text-sky-400 text-2xl w-8 text-center"></i>
+                <p class="text-lg" data-i18n="certifications.items1">1st Place in the department-level mini-project</p>
+              </div>
+              <div class="flex items-center gap-4 text-slate-300">
+                <i class="fa fa-trophy text-sky-400 text-2xl w-8 text-center"></i>
+                <p class="text-lg" data-i18n="certifications.items2">AZ-305 Microsoft Azure Architect Design Prerequisites</p>
+              </div>
+              <div class="flex items-center gap-4 text-slate-300">
+                <i class="fa fa-trophy text-sky-400 text-2xl w-8 text-center"></i>
+                <p class="text-lg" data-i18n="certifications.items3">AWS Cloud Practitioner Essentials</p>
+              </div>
+              <div class="flex items-center gap-4 text-slate-300">
+                <i class="fa fa-trophy text-sky-400 text-2xl w-8 text-center"></i>
+                <p class="text-lg" data-i18n="certifications.items4">Postman API Fundamentals Student Expert</p>
+              </div>
+            </div>
+          </div>
+          <div class="reveal-section h-80 md:h-96 w-full relative">
+            <canvas id="skillsRadar"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- Portfolio/Projects Section -->
+      <section
+        id="portfolio"
+        class="py-16 md:py-24 bg-black/20 overflow-hidden"
+      >
+        <div class="container mx-auto px-6">
+          <div class="text-center reveal-section">
+            <h2 class="font-orbitron text-3xl md:text-4xl text-white" data-i18n="portfolio.title">
+              Featured Projects
+            </h2>
+            <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto" data-i18n="portfolio.description">
+              A selection of my recent software and DevOps projects. Hover over
+              each card to see more details.
+            </p>
+          </div>
+          <div id="portfolio-grid" class="mt-16 grid md:grid-cols-2 gap-8">
+            <!-- Portfolio Project 1: CODESOURCERER -->
+            <div class="reveal-section project-card glass-pane rounded-xl block hover:border-sky-400 transition-colors overflow-hidden">
+              <div class="video-container relative">
+                <video src="./videos/CS-demo.mp4" autoplay loop muted class="w-full h-48 object-cover"></video>
+                <div class="video-title absolute bottom-0 left-0 w-full bg-black/50 p-2 text-white font-orbitron text-lg" data-i18n="portfolio.portfolioProject0title">
+                  CODESOURCERER
+                </div>
+              </div>
+              <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                  <div class="text-sky-400 text-3xl">
+                    <i class="fas fa-code"></i>
+                  </div>
+                  <div class="flex gap-3">
+                    <a href="https://codesourcerer.webflow.io" target="_blank" title="Live Site" class="text-2xl text-slate-400 hover:text-sky-400 transition-colors">
+                      <i class="far fa-eye"></i>
+                    </a>
+                    <a href="https://github.com/puneeth072003/CODESOURCERER" target="_blank" title="Source Code" class="text-2xl text-slate-400 hover:text-sky-400 transition-colors">
+                      <i class="fab fa-github"></i>
+                    </a>
+                  </div>
+                </div>
+                <p class="text-slate-400 mt-2" data-i18n="portfolio.portfolioProject0description">A tool that automates test suite generation for code changes using a Gemini-powered proxy server, completely integrates with GitHub to create filtered tests via pull requests.</p>
+              </div>
+            </div>
+
+            <!-- Portfolio Project 2: Vitista -->
+            <div class="reveal-section project-card glass-pane rounded-xl block hover:border-sky-400 transition-colors overflow-hidden">
+              <div class="video-container relative">
+                <video src="./videos/vitista.mp4" autoplay loop muted class="w-full h-48 object-cover"></video>
+                <div class="video-title absolute bottom-0 left-0 w-full bg-black/50 p-2 text-white font-orbitron text-lg" data-i18n="portfolio.portfolioProject1title">
+                  Vitista
+                </div>
+              </div>
+              <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                  <div class="text-sky-400 text-3xl">
+                    <i class="fas fa-building-columns"></i>
+                  </div>
+                  <div class="flex gap-3">
+                    <a href="https://vitista.vercel.app/" target="_blank" title="Live Site" class="text-2xl text-slate-400 hover:text-sky-400 transition-colors">
+                      <i class="far fa-eye"></i>
+                    </a>
+                    <a href="https://github.com/puneeth072003/Vitista" target="_blank" title="Source Code" class="text-2xl text-slate-400 hover:text-sky-400 transition-colors">
+                      <i class="fab fa-github"></i>
+                    </a>
+                  </div>
+                </div>
+                <p class="text-slate-400 mt-2" data-i18n="portfolio.portfolioProject1description">A comprehensive personal healthcare app designed to empower individuals on their journey to optimal well-being.</p>
+              </div>
+            </div>
+
+            <!-- Portfolio Project 3: Sputilties -->
+            <div class="reveal-section project-card glass-pane rounded-xl block hover:border-sky-400 transition-colors overflow-hidden">
+              <div class="video-container relative">
+                <video src="./videos/Sputilties-demo.mp4" autoplay loop muted class="w-full h-48 object-cover"></video>
+                <div class="video-title absolute bottom-0 left-0 w-full bg-black/50 p-2 text-white font-orbitron text-lg" data-i18n="portfolio.portfolioProject2title">
+                  Sputilties
+                </div>
+              </div>
+              <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                  <div class="text-sky-400 text-3xl">
+                    <i class="fas fa-music"></i>
+                  </div>
+                  <div class="flex gap-3">
+                    <a href="https://sputilities.netlify.app/" target="_blank" title="Live Site" class="text-2xl text-slate-400 hover:text-sky-400 transition-colors">
+                      <i class="far fa-eye"></i>
+                    </a>
+                    <a href="https://github.com/puneeth072003/sputilities.V1" target="_blank" title="Source Code" class="text-2xl text-slate-400 hover:text-sky-400 transition-colors">
+                      <i class="fab fa-github"></i>
+                    </a>
+                  </div>
+                </div>
+                <p class="text-slate-400 mt-2" data-i18n="portfolio.portfolioProject2description">A collection of Spotify utilities and tools to enhance your music streaming experience.</p>
+              </div>
+            </div>
+
+            <!-- Portfolio Project 4: Huddle -->
+            <div class="reveal-section project-card glass-pane rounded-xl block hover:border-sky-400 transition-colors overflow-hidden">
+              <div class="video-container relative">
+                <video src="./videos/huddle.mp4" autoplay loop muted class="w-full h-48 object-cover"></video>
+                <div class="video-title absolute bottom-0 left-0 w-full bg-black/50 p-2 text-white font-orbitron text-lg" data-i18n="portfolio.portfolioProject3title">
+                  Huddle
+                </div>
+              </div>
+              <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                  <div class="text-sky-400 text-3xl">
+                    <i class="fas fa-users"></i>
+                  </div>
+                  <div class="flex gap-3">
+                    <a href="https://ho-huddle.vercel.app/" target="_blank" title="Live Site" class="text-2xl text-slate-400 hover:text-sky-400 transition-colors">
+                      <i class="far fa-eye"></i>
+                    </a>
+                    <a href="https://github.com/puneeth072003/huddle" target="_blank" title="Source Code" class="text-2xl text-slate-400 hover:text-sky-400 transition-colors">
+                      <i class="fab fa-github"></i>
+                    </a>
+                  </div>
+                </div>
+                <p class="text-slate-400 mt-2" data-i18n="portfolio.portfolioProject3description">A collaborative meeting and team communication platform for remote teams.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- Blogs Section -->
+      <section id="blogs" class="py-16 md:py-24 bg-black/20 overflow-hidden">
+        <div class="container mx-auto px-6">
+          <div class="text-center reveal-section">
+            <h2 class="font-orbitron text-3xl md:text-4xl text-white" data-i18n="blog.title">
+              My Blog
+            </h2>
+            <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto" data-i18n="blog.description">
+              Sharing my journey and insights in cloud computing and DevOps.
+            </p>
+          </div>
+          <div id="blog-grid" class="mt-16">
+            <!-- Blog Post -->
+            <div class="reveal-section glass-pane rounded-xl overflow-hidden hover:border-sky-400 transition-all">
+              <div class="flex flex-col md:flex-row">
+                <div class="md:w-2/5">
+                  <img src="./assets/Cover.png" alt="Blog cover image" class="w-full h-full object-cover" />
+                </div>
+                <div class="p-8 md:w-3/5">
+                  <h3 class="font-orbitron text-2xl md:text-3xl text-white" data-i18n="blog.posts0title">My Attempt at the AWS Cloud Resume Challenge</h3>
+                  <div class="text-slate-300 mt-4 text-md md:text-lg space-y-4">
+                    <p data-i18n="blog.posts0excerpt">Curious about how the architecture behind this website is structured using modern DevOps practices? I break it all down in my blog post as part of the Cloud Resume Challenge.
+
+From CI/CD to infrastructure as code, it's all in there. Be sure to check it out!</p>
+                  </div>
+                  <a href="https://dev.to/puneeth072003/my-attempt-at-the-aws-cloud-resume-challenge-a-journey-in-the-cloud-13gd" target="_blank" class="inline-block mt-6 px-6 py-3 bg-sky-600 hover:bg-sky-500 text-white font-semibold rounded-lg transition-colors">
+                    <span data-i18n="blog.readBlog">Read The Blog</span> →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Photography Section -->
+      <section
+        id="photography"
+        class="py-16 md:py-24 bg-black/20 overflow-hidden"
+      >
+        <div class="container mx-auto px-6">
+          <div class="text-center reveal-section">
+            <h2 class="font-orbitron text-3xl md:text-4xl text-white" data-i18n="photography.title">
+              Photography Portfolio
+            </h2>
+            <p class="mt-4 text-md md:text-lg text-slate-400 max-w-2xl mx-auto" data-i18n="photography.description">
+              Beyond the code, I enjoy capturing the world through my lens.
+              Here's a glimpse of my creative side.
+            </p>
+          </div>
+          <div id="photography-carousel" class="mt-16 reveal-section relative">
+            <div id="carousel-track">
+              <!-- Swiper Structure -->
+              <div class="swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide swiper-slide--one"></div>
+                  <div class="swiper-slide swiper-slide--two"></div>
+                  <div class="swiper-slide swiper-slide--three"></div>
+                  <div class="swiper-slide swiper-slide--four"></div>
+                  <div class="swiper-slide swiper-slide--five"></div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center mt-12 reveal-section">
+            <a
+              href="https://500px.com/p/pyd?view=photos"
+              target="_blank"
+              class="inline-block px-8 py-4 bg-gradient-to-r from-sky-600 to-indigo-600 text-white font-semibold rounded-lg shadow-lg hover:from-sky-500 hover:to-indigo-500 transform hover:-translate-y-1 transition-all duration-300"
+            >
+              <i class="fas fa-camera-retro mr-2"></i> View Full Photography
+              Portfolio
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer Section -->
+      <footer id="contact" class="py-16 md:py-24">
+        <div class="container mx-auto px-6">
+          <div class="mt-16 text-center text-slate-400 reveal-section">
+            <div class="flex justify-center gap-8 text-2xl">
+              <a href="https://github.com/puneeth072003" class="hover:text-sky-400 transition-colors"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a href="https://www.linkedin.com/in/puneeth072003/" class="hover:text-sky-400 transition-colors"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="https://twitter.com/puneeth072003" class="hover:text-sky-400 transition-colors"
+                ><i class="fab fa-twitter"></i
+              ></a>
+            </div>
+            <p class="font-orbitron mt-12 text-sm" data-i18n="footer.builtWith">
+              Built as part of the AWS Cloud Resume Challenge.
+            </p>
+            <p class="mt-8 text-sm" data-i18n="footer.copyright">
+              &copy; 2025 Puneeth Y. All Rights Reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <!-- Bottom Dock Navigation -->
+    <nav id="bottom-nav">
+      <div id="mobile-dock-menu" class="flex">
+        <!-- Mobile dock items will be injected here -->
+      </div>
+      <div id="mobile-dock-toggle" class="dock-item">
+        <i class="fas fa-plus"></i>
+      </div>
+      <div id="bottom-dock" class="glass-pane">
+        <!-- Desktop dock items will be injected here -->
+      </div>
+    </nav>
+
+    <!-- Debug Language Switcher (temporary)
+    <div style="position: fixed; top: 10px; right: 10px; z-index: 9999; background: rgba(0,0,0,0.8); padding: 10px; border-radius: 5px;">
+      <button onclick="window.toggleLanguage && window.toggleLanguage()" style="background: #007bff; color: white; border: none; padding: 5px 10px; margin: 2px; cursor: pointer; border-radius: 3px;">Toggle Lang</button>
+      <button onclick="window.updateLanguageDisplay && window.updateLanguageDisplay()" style="background: #28a745; color: white; border: none; padding: 5px 10px; margin: 2px; cursor: pointer; border-radius: 3px;">Update Display</button>
+      <button onclick="window.debugLanguageSwitcher && window.debugLanguageSwitcher()" style="background: #dc3545; color: white; border: none; padding: 5px 10px; margin: 2px; cursor: pointer; border-radius: 3px;">Debug</button>
+      <div style="color: white; font-size: 12px; margin-top: 5px;">
+        Current: <span id="debug-lang">Loading...</span>
+      </div>
+    </div> -->
+
+    <!-- Lightbox Structure -->
+    <div id="lightbox" class="lightbox">
+      <span class="lightbox-close">&times;</span>
+      <img id="lightbox-img" src="" alt="Full-size view" />
+    </div>
+    <script src="./lang.js"></script>
+    <script src="./index.js"></script>
+    <script>
+      // Debug script to update language display
+      function updateDebugLang() {
+        const debugLang = document.getElementById('debug-lang');
+        if (debugLang && window.i18n) {
+          debugLang.textContent = window.i18n.getCurrentLanguage().toUpperCase();
+        }
+      }
+
+      // Update debug display periodically
+      setInterval(updateDebugLang, 1000);
+
+      // Listen for language changes
+      document.addEventListener('languageChanged', updateDebugLang);
+    </script>
+  </body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+<!-- Add toast notification at the end of the body -->
+<div id="greeting-toast" class="fixed top-8 right-8 z-50 bg-black/80 backdrop-blur-md border border-sky-500/30 rounded-xl p-4 shadow-lg transform -translate-x-full opacity-0 transition-all duration-500 ease-out flex items-center max-w-md">
+  <div class="mr-4 flex-shrink-0">
+    <img src="./assets/avatar-alt1.png" alt="Avatar" class="w-12 h-12 rounded-full border-2 border-sky-400">
+  </div>
+  <div class="flex-grow">
+    <h3 class="font-orbitron text-white text-lg" data-i18n="toast.welcome">Welcome!</h3>
+    <p class="text-slate-300 text-sm" data-i18n="toast.thanks">Thanks for visiting my portfolio.</p>
+    <p id="visitor-toast-number" class="text-sky-400 font-semibold mt-1"><span data-i18n="toast.visitor">You are visitor #</span><span></span></p>
+  </div>
+  <button id="toast-close" class="ml-2 text-slate-400 hover:text-white transition-colors">
+    <i class="fas fa-times"></i>
+  </button>
+</div>
