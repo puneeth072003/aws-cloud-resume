@@ -43,3 +43,13 @@ terraform.rc
 # copy of frontend
 deployment/terraform/modules/frontend/
 deployment/terraform/modules/lambda.zip
+
+# Node / Vite frontend
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
+*.local
+.env
+.env.*
+!.env.example

@@ -5,11 +5,16 @@ on:
     branches:
       - main
     paths:
-      - 'frontend/**'
+      - 'src/**'
+      - 'public/**'
+      - 'index.html'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'vite.config.ts'
 
 jobs:
   deploy:
-    name: Upload to S3
+    name: Build and upload to S3
     runs-on: ubuntu-latest
 
     env:
@@ -20,11 +25,23 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Sync HTML/CSS files to S3
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Sync build output to S3
         run: |
-          aws s3 sync frontend/ s3://$S3_BUCKET_NAME \
+          aws s3 sync dist/ s3://$S3_BUCKET_NAME \
             --delete \
             --acl public-read \
             --region $AWS_REGION

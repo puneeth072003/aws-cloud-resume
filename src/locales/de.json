@@ -51,7 +51,9 @@
     "experience": "1+ Jahre Erfahrung",
     "visitors": "Besucher",
     "poweredBy": "Powered by AWS Lambda",
-    "commitment": "Engagement für Automatisierung"
+    "commitment": "Engagement für Automatisierung",
+    "lastVisit": "Letzter Besuch",
+    "justNow": "gerade eben"
   },
   "skills": {
     "title": "Meine Fähigkeiten",
