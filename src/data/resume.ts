@@ -16,11 +16,9 @@ export const NAV_ITEMS: NavItem[] = [
   { href: "#home", labelKey: "navigation.home", icon: "fa-house" },
   { href: "#about", labelKey: "navigation.about", icon: "fa-user" },
   { href: "#recommendations", labelKey: "navigation.recommendations", icon: "fa-star" },
-  { href: "#pipeline", labelKey: "navigation.pipeline", icon: "fa-file" },
-  { href: "#skills", labelKey: "navigation.skills", icon: "fa-trophy" },
+  { href: "#skills", labelKey: "navigation.skills", icon: "fa-chart-simple" },
   { href: "#portfolio", labelKey: "navigation.projects", icon: "fa-laptop" },
   { href: "#experience", labelKey: "navigation.experience", icon: "fa-briefcase" },
-  { href: "#blogs", labelKey: "navigation.blogs", icon: "fa-pen-nib" },
   { href: "#photography", labelKey: "navigation.photography", icon: "fa-camera-retro" },
 ];
 

@@ -117,6 +117,10 @@
     "description": "Jenseits des Codes genieße ich es, die Welt durch meine Linse einzufangen. Hier ist ein Einblick in meine kreative Seite.",
     "viewFull": "Vollständiges Fotografie-Portfolio ansehen"
   },
+  "builtWith": {
+    "title": "Für die AWS Cloud Resume Challenge gebaut",
+    "subtitle": "Neugierig, wie diese Seite aufgebaut ist? Lies meinen Beitrag über den Weg dorthin."
+  },
   "footer": {
     "builtWith": "Erstellt als Teil der AWS Cloud Resume Challenge.",
     "copyright": "© 2025 Puneeth Y. Alle Rechte vorbehalten."

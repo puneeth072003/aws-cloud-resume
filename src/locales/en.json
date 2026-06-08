@@ -117,6 +117,10 @@
     "description": "Beyond the code, I enjoy capturing the world through my lens. Here's a glimpse of my creative side.",
     "viewFull": "View Full Photography Portfolio"
   },
+  "builtWith": {
+    "title": "Built for the AWS Cloud Resume Challenge",
+    "subtitle": "Curious how this site is architected? Read my write-up on the journey."
+  },
   "footer": {
     "builtWith": "Built as part of the AWS Cloud Resume Challenge.",
     "copyright": "© 2025 Puneeth Y. All Rights Reserved."

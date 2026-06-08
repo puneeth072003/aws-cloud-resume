@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { AVATAR } from "../data/resume";
+import { useCountUp } from "../hooks/useCountUp";
 
 interface ToastProps {
   /** Set once the visitor count has loaded — triggers the greeting toast. */
@@ -13,10 +14,10 @@ interface ToastProps {
 
 type Variant = "greeting" | "konami";
 
-const AUTO_HIDE_MS = 6000;
+const AUTO_HIDE_MS = 6500;
 
 export function Toast({ visitorNumber, ready, konamiCount }: ToastProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [variant, setVariant] = useState<Variant | null>(null);
 
   // Greeting toast once the counter resolves.
@@ -36,47 +37,55 @@ export function Toast({ visitorNumber, ready, konamiCount }: ToastProps) {
   }, [konamiCount]);
 
   const isKonami = variant === "konami";
+  const visible = variant !== null;
+  const animatedCount = useCountUp(
+    visible && !isKonami ? visitorNumber : null
+  );
 
   return (
     <AnimatePresence>
-      {variant && (
+      {visible && (
         <motion.div
-          className="fixed top-8 right-8 z-[1100] bg-black/80 backdrop-blur-md border border-sky-500/30 rounded-xl p-4 shadow-lg flex items-center max-w-md"
+          className="toast-card"
+          data-variant={variant}
           initial={{ x: "120%", opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: "120%", opacity: 0 }}
-          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ type: "spring", stiffness: 260, damping: 26 }}
         >
-          <div className="mr-4 flex-shrink-0">
-            <img
-              src={AVATAR}
-              alt="Avatar"
-              className="w-12 h-12 rounded-full border-2 border-sky-400"
-            />
-          </div>
-          <div className="flex-grow">
-            <h3 className="font-orbitron text-white text-lg">
-              {isKonami ? "🌈 Konami Code Activated!" : t("toast.welcome")}
-            </h3>
-            <p className="text-slate-300 text-sm">
-              {isKonami
-                ? "You found a secret! Enjoy the rainbow effect."
-                : t("toast.thanks")}
-            </p>
-            {!isKonami && visitorNumber !== null && (
-              <p id="visitor-toast-number" className="text-sky-400 font-semibold mt-1">
-                <span>{t("toast.visitor")}</span>
-                <span>{visitorNumber.toLocaleString()}</span>
+          <div className="toast-card__inner">
+            <div className="toast-card__avatar">
+              <img src={AVATAR} alt="Avatar" />
+              <span className="toast-card__status" />
+            </div>
+
+            <div className="flex-1 min-w-0">
+              <h3 className="font-orbitron text-white text-base leading-tight">
+                {isKonami ? "🌈 Konami Unlocked" : t("toast.welcome")}
+              </h3>
+              <p className="text-slate-300 text-sm mt-0.5">
+                {isKonami
+                  ? "Secret found — enjoy the rainbow."
+                  : t("toast.thanks")}
               </p>
-            )}
+              {!isKonami && visitorNumber !== null && (
+                <p className="toast-card__visitor mt-2">
+                  <span>{t("toast.visitor")}</span>
+                  <span className="toast-card__count">
+                    {animatedCount.toLocaleString(i18n.language)}
+                  </span>
+                </p>
+              )}
+            </div>
+
+            <button
+              className="toast-card__close"
+              aria-label="Close"
+              onClick={() => setVariant(null)}
+            >
+              <i className="fas fa-times" />
+            </button>
           </div>
-          <button
-            className="ml-2 text-slate-400 hover:text-white transition-colors"
-            aria-label="Close"
-            onClick={() => setVariant(null)}
-          >
-            <i className="fas fa-times" />
-          </button>
         </motion.div>
       )}
     </AnimatePresence>
