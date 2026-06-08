@@ -1,4 +1,5 @@
 import os, json, boto3
+from datetime import datetime, timezone
 from botocore.exceptions import ClientError
 
 dynamodb = boto3.resource('dynamodb')
@@ -44,15 +45,17 @@ def lambda_handler(event, context):
     page = "home"
     try:
         if http_method == "POST":
-            # increment counter
+            # increment counter and stamp the time of this visit in one update
+            now_iso = datetime.now(timezone.utc).isoformat()
             resp = table.update_item(
                 Key={'page': page},
-                UpdateExpression='ADD #c :inc',
+                UpdateExpression='ADD #c :inc SET updatedAt = :ts',
                 ExpressionAttributeNames={'#c': 'count'},
-                ExpressionAttributeValues={':inc': 1},
-                ReturnValues="UPDATED_NEW"
+                ExpressionAttributeValues={':inc': 1, ':ts': now_iso},
+                ReturnValues="ALL_NEW"
             )
-            count = int(resp["Attributes"]["count"])
+            count       = int(resp["Attributes"]["count"])
+            updated_at  = resp["Attributes"].get("updatedAt")
 
             if count == VIEW_THRESHOLD:
                 sns.publish(
@@ -76,8 +79,10 @@ def lambda_handler(event, context):
                 )
         else:
             # GET/fallback: read counter
-            resp  = table.get_item(Key={'page': page})
-            count = int(resp.get("Item", {}).get("count", 0))
+            resp       = table.get_item(Key={'page': page})
+            item       = resp.get("Item", {})
+            count      = int(item.get("count", 0))
+            updated_at = item.get("updatedAt")
 
         return {
             "statusCode": 200,
@@ -85,7 +90,7 @@ def lambda_handler(event, context):
                 "Access-Control-Allow-Origin": "*",
                 "Content-Type": "application/json"
             },
-            "body": json.dumps({"views": count})
+            "body": json.dumps({"views": count, "updatedAt": updated_at})
         }
 
     except ClientError as e:
