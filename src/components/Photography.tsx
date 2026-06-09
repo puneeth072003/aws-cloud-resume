@@ -62,9 +62,11 @@ export function Photography() {
             href={PHOTOGRAPHY_PORTFOLIO_URL}
             target="_blank"
             rel="noreferrer"
-            className="portfolio-cta inline-block px-8 py-4 bg-gradient-to-r from-sky-600 to-indigo-600 text-white font-semibold rounded-lg shadow-lg hover:from-sky-500 hover:to-indigo-500 transition-all duration-300"
+            className="portfolio-cta group font-orbitron inline-flex items-center gap-3 px-7 py-3.5 rounded-full"
           >
-            <i className="fas fa-camera-retro mr-2" /> {t("photography.viewFull")}
+            <i className="fas fa-camera-retro text-sky-400 transition-transform group-hover:scale-110" />
+            <span>{t("photography.viewFull")}</span>
+            <i className="fas fa-arrow-up-right-from-square text-xs text-sky-400/80 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
         </Reveal>
       </div>

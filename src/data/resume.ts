@@ -162,7 +162,7 @@ export const AVATAR = "/assets/avatar-alt1.png";
 export const BLOG_COVER = "/assets/Cover.png";
 export const BLOG_URL =
   "https://dev.to/puneeth072003/my-attempt-at-the-aws-cloud-resume-challenge-a-journey-in-the-cloud-13gd";
-export const PHOTOGRAPHY_PORTFOLIO_URL = "https://500px.com/p/pyd?view=photos";
+export const PHOTOGRAPHY_PORTFOLIO_URL = "https://500px.com/p/thewildlens_nature";
 
 // Visitor counter (AWS Lambda function URL). The key is intentionally public —
 // it is, and always has been, shipped in the client bundle.
