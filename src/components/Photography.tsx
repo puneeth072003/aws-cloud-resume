@@ -1,6 +1,11 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCoverflow, Pagination, Keyboard, Mousewheel } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 import { Lightbox } from "./Lightbox";
@@ -18,30 +23,39 @@ export function Photography() {
           descriptionKey="photography.description"
         />
 
-        {/* Masonry gallery */}
-        <div className="mt-16 gap-4 [column-count:1] sm:[column-count:2] lg:[column-count:3]">
-          {PHOTOS.map((photo, i) => (
-            <motion.button
-              key={photo}
-              className="photo-tile group mb-4 block w-full overflow-hidden rounded-xl"
-              onClick={() => setActiveIndex(i)}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
-            >
-              <img
-                src={photo}
-                alt={`Photography ${i + 1}`}
-                loading="lazy"
-                className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+        <Reveal className="mt-16 relative" direction="none">
+          <Swiper
+            modules={[EffectCoverflow, Pagination, Keyboard, Mousewheel]}
+            effect="coverflow"
+            grabCursor
+            centeredSlides
+            loop
+            keyboard={{ enabled: true }}
+            mousewheel={{ thresholdDelta: 70 }}
+            coverflowEffect={{
+              rotate: 0,
+              stretch: 0,
+              depth: 100,
+              modifier: 3,
+              slideShadows: true,
+            }}
+            pagination={{ clickable: true }}
+            breakpoints={{
+              640: { slidesPerView: 2 },
+              768: { slidesPerView: 1 },
+              1024: { slidesPerView: 2 },
+              1560: { slidesPerView: 3 },
+            }}
+          >
+            {PHOTOS.map((photo, i) => (
+              <SwiperSlide
+                key={photo}
+                style={{ backgroundImage: `url("${photo}")` }}
+                onClick={() => setActiveIndex(i)}
               />
-              <span className="photo-tile__overlay">
-                <i className="fas fa-expand" />
-              </span>
-            </motion.button>
-          ))}
-        </div>
+            ))}
+          </Swiper>
+        </Reveal>
 
         <Reveal className="text-center mt-12">
           <a

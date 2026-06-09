@@ -1,10 +1,4 @@
-import {
-  useLayoutEffect,
-  useRef,
-  useState,
-  type ReactNode,
-  type RefObject,
-} from "react";
+import { useRef, useState, type ReactNode } from "react";
 import {
   AnimatePresence,
   motion,
@@ -18,8 +12,8 @@ import { NAV_ITEMS } from "../data/resume";
 import { useTheme } from "../hooks/useTheme";
 
 const BASE_SIZE = 50;
-const MAX_SIZE = 86;
-const INFLUENCE = 140;
+const MAX_SIZE = 92;
+const INFLUENCE = 150; // px of cursor distance over which an icon reacts
 
 interface DockEntry {
   key: string;
@@ -29,58 +23,46 @@ interface DockEntry {
 }
 
 /**
- * A single desktop dock icon that magnifies based on cursor proximity.
+ * A single magnifying dock icon — the canonical macOS-style approach.
  *
- * Distance is measured from the item's *resting* center (captured once at rest
- * and on resize) rather than its live bounding box. Measuring the live box is
- * what made the old version jitter: scaling an item shifts its rect, which
- * changes the distance, which changes the scale — a feedback loop. With a fixed
- * resting center the spring has a stable target and the growth is smooth.
+ * Distance from the cursor maps to a target width; a single light spring drives
+ * that width, and height + icon size are derived from the *same* spring value
+ * (via useTransform, not separate springs) so they stay perfectly in sync. This
+ * is what makes the growth feel buttery instead of stepped/jittery.
  */
 function MagneticItem({
   entry,
   mouseX,
-  index,
-  centers,
 }: {
   entry: DockEntry;
   mouseX: MotionValue<number>;
-  index: number;
-  centers: RefObject<number[]>;
 }) {
   const ref = useRef<HTMLButtonElement>(null);
 
   const distance = useTransform(mouseX, (val) => {
-    if (val === Infinity) return INFLUENCE + 1;
-    const center = centers.current?.[index];
-    if (center == null) return INFLUENCE + 1;
-    return val - center;
+    const bounds = ref.current?.getBoundingClientRect();
+    if (!bounds) return INFLUENCE + 1;
+    return val - (bounds.left + bounds.width / 2);
   });
 
-  const sizeTarget = useTransform(
+  const widthSync = useTransform(
     distance,
     [-INFLUENCE, 0, INFLUENCE],
-    [BASE_SIZE, MAX_SIZE, BASE_SIZE],
-    { clamp: true }
+    [BASE_SIZE, MAX_SIZE, BASE_SIZE]
   );
-  const liftTarget = useTransform(
-    distance,
-    [-INFLUENCE, 0, INFLUENCE],
-    [0, -10, 0],
-    { clamp: true }
-  );
+  const width = useSpring(widthSync, {
+    mass: 0.1,
+    stiffness: 170,
+    damping: 14,
+  });
 
-  const spring = { stiffness: 320, damping: 26, mass: 0.6 };
-  const size = useSpring(sizeTarget, spring);
-  const y = useSpring(liftTarget, spring);
-  // Keep the icon proportional to the circle as it grows (20px at 50px = 0.4).
-  const fontSize = useTransform(size, (s) => s * 0.4);
+  const fontSize = useTransform(width, (w) => w * 0.4);
 
   return (
     <motion.button
       ref={ref}
       className="dock-item"
-      style={{ width: size, height: size, y, fontSize }}
+      style={{ width, height: width, fontSize }}
       title={entry.title}
       onClick={entry.onClick}
     >
@@ -94,23 +76,6 @@ export function Dock() {
   const { theme, toggleTheme } = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
   const mouseX = useMotionValue(Infinity);
-  const dockRef = useRef<HTMLDivElement>(null);
-  const centers = useRef<number[]>([]);
-
-  // Capture each icon's resting center X (and keep it fresh across resizes).
-  useLayoutEffect(() => {
-    const measure = () => {
-      const items = dockRef.current?.querySelectorAll<HTMLElement>(".dock-item");
-      if (!items) return;
-      centers.current = Array.from(items).map((el) => {
-        const r = el.getBoundingClientRect();
-        return r.left + r.width / 2;
-      });
-    };
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, []);
 
   const scrollTo = (href: string) => {
     document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
@@ -145,7 +110,7 @@ export function Dock() {
     },
   ];
 
-  const desktopEntries = [...navEntries, ...toggleEntries];
+  const allEntries = [...navEntries, ...toggleEntries];
 
   return (
     <nav id="bottom-nav">
@@ -159,7 +124,7 @@ export function Dock() {
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.2 }}
           >
-            {desktopEntries.map((entry) => (
+            {allEntries.map((entry) => (
               <button
                 key={entry.key}
                 className="dock-item"
@@ -187,28 +152,15 @@ export function Dock() {
       {/* Desktop magnetic dock */}
       <div
         id="bottom-dock"
-        ref={dockRef}
         onMouseMove={(e) => mouseX.set(e.clientX)}
         onMouseLeave={() => mouseX.set(Infinity)}
       >
-        {navEntries.map((entry, i) => (
-          <MagneticItem
-            key={entry.key}
-            entry={entry}
-            mouseX={mouseX}
-            index={i}
-            centers={centers}
-          />
+        {navEntries.map((entry) => (
+          <MagneticItem key={entry.key} entry={entry} mouseX={mouseX} />
         ))}
         <div className="dock-separator" />
-        {toggleEntries.map((entry, i) => (
-          <MagneticItem
-            key={entry.key}
-            entry={entry}
-            mouseX={mouseX}
-            index={navEntries.length + i}
-            centers={centers}
-          />
+        {toggleEntries.map((entry) => (
+          <MagneticItem key={entry.key} entry={entry} mouseX={mouseX} />
         ))}
       </div>
     </nav>

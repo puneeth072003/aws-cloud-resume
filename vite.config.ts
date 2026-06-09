@@ -12,6 +12,7 @@ export default defineConfig({
         manualChunks: {
           three: ["three", "@react-three/fiber"],
           charts: ["chart.js", "react-chartjs-2"],
+          swiper: ["swiper"],
           motion: ["framer-motion"],
         },
       },

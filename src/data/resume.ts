@@ -143,11 +143,12 @@ export const SKILL_RADAR = {
 };
 
 export const PHOTOS: string[] = [
-  "/assets/photos/DSC03302.png",
-  "/assets/photos/DSC03471.jpg",
-  "/assets/photos/DSC03550.JPG",
-  "/assets/photos/DSC03763.JPG",
-  "/assets/photos/DSC03529.JPG",
+  "/assets/photos/WLD_1436.jpg",
+  "/assets/photos/WLD_1629.jpg",
+  "/assets/photos/WLD_1857.jpg",
+  "/assets/photos/WLD_1955.jpg",
+  "/assets/photos/WLD_2873.jpg",
+  "/assets/photos/WLD_3083.jpg",
 ];
 
 export const SOCIAL_LINKS = [

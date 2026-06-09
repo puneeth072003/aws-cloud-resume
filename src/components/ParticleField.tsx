@@ -5,9 +5,12 @@ import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 
 const PARTICLE_COUNT = 5000;
 const RADIUS = 2.5;
-const ATTRACT_RADIUS = 1.3; // world units around the cursor that react
-const ATTRACT_STRENGTH = 0.55; // how strongly particles pull toward the cursor
-const RETURN_EASE = 0.08; // how quickly they drift back home
+// Keep the reach small so the overall sphere keeps its round silhouette — only
+// particles close to the cursor react — but pull them hard so they visibly snap
+// onto the cursor (a magnetic tendril rather than a bulging blob).
+const ATTRACT_RADIUS = 1.2; // world units around the cursor that react
+const ATTRACT_STRENGTH = 2.2; // pull factor; clamped so particles land on the cursor
+const RETURN_EASE = 0.18; // how quickly they snap toward/back from the cursor
 
 function Sphere({ animate }: { animate: boolean }) {
   const pointsRef = useRef<THREE.Points>(null);
@@ -73,7 +76,9 @@ function Sphere({ animate }: { animate: boolean }) {
         const dz = localZ - hz;
         const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
         if (dist < ATTRACT_RADIUS) {
-          const pull = (1 - dist / ATTRACT_RADIUS) * ATTRACT_STRENGTH;
+          // Clamp to 1 so a strongly-pulled particle lands on the cursor
+          // exactly instead of overshooting and warping the sphere.
+          const pull = Math.min(1, (1 - dist / ATTRACT_RADIUS) * ATTRACT_STRENGTH);
           tx = hx + dx * pull;
           ty = hy + dy * pull;
           tz = hz + dz * pull;

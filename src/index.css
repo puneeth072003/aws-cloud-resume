@@ -269,10 +269,10 @@ body {
 
 #bottom-dock {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  height: 70px;
-  padding: 0 1.5rem;
+  height: 74px;
+  padding: 0 1.25rem 12px;
   gap: 10px;
   background: rgba(15, 23, 42, 0.7);
   backdrop-filter: blur(12px);
@@ -618,37 +618,44 @@ body {
   color: rgba(56, 189, 248, 1);
 }
 
-/* ---------- Photography masonry gallery ---------- */
-.photo-tile {
-  position: relative;
+/* ---------- Photography swiper ---------- */
+#photography .swiper {
+  width: 100%;
+  padding-top: 3.125rem;
+  padding-bottom: 3.125rem;
+}
+
+#photography .swiper-pagination-bullet,
+#photography .swiper-pagination-bullet-active {
+  background: var(--text-main);
+}
+
+#photography .swiper-pagination {
+  bottom: 1.25rem !important;
+}
+
+#photography .swiper-slide {
+  width: 18.75rem;
+  height: 28.125rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.5s;
   cursor: pointer;
-  break-inside: avoid;
-  border: 1px solid rgba(148, 197, 255, 0.12);
-  box-shadow: 0 12px 30px -16px rgba(0, 0, 0, 0.8);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
 }
 
-.photo-tile:hover {
-  border-color: rgba(56, 189, 248, 0.55);
-  box-shadow: 0 18px 40px -16px rgba(0, 0, 0, 0.85),
-    0 0 22px rgba(56, 189, 248, 0.22);
+#photography .swiper-3d .swiper-slide-shadow-left,
+#photography .swiper-3d .swiper-slide-shadow-right {
+  background-image: none;
 }
 
-.photo-tile__overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  color: #fff;
-  background: linear-gradient(to top, rgba(2, 8, 23, 0.55), rgba(2, 8, 23, 0));
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.photo-tile:hover .photo-tile__overlay {
-  opacity: 1;
+@media screen and (min-width: 93.75rem) {
+  #photography .swiper {
+    width: 85%;
+  }
 }
 
 #photography a.portfolio-cta {

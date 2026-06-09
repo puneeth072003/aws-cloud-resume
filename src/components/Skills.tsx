@@ -1,7 +1,7 @@
-import { Fragment, Suspense, lazy } from "react";
+import { Suspense, lazy } from "react";
 import { useTranslation } from "react-i18next";
 import { Reveal } from "./Reveal";
-import { PIPELINE_STAGES, RESUME_PDF } from "../data/resume";
+import { RESUME_PDF } from "../data/resume";
 
 // Chart.js is heavy; load the radar only when this section is reached.
 const SkillsRadar = lazy(() =>
@@ -41,25 +41,6 @@ export function Skills() {
             </Suspense>
           </Reveal>
         </div>
-
-        {/* CI/CD pipeline strip */}
-        <Reveal className="glass-pane mt-12 md:mt-16 h-[180px] md:h-[220px] w-full flex items-center justify-center rounded-xl">
-          <div className="pipeline-visual w-full max-w-3xl mx-auto">
-            {PIPELINE_STAGES.map((stage, index) => (
-              <Fragment key={stage.labelKey}>
-                <div className="pipeline-stage">
-                  <i className={`fas ${stage.icon}`} />
-                  <p className="mt-2 text-xs md:text-sm font-semibold">
-                    {t(stage.labelKey)}
-                  </p>
-                </div>
-                {index < PIPELINE_STAGES.length - 1 && (
-                  <div className="pipeline-connector" />
-                )}
-              </Fragment>
-            ))}
-          </div>
-        </Reveal>
       </div>
     </section>
   );
