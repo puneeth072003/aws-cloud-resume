@@ -10,7 +10,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          three: ["three", "@react-three/fiber"],
+          three: ["three"],
           charts: ["chart.js", "react-chartjs-2"],
           swiper: ["swiper"],
           motion: ["framer-motion"],

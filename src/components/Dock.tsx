@@ -10,6 +10,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { NAV_ITEMS } from "../data/resume";
 import { useTheme } from "../hooks/useTheme";
+import { scrollToSection } from "../lib/smoothScroll";
 
 const BASE_SIZE = 50;
 const MAX_SIZE = 92;
@@ -78,7 +79,7 @@ export function Dock() {
   const mouseX = useMotionValue(Infinity);
 
   const scrollTo = (href: string) => {
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    scrollToSection(href);
     setMobileOpen(false);
   };
 

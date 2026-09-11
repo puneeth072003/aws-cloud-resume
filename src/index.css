@@ -894,6 +894,154 @@ body {
   color: var(--text-secondary);
 }
 
+/* ---------- Hero WebGL layer ---------- */
+.hero-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-scene canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Page content rides above the fixed hero canvas. */
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Intro ---------- */
+/* Scroll stays parked until the cluster has finished assembling. */
+body.is-intro {
+  overflow: hidden;
+  height: 100vh;
+}
+
+#bottom-nav {
+  transition: opacity 0.8s ease 0.2s;
+}
+
+body.is-intro #bottom-nav {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.preloader {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  padding: 0 clamp(16px, 4vw, 48px) clamp(20px, 4vh, 40px);
+  pointer-events: none;
+  transition: opacity 0.7s ease 0.15s, transform 0.7s ease 0.15s;
+}
+
+.preloader--done {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.preloader__rule {
+  position: relative;
+  height: 1px;
+  background: rgba(148, 163, 184, 0.22);
+  overflow: hidden;
+}
+
+.preloader__rule span {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, var(--text-accent), rgba(129, 90, 240, 0.9));
+}
+
+.preloader__meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: 0.85rem;
+  color: var(--text-secondary);
+  font-size: 0.68rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.preloader__count {
+  color: var(--text-main);
+  font-size: clamp(1.6rem, 5vw, 2.6rem);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
+/* ---------- Hero scroll cue ---------- */
+.hero-scroll-cue {
+  margin: 2.4rem auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 0.62rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.hero-scroll-cue:hover {
+  color: var(--text-accent);
+}
+
+.hero-scroll-cue__line {
+  width: 1px;
+  height: 46px;
+  transform-origin: top center;
+  background: linear-gradient(to bottom, var(--text-accent), transparent);
+  animation: scrollCue 2.4s ease-in-out infinite;
+}
+
+@keyframes scrollCue {
+  0%,
+  100% {
+    transform: scaleY(0.4);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* ---------- Lenis ---------- */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

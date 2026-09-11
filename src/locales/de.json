@@ -20,8 +20,12 @@
     "blogs": "Blogs",
     "photography": "Fotografie"
   },
+  "loader": {
+    "label": "Lädt"
+  },
   "hero": {
-    "name": "Puneeth Y",
+    "name": "Puneeth Yogeesha",
+    "scroll": "Scrollen",
     "subtitle": "DevOps-Ingenieur, der widerstandsfähige, automatisierte und skalierbare Cloud-Infrastruktur für moderne Technologien entwickelt."
   },
   "about": {

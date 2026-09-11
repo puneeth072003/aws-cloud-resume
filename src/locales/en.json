@@ -20,8 +20,12 @@
     "blogs": "Blogs",
     "photography": "Photography"
   },
+  "loader": {
+    "label": "Loading"
+  },
   "hero": {
-    "name": "Puneeth Y",
+    "name": "Puneeth Yogeesha",
+    "scroll": "Scroll",
     "subtitle": "DevOps Engineer building resilient, automated, and scalable cloud infrastructure for modern technology."
   },
   "about": {
